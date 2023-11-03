@@ -31,7 +31,29 @@
             </div>
             <div class="form-group">
                 <label for="composition">Komposisi:</label>
-                <textarea class="form-control" id="composition" name="composition"></textarea>
+                <div>
+                    <?php
+                    // Menghubungkan ke database
+                    $conn = new mysqli("localhost", "root", "", "warungupdate");
+
+                    // Memeriksa koneksi
+                    if ($conn->connect_error) {
+                        die("Koneksi gagal: " . $conn->connect_error);
+                    }
+
+                    // Query untuk mendapatkan daftar bahan tanpa duplikasi
+                    $sql = "SELECT DISTINCT nama_bahan FROM bahan";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo '<input type="checkbox" name="selected_composition[]" value="' . $row["nama_bahan"] . '"> ' . $row["nama_bahan"] . '<br>';
+                        }
+                    }
+
+                    $conn->close();
+                    ?>
+                </div>
             </div>
             <button type="submit" class="btn btn-success">Simpan</button>
             <button type="button" class="btn btn-danger" id="cancelButton">Cancel</button>
