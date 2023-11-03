@@ -4,12 +4,7 @@
 <head>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <style>
-    .details-content {
-      margin-top: 10px;
-      margin-bottom: 10px;
-    }
-  </style>
+
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -518,11 +513,10 @@
 
               // Tampilkan rincian dalam elemen <details>
               echo "<details>";
-              echo "<div class='details-content'>";
               foreach ($data_bahan['details'] as $detail) {
-                echo "<p>Nama Bahan: " . $detail['nama_bahan'] . "</p>";
-                echo "<p>Jumlah bahan: " . $detail['jumlah_bahan'] . "</p>";
-                echo "<p>Kategori produk: " . $detail['kategori_produk'] . "</p>";
+                echo "<p><b>" . $detail['tanggal_masuk'] . "</b></p>";
+                echo "<p>Nama Bahan: " . $detail['nama_bahan'] . $detail['id'] . "</p>";
+                echo "<p>Jumlah bahan: " . $detail['jumlah_bahan'] . " " . $detail['satuan'] . "</p>";
                 echo "<p>Tanggal masuk: " . $detail['tanggal_masuk'] . "</p>";
                 echo "<p>Tanggal EXP: " . $detail['tanggal_exp'] . "</p>";
                 echo "<p>Harga beli: " . $detail['harga_beli'] . "</p>";
