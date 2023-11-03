@@ -478,9 +478,21 @@
             $current_nama_bahan = "";
 
             if ($result->num_rows > 0) {
+              $totalJumlahBahan = 0; // Inisialisasi total jumlah bahan
               while ($row = $result->fetch_assoc()) {
                 if ($current_nama_bahan != $row['nama_bahan']) {
-                  echo "<tr><td colspan='7'><strong>" . $row['nama_bahan'] . "</strong></td></tr>";
+                  // Tampilkan total jumlah bahan setelah nama bahan
+            
+                  echo "<tr>";
+                  echo "<th>Nama Bahan</th>";
+                  echo "<th>Sisa Stock</th>";
+                  echo "<th>Kategori</th>";
+                  echo "</tr>";
+                  echo "<tr>";
+                  echo "<td>" . $row['nama_bahan'] . "</td>";
+                  echo "<td>" . $row['jumlah_bahan'] . (isset($row['satuan']) ? $row['satuan'] : '') . "</td>";
+                  echo "<td>" . $row['kategori_produk'] . "</td>";
+                  echo "</tr>";
                   $current_nama_bahan = $row['nama_bahan'];
                   // Tampilkan kolom header di bawah nama_bahan
                   echo "<tr>";
@@ -492,18 +504,20 @@
                   echo "<th>Tanggal EXP</th>";
                   echo "<th>Harga Beli</th>";
                   echo "</tr>";
+                  $totalJumlahBahan = 0; // Reset total jumlah bahan untuk bahan baru
                 }
 
                 // Tampilkan data dalam kolom
                 echo "<tr>";
                 echo "<td>" . $row['id'] . "</td>";
                 echo "<td>" . $row['nama_bahan'] . "</td>";
-                echo "<td>" . $row['jumlah_bahan'] . $row['satuan'] . "</td>";
+                echo "<td>" . $row['jumlah_bahan'] . (isset($row['satuan']) ? $row['satuan'] : '') . "</td>";
                 echo "<td>" . $row['kategori_produk'] . "</td>";
                 echo "<td>" . $row['tanggal_masuk'] . "</td>";
                 echo "<td>" . $row['tanggal_exp'] . "</td>";
                 echo "<td>" . $row['harga_beli'] . "</td>";
                 echo "</tr>";
+                $totalJumlahBahan += $row['jumlah_bahan']; // Hitung total jumlah bahan
               }
             } else {
               echo "<tr><td colspan='7'>Tidak ada produk.</td></tr>";
@@ -515,6 +529,7 @@
         </table>
       </div>
     </section>
+
 
 
   </main><!-- End #main -->
