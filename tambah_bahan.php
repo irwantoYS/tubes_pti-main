@@ -4,6 +4,30 @@
 <head>
     <title>Tambah Bahan</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        .a {
+            display: flex;
+            align-items: center;
+        }
+
+        .a label {
+
+            margin-right: 5px;
+        }
+
+        .b {
+
+            margin-left: 5px;
+        }
+
+        .a input {
+            flex: 5;
+        }
+
+        .a select {
+            flex: 1;
+        }
+    </style>
 </head>
 
 <body>
@@ -15,8 +39,16 @@
                 <input type="text" class="form-control" id="nama_bahan" name="nama_bahan">
             </div>
             <div class="form-group">
-                <label for="jumlah_bahan">Jumlah Bahan:</label>
-                <input type="number" class="form-control" id="jumlah_bahan" name="jumlah_bahan">
+                <div class=a>
+                    <label for="jumlah_bahan">Jumlah Bahan:</label>
+                    <input type="number" class="form-control" id="jumlah_bahan" name="jumlah_bahan">
+                    <label class="b" for="satuan">Satuan:</label>
+                    <select class="form-control" id="satuan" name="satuan">
+                        <option value="gram">gram</option>
+                        <option value="kg">kg</option>
+                        <option value="ml">ml</option>
+                    </select>
+                </div>
             </div>
             <div class="form-group">
                 <label for="kategori_produk">Kategori:</label>

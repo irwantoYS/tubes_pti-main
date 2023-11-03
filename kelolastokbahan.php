@@ -453,23 +453,12 @@
         <a href="tambah_bahan.php" class="btn btn-primary" style="float:right">Tambah Produk</a>
         <br><br>
         <form method="GET">
-          <input type="text" name="search" placeholder="Cari produk...">
+          <input type="text" name="search" placeholder="Cari bahan...">
           <button type="submit" class="btn btn-primary">Cari</button>
           <a href="kelolastokbahan.php" class="btn btn-secondary" style="background-color: red">Reset</a>
         </form>
         <br><br>
         <table class="table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nama Bahan</th>
-              <th>Jumlah Bahan</th>
-              <th>Kategori</th>
-              <th>Tanggal Masuk</th>
-              <th>Tanggal EXP</th>
-              <th>Harga Beli</th>
-            </tr>
-          </thead>
           <tbody>
             <?php
             include 'koneksi.php';
@@ -480,17 +469,36 @@
             // Buat query sesuai dengan kata kunci pencarian
             $query = "SELECT * FROM bahan";
             if (!empty($search)) {
-              $query .= " WHERE nama_bahan LIKE '%$search%' OR category LIKE '%$search%'";
+              $query .= " WHERE nama_bahan LIKE '%$search%' OR kategori_produk LIKE '%$search%'";
             }
+            $query .= " ORDER BY nama_bahan";
 
             $result = $conn->query($query);
 
+            $current_nama_bahan = "";
+
             if ($result->num_rows > 0) {
               while ($row = $result->fetch_assoc()) {
+                if ($current_nama_bahan != $row['nama_bahan']) {
+                  echo "<tr><td colspan='7'><strong>" . $row['nama_bahan'] . "</strong></td></tr>";
+                  $current_nama_bahan = $row['nama_bahan'];
+                  // Tampilkan kolom header di bawah nama_bahan
+                  echo "<tr>";
+                  echo "<th>ID</th>";
+                  echo "<th>Nama Bahan</th>";
+                  echo "<th>Jumlah Bahan</th>";
+                  echo "<th>Kategori</th>";
+                  echo "<th>Tanggal Masuk</th>";
+                  echo "<th>Tanggal EXP</th>";
+                  echo "<th>Harga Beli</th>";
+                  echo "</tr>";
+                }
+
+                // Tampilkan data dalam kolom
                 echo "<tr>";
-                echo "<td>" . $row['nama_bahan'] . $row['id'] . "</td>";
+                echo "<td>" . $row['id'] . "</td>";
                 echo "<td>" . $row['nama_bahan'] . "</td>";
-                echo "<td>" . $row['jumlah_bahan'] . "</td>";
+                echo "<td>" . $row['jumlah_bahan'] . $row['satuan'] . "</td>";
                 echo "<td>" . $row['kategori_produk'] . "</td>";
                 echo "<td>" . $row['tanggal_masuk'] . "</td>";
                 echo "<td>" . $row['tanggal_exp'] . "</td>";
@@ -498,7 +506,7 @@
                 echo "</tr>";
               }
             } else {
-              echo "<tr><td colspan='6'>Tidak ada produk.</td></tr>";
+              echo "<tr><td colspan='7'>Tidak ada produk.</td></tr>";
             }
 
             $conn->close();
@@ -507,6 +515,7 @@
         </table>
       </div>
     </section>
+
 
   </main><!-- End #main -->
 
