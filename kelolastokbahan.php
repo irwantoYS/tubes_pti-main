@@ -2,6 +2,14 @@
 <html lang="en">
 
 <head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    .details-content {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -459,6 +467,14 @@
         </form>
         <br><br>
         <table class="table">
+          <thead>
+            <tr>
+              <th>Nama Bahan</th>
+              <th>Sisa Stock</th>
+              <th>Kategori</th>
+              <th></th>
+            </tr>
+          </thead>
           <tbody>
             <?php
             include 'koneksi.php';
@@ -475,50 +491,47 @@
 
             $result = $conn->query($query);
 
-            $current_nama_bahan = "";
+            $grouped_data = [];
 
-            if ($result->num_rows > 0) {
-              $totalJumlahBahan = 0; // Inisialisasi total jumlah bahan
-              while ($row = $result->fetch_assoc()) {
-                if ($current_nama_bahan != $row['nama_bahan']) {
-                  // Tampilkan total jumlah bahan setelah nama bahan
-            
-                  echo "<tr>";
-                  echo "<th>Nama Bahan</th>";
-                  echo "<th>Sisa Stock</th>";
-                  echo "<th>Kategori</th>";
-                  echo "</tr>";
-                  echo "<tr>";
-                  echo "<td>" . $row['nama_bahan'] . "</td>";
-                  echo "<td>" . $row['jumlah_bahan'] . (isset($row['satuan']) ? $row['satuan'] : '') . "</td>";
-                  echo "<td>" . $row['kategori_produk'] . "</td>";
-                  echo "</tr>";
-                  $current_nama_bahan = $row['nama_bahan'];
-                  // Tampilkan kolom header di bawah nama_bahan
-                  echo "<tr>";
-                  echo "<th>ID</th>";
-                  echo "<th>Nama Bahan</th>";
-                  echo "<th>Jumlah Bahan</th>";
-                  echo "<th>Kategori</th>";
-                  echo "<th>Tanggal Masuk</th>";
-                  echo "<th>Tanggal EXP</th>";
-                  echo "<th>Harga Beli</th>";
-                  echo "</tr>";
-                }
-
-                // Tampilkan data dalam kolom
-                echo "<tr>";
-                echo "<td>" . $row['nama_bahan'] . $row['id'] . "</td>";
-                echo "<td>" . $row['nama_bahan'] . "</td>";
-                echo "<td>" . $row['jumlah_bahan'] . (isset($row['satuan']) ? $row['satuan'] : '') . "</td>";
-                echo "<td>" . $row['kategori_produk'] . "</td>";
-                echo "<td>" . $row['tanggal_masuk'] . "</td>";
-                echo "<td>" . $row['tanggal_exp'] . "</td>";
-                echo "<td>" . $row['harga_beli'] . "</td>";
-                echo "</tr>";
+            while ($row = $result->fetch_assoc()) {
+              $nama_bahan = $row['nama_bahan'];
+              if (!isset($grouped_data[$nama_bahan])) {
+                $grouped_data[$nama_bahan] = [
+                  'jumlah_bahan' => 0,
+                  'kategori_produk' => $row['kategori_produk'],
+                  'details' => []
+                ];
               }
-            } else {
-              echo "<tr><td colspan='7'>Tidak ada produk.</td></tr>";
+
+              $grouped_data[$nama_bahan]['jumlah_bahan'] += $row['jumlah_bahan'];
+
+              // Tambahkan detail ke dalam kelompok
+              $grouped_data[$nama_bahan]['details'][] = $row;
+            }
+
+            foreach ($grouped_data as $nama_bahan => $data_bahan) {
+              echo "<tr>";
+              echo "<td>" . $nama_bahan . "</td>";
+              echo "<td>" . $data_bahan['jumlah_bahan'] . (isset($row['satuan']) ? $row['satuan'] : '') . "</td>";
+              echo "<td>" . $data_bahan['kategori_produk'] . "</td>";
+              echo "<td>";
+
+              // Tampilkan rincian dalam elemen <details>
+              echo "<details>";
+              echo "<div class='details-content'>";
+              foreach ($data_bahan['details'] as $detail) {
+                echo "<p>Nama Bahan: " . $detail['nama_bahan'] . "</p>";
+                echo "<p>Jumlah bahan: " . $detail['jumlah_bahan'] . "</p>";
+                echo "<p>Kategori produk: " . $detail['kategori_produk'] . "</p>";
+                echo "<p>Tanggal masuk: " . $detail['tanggal_masuk'] . "</p>";
+                echo "<p>Tanggal EXP: " . $detail['tanggal_exp'] . "</p>";
+                echo "<p>Harga beli: " . $detail['harga_beli'] . "</p>";
+              }
+              echo "</div>";
+              echo "</details>";
+
+              echo "</td>";
+              echo "</tr>";
             }
 
             $conn->close();
@@ -527,6 +540,10 @@
         </table>
       </div>
     </section>
+
+
+
+
 
   </main><!-- End #main -->
 
