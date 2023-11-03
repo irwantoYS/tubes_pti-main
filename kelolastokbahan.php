@@ -453,7 +453,7 @@
     <section class="section">
       <div class="container">
         <h2>Daftar Stok Bahan</h2>
-        <a href="tambah_bahan.php" class="btn btn-primary" style="float:right">Tambah Produk</a>
+        <a href="tambah_bahan.php" class="btn btn-primary" style="float:right">Tambah Bahan</a>
         <br><br>
         <form method="GET">
           <input type="text" name="search" placeholder="Cari bahan...">
