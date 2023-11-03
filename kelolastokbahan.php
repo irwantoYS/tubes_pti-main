@@ -509,7 +509,7 @@
 
                 // Tampilkan data dalam kolom
                 echo "<tr>";
-                echo "<td>" . $row['id'] . "</td>";
+                echo "<td>" . $row['nama_bahan'] . $row['id'] . "</td>";
                 echo "<td>" . $row['nama_bahan'] . "</td>";
                 echo "<td>" . $row['jumlah_bahan'] . (isset($row['satuan']) ? $row['satuan'] : '') . "</td>";
                 echo "<td>" . $row['kategori_produk'] . "</td>";
