@@ -136,51 +136,39 @@
 
         </li><!-- End Notification Nav -->
         <li class="nav-item dropdown pe-3">
-            <a
-              class="nav-link nav-profile d-flex align-items-center pe-0"
-              href="#"
-              data-bs-toggle="dropdown"
-            >
-              
-              <span class="d-none d-md-block dropdown-toggle ps-2"
-                >Admin</span
-              > </a
-            ><!-- End Profile Iamge Icon -->
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
 
-            <ul
-              class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
-            >
-              <li class="dropdown-header">
-                <h6>Admin</h6>
-              </li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
+            <span class="d-none d-md-block dropdown-toggle ps-2">Admin</span> </a><!-- End Profile Iamge Icon -->
 
-             
-              <li>
-                <a
-                  class="dropdown-item d-flex align-items-center"
-                  href="users-profile.html"
-                >
-                  <i class="bi bi-gear"></i>
-                  <span>Account Management</span>
-                </a>
-              </li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>Admin</h6>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
 
-              <li>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <i class="bi bi-box-arrow-right"></i>
-                  <span>Sign Out</span>
-                </a>
-              </li>
-            </ul>
-            <!-- End Profile Dropdown Items -->
-          </li>
-          <!-- End Profile Nav -->
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-gear"></i>
+                <span>Account Management</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+          </ul>
+          <!-- End Profile Dropdown Items -->
+        </li>
+        <!-- End Profile Nav -->
       </ul>
     </nav><!-- End Icons Navigation -->
 
@@ -224,7 +212,7 @@
         </li><!-- End Components Nav -->
         <li class="nav-item">
           <a class="nav-link collapsed" href="penjualan.php">
-          <i class="bi bi-cart"></i>
+            <i class="bi bi-cart"></i>
             <span>Penjualan</span>
           </a>
         </li><!-- End Profile Page Nav -->
@@ -501,8 +489,8 @@
               while ($row = $result->fetch_assoc()) {
                 echo "<tr>";
                 echo "<td>" . $row['product_name'] . "</td>";
-                echo "<td>" . $row['selling_price'] . "</td>";
-                echo "<td>" . $row['cost_price'] . "</td>";
+                echo "<td>" . "Rp " . $row['selling_price'] . "</td>";
+                echo "<td>" . "Rp " . $row['cost_price'] . "</td>";
                 echo "<td>" . $row['category'] . "</td>";
                 echo "<td>" . $row['composition'] . "</td>";
                 echo "<td>
