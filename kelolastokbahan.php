@@ -504,7 +504,6 @@
                   echo "<th>Tanggal EXP</th>";
                   echo "<th>Harga Beli</th>";
                   echo "</tr>";
-                  $totalJumlahBahan = 0; // Reset total jumlah bahan untuk bahan baru
                 }
 
                 // Tampilkan data dalam kolom
@@ -517,7 +516,6 @@
                 echo "<td>" . $row['tanggal_exp'] . "</td>";
                 echo "<td>" . $row['harga_beli'] . "</td>";
                 echo "</tr>";
-                $totalJumlahBahan += $row['jumlah_bahan']; // Hitung total jumlah bahan
               }
             } else {
               echo "<tr><td colspan='7'>Tidak ada produk.</td></tr>";
@@ -530,15 +528,10 @@
       </div>
     </section>
 
-
-
   </main><!-- End #main -->
-
-
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
-
   <!-- Vendor JS Files -->
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
