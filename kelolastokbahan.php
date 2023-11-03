@@ -136,50 +136,38 @@
 
         </li><!-- End Notification Nav -->
         <li class="nav-item dropdown pe-3">
-            <a
-              class="nav-link nav-profile d-flex align-items-center pe-0"
-              href="#"
-              data-bs-toggle="dropdown"
-            >
-             
-              <span class="d-none d-md-block dropdown-toggle ps-2"
-                >Admin</span
-              > </a
-            ><!-- End Profile Iamge Icon -->
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
 
-            <ul
-              class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
-            >
-              <li class="dropdown-header">
-                <h6>Admin</h6>
-              </li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
+            <span class="d-none d-md-block dropdown-toggle ps-2">Admin</span> </a><!-- End Profile Iamge Icon -->
 
-              <li>
-                <a
-                  class="dropdown-item d-flex align-items-center"
-                  href="users-profile.html"
-                >
-                  <i class="bi bi-gear"></i>
-                  <span>Account Management</span>
-                </a>
-              </li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>Admin</h6>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
 
-              <li>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <i class="bi bi-box-arrow-right"></i>
-                  <span>Sign Out</span>
-                </a>
-              </li>
-            </ul>
-            <!-- End Profile Dropdown Items -->
-          </li>
-          <!-- End Profile Nav -->
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-gear"></i>
+                <span>Account Management</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+          </ul>
+          <!-- End Profile Dropdown Items -->
+        </li>
+        <!-- End Profile Nav -->
       </ul>
     </nav><!-- End Icons Navigation -->
 
@@ -223,7 +211,7 @@
         </li><!-- End Components Nav -->
         <li class="nav-item">
           <a class="nav-link collapsed" href="penjualan.php">
-          <i class="bi bi-cart"></i>
+            <i class="bi bi-cart"></i>
             <span>Penjualan</span>
           </a>
         </li><!-- End Profile Page Nav -->
@@ -462,7 +450,7 @@
     <section class="section">
       <div class="container">
         <h2>Daftar Stok Bahan</h2>
-        <a href="tambah.php" class="btn btn-primary" style="float:right">Tambah Produk</a>
+        <a href="tambah_bahan.php" class="btn btn-primary" style="float:right">Tambah Produk</a>
         <br><br>
         <form method="GET">
           <input type="text" name="search" placeholder="Cari produk...">
@@ -473,12 +461,13 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Nama Produk</th>
-              <th>Harga Jual</th>
-              <th>Harga Modal</th>
+              <th>ID</th>
+              <th>Nama Bahan</th>
+              <th>Jumlah Bahan</th>
               <th>Kategori</th>
-              <th>Komposisi</th>
-              <th>Aksi</th>
+              <th>Tanggal Masuk</th>
+              <th>Tanggal EXP</th>
+              <th>Harga Beli</th>
             </tr>
           </thead>
           <tbody>
@@ -489,9 +478,9 @@
             $search = isset($_GET['search']) ? $_GET['search'] : '';
 
             // Buat query sesuai dengan kata kunci pencarian
-            $query = "SELECT * FROM products";
+            $query = "SELECT * FROM bahan";
             if (!empty($search)) {
-              $query .= " WHERE product_name LIKE '%$search%' OR category LIKE '%$search%'";
+              $query .= " WHERE nama_bahan LIKE '%$search%' OR category LIKE '%$search%'";
             }
 
             $result = $conn->query($query);
@@ -499,15 +488,13 @@
             if ($result->num_rows > 0) {
               while ($row = $result->fetch_assoc()) {
                 echo "<tr>";
-                echo "<td>" . $row['product_name'] . "</td>";
-                echo "<td>" . $row['selling_price'] . "</td>";
-                echo "<td>" . $row['cost_price'] . "</td>";
-                echo "<td>" . $row['category'] . "</td>";
-                echo "<td>" . $row['composition'] . "</td>";
-                echo "<td>
-                        <a href='edit.php?id=" . $row['id'] . "' class='btn btn-primary'>Edit</a>
-                        <a href='hapus.php?id=" . $row['id'] . "' class='btn btn-danger'>Hapus</a>
-                    </td>";
+                echo "<td>" . $row['nama_bahan'] . $row['id'] . "</td>";
+                echo "<td>" . $row['nama_bahan'] . "</td>";
+                echo "<td>" . $row['jumlah_bahan'] . "</td>";
+                echo "<td>" . $row['kategori_produk'] . "</td>";
+                echo "<td>" . $row['tanggal_masuk'] . "</td>";
+                echo "<td>" . $row['tanggal_exp'] . "</td>";
+                echo "<td>" . $row['harga_beli'] . "</td>";
                 echo "</tr>";
               }
             } else {
