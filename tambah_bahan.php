@@ -121,6 +121,19 @@
         // Menambahkan event listener ke elemen "nama_bahan" untuk mengganti satuan
         $("#nama_bahan").on("input", function () {
             var selectedBahan = $(this).val();
+            var staticSatuanElement = document.getElementById("static-satuan");
+
+            // Mengatur teks statis "Satuan" berdasarkan pilihan "Nama Bahan"
+            if (selectedBahan === "Kecap" || selectedBahan === "Minyak Goreng" || selectedBahan === "Saus Sambal" || selectedBahan === "Saus Tomat" || selectedBahan === "Susu" || selectedBahan === "Susu Kental Manis") {
+                staticSatuanElement.textContent = "ml";
+        // Inisialisasi autocomplete pada input "nama_bahan"
+        $("#nama_bahan").autocomplete({
+            source: ["Ayam", "Bawang Bombay", "Bawang Merah", "Bawang Putih", "Beras", "Cabai Hijau", "Cabai Merah", "Cabai Rawit", "Garam", "Gula", "Kecap", "Keju", "Kentang", "Kopi", "Mentega", "Minyak Goreng", "Powdered Cookies and Cream", "Powdered Green Tea", "Powdered Red Velvet", "Powdered Vanilla", "Saus Sambal", "Saus Tomat", "Selada", "Susu", "Susu Kental Manis", "Tahu", "Timun", "Tomat"],
+        });
+
+        // Menambahkan event listener ke elemen "nama_bahan" untuk mengganti satuan
+        $("#nama_bahan").on("input", function () {
+            var selectedBahan = $(this).val();
             var satuanElement = document.getElementById("satuan");
 
             // Mengatur satuan default ke "gram"
@@ -130,7 +143,8 @@
             if ($("#bahanList option[value='" + selectedBahan + "']").length === 0) {
                 satuanElement.disabled = false;
             } else {
-                satuanElement.disabled = true;
+                // Mengatur nilai default jika tidak ada pemilihan yang sesuai.
+                staticSatuanElement.textContent = "gram";
             }
         });
 
