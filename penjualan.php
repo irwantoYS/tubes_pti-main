@@ -1,3 +1,8 @@
+<?php
+ 
+// koneksi
+include 'koneksi.php'
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -136,50 +141,38 @@
 
         </li><!-- End Notification Nav -->
         <li class="nav-item dropdown pe-3">
-            <a
-              class="nav-link nav-profile d-flex align-items-center pe-0"
-              href="#"
-              data-bs-toggle="dropdown"
-            >
-             
-              <span class="d-none d-md-block dropdown-toggle ps-2"
-                >Admin</span
-              > </a
-            ><!-- End Profile Iamge Icon -->
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
 
-            <ul
-              class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
-            >
-              <li class="dropdown-header">
-                <h6>Admin</h6>
-              </li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
+            <span class="d-none d-md-block dropdown-toggle ps-2">Admin</span> </a><!-- End Profile Iamge Icon -->
 
-              <li>
-                <a
-                  class="dropdown-item d-flex align-items-center"
-                  href="users-profile.html"
-                >
-                  <i class="bi bi-gear"></i>
-                  <span>Account Management</span>
-                </a>
-              </li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>Admin</h6>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
 
-              <li>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <i class="bi bi-box-arrow-right"></i>
-                  <span>Sign Out</span>
-                </a>
-              </li>
-            </ul>
-            <!-- End Profile Dropdown Items -->
-          </li>
-          <!-- End Profile Nav -->
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-gear"></i>
+                <span>Account Management</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+          </ul>
+          <!-- End Profile Dropdown Items -->
+        </li>
+        <!-- End Profile Nav -->
       </ul>
     </nav><!-- End Icons Navigation -->
 
@@ -223,7 +216,7 @@
         </li><!-- End Components Nav -->
         <li class="nav-item">
           <a class="nav-link collapsed" href="penjualan.php">
-          <i class="bi bi-cart"></i>
+            <i class="bi bi-cart"></i>
             <span>Penjualan</span>
           </a>
         </li><!-- End Profile Page Nav -->
@@ -461,60 +454,87 @@
     <section class="section">
       <div class="container">
         <h2>Data Penjualan</h2>
-        <a href="tambah.php" class="btn btn-primary" style="float:right">Tambah Penjualan</a>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <a href="laporanexcel.php" class="btn btn-success me-md-2" type="button">Excel</a>
+          <a href="tambah.php" class="btn btn-success" type="button">Tambah Penjualan</a>
+        </div>
         <br><br>
-        <form method="GET">
-          <input type="text" name="search" placeholder="Cari produk...">
-          <button type="submit" class="btn btn-primary">Cari</button>
-          <a href="penjualan.php" class="btn btn-secondary" style="background-color: red">Reset</a>
-        </form>
         <br><br>
         <table class="table">
           <thead>
             <tr>
+              <th>No.</th>
+              <th>Tanggal</th>
               <th>Nama Produk</th>
               <th>Harga Jual</th>
               <th>Harga Modal</th>
-              <th>Kategori</th>
-              <th>Komposisi</th>
-              <th>Aksi</th>
+              <th>Jumlah Terjual</th>
+              <th>Total</th>
+              <!-- <th>Aksi</th> -->
             </tr>
           </thead>
           <tbody>
             <?php
-            include 'koneksi.php';
+            $q = mysqli_query($conn, "SELECT * FROM penjualan");
+            $total = 0;
+            $tot_bayar = 0;
+            $no = 1;
+
 
             // Periksa apakah ada kata kunci pencarian yang diberikan
-            $search = isset($_GET['search']) ? $_GET['search'] : '';
+            // $search = isset($_GET['search']) ? $_GET['search'] : '';
 
             // Buat query sesuai dengan kata kunci pencarian
-            $query = "SELECT * FROM products";
-            if (!empty($search)) {
-              $query .= " WHERE product_name LIKE '%$search%' OR category LIKE '%$search%'";
-            }
+            // $query = "SELECT * FROM products";
+            // if (!empty($search)) {
+            //   $query .= " WHERE product_name LIKE '%$search%' OR category LIKE '%$search%'";
+            // }
 
-            $result = $conn->query($query);
+            // $result = $conn->query($query);
 
-            if ($result->num_rows > 0) {
-              while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . $row['product_name'] . "</td>";
-                echo "<td>" . $row['selling_price'] . "</td>";
-                echo "<td>" . $row['cost_price'] . "</td>";
-                echo "<td>" . $row['category'] . "</td>";
-                echo "<td>" . $row['composition'] . "</td>";
-                echo "<td>
-                        <a href='edit.php?id=" . $row['id'] . "' class='btn btn-primary'>Edit</a>
-                        <a href='hapus.php?id=" . $row['id'] . "' class='btn btn-danger'>Hapus</a>
-                    </td>";
-                echo "</tr>";
-              }
-            } else {
-              echo "<tr><td colspan='6'>Tidak ada produk.</td></tr>";
-            }
+            // if ($result->num_rows > 0) {
+            //   while ($row = $result->fetch_assoc()) {
+            //     echo "<tr>";
+            //     echo "<td>" . $row['product_name'] . "</td>";
+            //     echo "<td>" . $row['selling_price'] . "</td>";
+            //     echo "<td>" . $row['cost_price'] . "</td>";
+            //     echo "<td>" . $row['category'] . "</td>";
+            //     echo "<td>" . $row['composition'] . "</td>";
+            //     // echo "<td>
+            //     //         <a href='edit.php?id=" . $row['id'] . "' class='btn btn-primary'>Edit</a>
+            //     //         <a href='hapus.php?id=" . $row['id'] . "' class='btn btn-danger'>Hapus</a>
+            //     //     </td>";
+            //     echo "</tr>";
+            //   }
+            // } else {
+            //   echo "<tr><td colspan='6'>Tidak ada produk.</td></tr>";
+            // }
 
-            $conn->close();
+            // $conn->close();
+            while ($r = $q->fetch_assoc()) {
+            // total adalah hasil dari harga x qty
+            $ttlhargajual = $r['harga_jual'] * $r['kuantitas'];
+            $ttlhargamodal = $r['harga_modal'] * $r['kuantitas'];  
+            $total = $ttlhargajual - $ttlhargamodal;
+            // total bayar adalah penjumlahan dari keseluruhan total
+            $tot_bayar += $total;
             ?>
+            <tr>
+              <td><?= $no++ ?></td>
+              <td><?= $r['tgl'] ?></td>
+              <td><?= ucwords($r['nama_produk']) ?></td>
+              <td><?= $r['harga_jual'] ?></td>
+              <td><?= $r['harga_modal'] ?></td>
+              <td><?= $r['kuantitas'] ?></td>
+              <td><?= $total ?></td>
+            </tr>
+            <?php
+            }
+            ?>
+            <tr>
+              <th colspan="6">Keuntungan</th>
+              <th><?= $tot_bayar ?></th>
+            </tr>
           </tbody>
         </table>
       </div>
