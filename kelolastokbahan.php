@@ -305,19 +305,39 @@
 
             $result = $conn->query($query);
 
-            if ($result->num_rows > 0) {
-              while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . $row['product_name'] . "</td>";
-                echo "<td>" . $row['selling_price'] . "</td>";
-                echo "<td>" . $row['cost_price'] . "</td>";
-                echo "<td>" . $row['category'] . "</td>";
-                echo "<td>" . $row['composition'] . "</td>";
-                echo "<td>
-                        <a href='edit.php?id=" . $row['id'] . "' class='btn btn-primary'>Edit</a>
-                        <a href='hapus.php?id=" . $row['id'] . "' class='btn btn-danger'>Hapus</a>
-                    </td>";
-                echo "</tr>";
+            $grouped_data = [];
+
+            while ($row = $result->fetch_assoc()) {
+              $nama_bahan = $row['nama_bahan'];
+              if (!isset($grouped_data[$nama_bahan])) {
+                $grouped_data[$nama_bahan] = [
+                  'jumlah_bahan' => 0,
+                  'kategori_produk' => $row['kategori_produk'],
+                  'details' => []
+                ];
+              }
+
+              $grouped_data[$nama_bahan]['jumlah_bahan'] += $row['jumlah_bahan'];
+
+              // Tambahkan detail ke dalam kelompok
+              $grouped_data[$nama_bahan]['details'][] = $row;
+            }
+
+            foreach ($grouped_data as $nama_bahan => $data_bahan) {
+              echo "<tr>";
+              echo "<td>" . $nama_bahan . "</td>";
+              echo "<td>" . $data_bahan['jumlah_bahan'] . (isset($row['satuan']) ? $row['satuan'] : '') . "</td>";
+              echo "<td>" . $data_bahan['kategori_produk'] . "</td>";
+              echo "<td>";
+
+              // Tampilkan rincian dalam elemen <details>
+              echo "<details>";
+              foreach ($data_bahan['details'] as $detail) {
+                echo "<p><b>" . $detail['tanggal_masuk'] . "</b></p>";
+                echo "<p>Nama Bahan: " . $detail['nama_bahan'] . "-" . $detail['id'] . "</p>";
+                echo "<p>Jumlah: " . $detail['jumlah_bahan'] . " " . $detail['satuan'] . "</p>";
+                echo "<p>Tanggal expired: " . $detail['tanggal_exp'] . "</p>";
+                echo "<p>Harga beli: " . $detail['harga_beli'] . "</p>";
               }
             } else {
               echo "<tr><td colspan='6'>Tidak ada produk.</td></tr>";
