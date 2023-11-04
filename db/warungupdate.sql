@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2023 at 11:20 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Waktu pembuatan: 04 Nov 2023 pada 12.49
+-- Versi server: 10.4.17-MariaDB
+-- Versi PHP: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bahan`
+-- Struktur dari tabel `bahan`
 --
 
 CREATE TABLE `bahan` (
@@ -39,7 +39,7 @@ CREATE TABLE `bahan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `bahan`
+-- Dumping data untuk tabel `bahan`
 --
 
 INSERT INTO `bahan` (`id`, `nama_bahan`, `jumlah_bahan`, `satuan`, `kategori_produk`, `tanggal_masuk`, `tanggal_exp`, `harga_beli`) VALUES
@@ -52,30 +52,53 @@ INSERT INTO `bahan` (`id`, `nama_bahan`, `jumlah_bahan`, `satuan`, `kategori_pro
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Struktur dari tabel `penjualan`
+--
+
+CREATE TABLE `penjualan` (
+  `nama_produk` char(30) NOT NULL,
+  `harga_jual` double NOT NULL,
+  `harga_modal` double NOT NULL,
+  `kuantitas` double NOT NULL,
+  `tgl` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `penjualan`
+--
+
+INSERT INTO `penjualan` (`nama_produk`, `harga_jual`, `harga_modal`, `kuantitas`, `tgl`) VALUES
+('Ayam', 20000, 10000, 10, '2022-02-02'),
+('Bebek', 10000, 5000, 10, '2023-11-04'),
+('Sayur', 5000, 3000, 2, '2023-02-22');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `products`
 --
 
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
   `product_name` varchar(255) NOT NULL,
-  `selling_price` int(255) NOT NULL,
-  `cost_price` int(255) NOT NULL,
+  `selling_price` decimal(10,2) NOT NULL,
+  `cost_price` decimal(10,2) NOT NULL,
   `category` enum('kitchen','bar') NOT NULL,
   `composition` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `products`
+-- Dumping data untuk tabel `products`
 --
 
 INSERT INTO `products` (`id`, `product_name`, `selling_price`, `cost_price`, `category`, `composition`) VALUES
-(7, 'nasi', 5000, 1000, 'kitchen', 'beras'),
-(12, 'nasi tomat', 20000, 1200, 'kitchen', 'beras, tomat');
+(2, 'bagas', '200.00', '400.00', 'bar', 'safa'),
+(3, 'dihyab', '24.00', '54.00', 'kitchen', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `property`
+-- Struktur dari tabel `property`
 --
 
 CREATE TABLE `property` (
@@ -85,56 +108,43 @@ CREATE TABLE `property` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `property`
+-- Dumping data untuk tabel `property`
 --
 
 INSERT INTO `property` (`id`, `nama_properti`, `jumlah_properti`) VALUES
-(1238, 'meja', 43),
-(1239, 'Meja', 10);
+(1238, 'meja', 43);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `bahan`
---
-ALTER TABLE `bahan`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `products`
+-- Indeks untuk tabel `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `property`
+-- Indeks untuk tabel `property`
 --
 ALTER TABLE `property`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `bahan`
---
-ALTER TABLE `bahan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `products`
+-- AUTO_INCREMENT untuk tabel `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `property`
+-- AUTO_INCREMENT untuk tabel `property`
 --
 ALTER TABLE `property`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1240;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1239;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -4,6 +4,10 @@
 <head>
     <title>Tambah Bahan</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- Tambahkan CSS jQuery UI -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> <!-- Tambahkan jQuery UI -->
     <style>
         .a {
             display: flex;
@@ -41,35 +45,37 @@
         <form action="proses_tambah_bahan.php" method="post">
             <div class="form-group">
                 <label for="nama_bahan">Nama Bahan:</label>
-                <select class="form-control" id="nama_bahan" name="nama_bahan">
-                    <option value="ayam">Ayam</option>
-                    <option value="bawang_bombay">Bawang Bombay</option>
-                    <option value="bawang_merah">Bawang Merah</option>
-                    <option value="bawang_putih">Bawang Putih</option>
-                    <option value="beras">Beras</option>
-                    <option value="cabai_hijau">Cabai Hijau</option>
-                    <option value="cabai_merah">Cabai Merah</option>
-                    <option value="cabai_rawit">Cabai Rawit</option>
-                    <option value="garam">Garam</option>
-                    <option value="gula">Gula</option>
-                    <option value="keju">Keju</option>
-                    <option value="kentang">Kentang</option>
-                    <option value="kopi">Kopi</option>
-                    <option value="mentega">Mentega</option>
-                    <option value="minyak_goreng">Minyak Goreng</option>
-                    <option value="powdered_cookies_and_cream">Powdered Cookies and Cream</option>
-                    <option value="powdered_green_tea">Powdered Green Tea</option>
-                    <option value="powdered_red_velvet">Powdered Red Velvet</option>
-                    <option value="powdered_vanilla">Powdered Vanilla</option>
-                    <option value="saus_sambal">Saus Sambal</option>
-                    <option value="saus_tomat">Saus Tomat</option>
-                    <option value="selada">Selada</option>
-                    <option value="susu">Susu</option>
-                    <option value="susu_kental_manis">Susu Kental Manis</option>
-                    <option value="tahu">Tahu</option>
-                    <option value="timun">Timun</option>
-                    <option value="tomat">Tomat</option>
-                </select>
+                <input type="text" class="form-control" id="nama_bahan" name="nama_bahan" list="bahanList">
+                <datalist id="bahanList">
+                    <option value="Ayam">
+                    <option value="Bawang Bombay">
+                    <option value="Bawang Merah">
+                    <option value="Bawang Putih">
+                    <option value="Beras">
+                    <option value="Cabai Hijau">
+                    <option value="Cabai Merah">
+                    <option value="Cabai Rawit">
+                    <option value="Garam">
+                    <option value="Gula">
+                    <option value="Kecap">
+                    <option value="Keju">
+                    <option value="Kentang">
+                    <option value="Kopi">
+                    <option value="Mentega">
+                    <option value="Minyak Goreng">
+                    <option value="Powdered Cookies and Cream">
+                    <option value="Powdered Green Tea">
+                    <option value="Powdered Red Velvet">
+                    <option value="Powdered Vanilla">
+                    <option value="Saus Sambal">
+                    <option value="Saus Tomat">
+                    <option value="Selada">
+                    <option value="Susu">
+                    <option value="Susu Kental Manis">
+                    <option value="Tahu">
+                    <option value="Timun">
+                    <option value="Tomat">
+                </datalist>
             </div>
             <div class="form-group">
                 <div class="a">
@@ -104,75 +110,25 @@
     </div>
 
     <script>
-        // Menambahkan event listener ke elemen "nama_bahan" untuk mendengarkan perubahan pilihan.
-        document.getElementById("nama_bahan").addEventListener("change", function () {
-            var selectedBahan = this.value; // Mendapatkan nilai pilihan "Nama Bahan".
-            var staticSatuanElement = document.getElementById("static-satuan"); // Mengambil elemen "static-satuan".
+        // Inisialisasi autocomplete pada input "nama_bahan"
+        $("#nama_bahan").autocomplete({
+            source: ["Ayam", "Bawang Bombay", "Bawang Merah", "Bawang Putih", "Beras", "Cabai Hijau", "Cabai Merah", "Cabai Rawit", "Garam", "Gula", "Kecap", "Keju", "Kentang", "Kopi", "Mentega", "Minyak Goreng", "Powdered Cookies and Cream", "Powdered Green Tea", "Powdered Red Velvet", "Powdered Vanilla", "Saus Sambal", "Saus Tomat", "Selada", "Susu", "Susu Kental Manis", "Tahu", "Timun", "Tomat"],
+        });
 
-            // Mengatur teks statis "Satuan" berdasarkan pilihan "Nama Bahan".
-            if (selectedBahan === "ayam") {
-                staticSatuanElement.textContent = "gram";
-            } else if (selectedBahan === "bawang_bombay") {
-                staticSatuanElement.textContent = "gram";
-            } else if (selectedBahan === "bawang_merah") {
-                staticSatuanElement.textContent = "gram";
-            } else if (selectedBahan === "bawang_putih") {
-                staticSatuanElement.textContent = "gram";
-            } else if (selectedBahan === "beras") {
-                staticSatuanElement.textContent = "gram";
-            } else if (selectedBahan === "cabai_hijau") {
-                staticSatuanElement.textContent = "gram";
-            } else if (selectedBahan === "cabai_merah") {
-                staticSatuanElement.textContent = "gram";
-            } else if (selectedBahan === "cabai_rawit") {
-                staticSatuanElement.textContent = "gram";
-            } else if (selectedBahan === "garam") {
-                staticSatuanElement.textContent = "gram";
-            } else if (selectedBahan === "gula") {
-                staticSatuanElement.textContent = "gram";
-            } else if (selectedBahan === "kecap") {
+        // Menambahkan event listener ke elemen "nama_bahan" untuk mengganti satuan
+        $("#nama_bahan").on("input", function () {
+            var selectedBahan = $(this).val();
+            var staticSatuanElement = document.getElementById("static-satuan");
+
+            // Mengatur teks statis "Satuan" berdasarkan pilihan "Nama Bahan"
+            if (selectedBahan === "Kecap" || selectedBahan === "Minyak Goreng" || selectedBahan === "Saus Sambal" || selectedBahan === "Saus Tomat" || selectedBahan === "Susu" || selectedBahan === "Susu Kental Manis") {
                 staticSatuanElement.textContent = "ml";
-            } else if (selectedBahan === "keju") {
-                staticSatuanElement.textContent = "gram";
-            } else if (selectedBahan === "kentang") {
-                staticSatuanElement.textContent = "gram";
-            } else if (selectedBahan === "kopi") {
-                staticSatuanElement.textContent = "gram";
-            } else if (selectedBahan === "mentega") {
-                staticSatuanElement.textContent = "gram";
-            } else if (selectedBahan === "minyak_goreng") {
-                staticSatuanElement.textContent = "ml";
-            } else if (selectedBahan === "powdered_cookies_and_cream") {
-                staticSatuanElement.textContent = "gram";
-            } else if (selectedBahan === "powdered_green_tea") {
-                staticSatuanElement.textContent = "gram";
-            } else if (selectedBahan === "powdered_red_velvet") {
-                staticSatuanElement.textContent = "gram";
-            } else if (selectedBahan === "powdered_vanilla") {
-                staticSatuanElement.textContent = "gram";
-            } else if (selectedBahan === "saus_sambal") {
-                staticSatuanElement.textContent = "ml";
-            } else if (selectedBahan === "saus_tomat") {
-                staticSatuanElement.textContent = "ml";
-            } else if (selectedBahan === "selada") {
-                staticSatuanElement.textContent = "gram";
-            } else if (selectedBahan === "susu") {
-                staticSatuanElement.textContent = "ml";
-            } else if (selectedBahan === "susu_kental_manis") {
-                staticSatuanElement.textContent = "ml";
-            } else if (selectedBahan === "tahu") {
-                staticSatuanElement.textContent = "gram";
-            } else if (selectedBahan === "timun") {
-                staticSatuanElement.textContent = "gram";
-            } else if (selectedBahan === "tomat") {
-                staticSatuanElement.textContent = "gram";
             } else {
-                // Mengatur nilai default jika tidak ada pemilihan yang sesuai.
                 staticSatuanElement.textContent = "gram";
             }
         });
 
-        // Menambahkan event listener ke tombol "Cancel".
+        // Menambahkan event listener ke tombol "Cancel"
         document.getElementById("cancelButton").addEventListener("click", function () {
             history.back(); // Menggunakan fungsi history.back() untuk kembali ke halaman sebelumnya.
         });
