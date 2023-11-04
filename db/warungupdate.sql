@@ -6,6 +6,9 @@
 -- Waktu pembuatan: 23 Nov 2023 pada 06.13
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 7.2.34
+-- Waktu pembuatan: 04 Nov 2023 pada 12.49
+-- Versi server: 10.4.17-MariaDB
+-- Versi PHP: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
