@@ -82,7 +82,10 @@
                     <label for="jumlah_bahan">Jumlah Bahan:</label>
                     <input type="number" class="form-control" id="jumlah_bahan" name="jumlah_bahan">
                     <label class="b">Satuan:</label>
-                    <span class="static-satuan" id="static-satuan">gram</span>
+                    <select class="form-control" id="satuan" name="satuan">
+                        <option value="gram">gram</option>
+                        <option value="ml">ml</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group">
@@ -118,13 +121,16 @@
         // Menambahkan event listener ke elemen "nama_bahan" untuk mengganti satuan
         $("#nama_bahan").on("input", function () {
             var selectedBahan = $(this).val();
-            var staticSatuanElement = document.getElementById("static-satuan");
+            var satuanElement = document.getElementById("satuan");
 
-            // Mengatur teks statis "Satuan" berdasarkan pilihan "Nama Bahan"
-            if (selectedBahan === "Kecap" || selectedBahan === "Minyak Goreng" || selectedBahan === "Saus Sambal" || selectedBahan === "Saus Tomat" || selectedBahan === "Susu" || selectedBahan === "Susu Kental Manis") {
-                staticSatuanElement.textContent = "ml";
+            // Mengatur satuan default ke "gram"
+            satuanElement.value = "gram";
+
+            // Mengatur "Satuan" menjadi disabled jika nama bahan yang dimasukkan tidak ada dalam autocomplete
+            if ($("#bahanList option[value='" + selectedBahan + "']").length === 0) {
+                satuanElement.disabled = false;
             } else {
-                staticSatuanElement.textContent = "gram";
+                satuanElement.disabled = true;
             }
         });
 
