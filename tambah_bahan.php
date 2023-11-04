@@ -52,7 +52,6 @@
                     <option value="cabai_rawit">Cabai Rawit</option>
                     <option value="garam">Garam</option>
                     <option value="gula">Gula</option>
-                    <option value="kecap">Cabai Merah</option>
                     <option value="keju">Keju</option>
                     <option value="kentang">Kentang</option>
                     <option value="kopi">Kopi</option>
@@ -142,7 +141,7 @@
             } else if (selectedBahan === "mentega") {
                 staticSatuanElement.textContent = "gram";
             } else if (selectedBahan === "minyak_goreng") {
-                staticSatuanElement.textContent = "gram";
+                staticSatuanElement.textContent = "ml";
             } else if (selectedBahan === "powdered_cookies_and_cream") {
                 staticSatuanElement.textContent = "gram";
             } else if (selectedBahan === "powdered_green_tea") {
