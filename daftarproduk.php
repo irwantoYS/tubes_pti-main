@@ -451,7 +451,7 @@
     <section class="section">
       <div class="container">
         <h2>Daftar Produk</h2>
-        <a href="tambah.php" class="btn btn-primary" style="float:right">Tambah Produk</a>
+        <a href="tambah_produk.php" class="btn btn-primary" style="float:right">Tambah Produk</a>
         <br><br>
         <form method="GET">
           <input type="text" name="search" placeholder="Cari produk...">
