@@ -515,9 +515,8 @@
               echo "<details>";
               foreach ($data_bahan['details'] as $detail) {
                 echo "<p><b>" . $detail['tanggal_masuk'] . "</b></p>";
-                echo "<p>Nama Bahan: " . $detail['nama_bahan'] . $detail['id'] . "</p>";
+                echo "<p>Nama Bahan: " . $detail['nama_bahan'] . "-" . $detail['id'] . "</p>";
                 echo "<p>Jumlah: " . $detail['jumlah_bahan'] . " " . $detail['satuan'] . "</p>";
-                echo "<p>Tanggal masuk: " . $detail['tanggal_masuk'] . "</p>";
                 echo "<p>Tanggal expired: " . $detail['tanggal_exp'] . "</p>";
                 echo "<p>Harga beli: " . $detail['harga_beli'] . "</p>";
               }

@@ -36,7 +36,10 @@
         <form action="proses_tambah_bahan.php" method="post">
             <div class="form-group">
                 <label for="nama_bahan">Nama Bahan:</label>
-                <input type="text" class="form-control" id="nama_bahan" name="nama_bahan">
+                <select class="form-control" id="nama_bahan" name="nama_bahan">
+                    <option value="beras">Beras</option>
+                    <option value="bawang">Bawang</option>
+                </select>
             </div>
             <div class="form-group">
                 <div class=a>
@@ -45,7 +48,6 @@
                     <label class="b" for="satuan">Satuan:</label>
                     <select class="form-control" id="satuan" name="satuan">
                         <option value="gram">gram</option>
-                        <option value="kg">kg</option>
                         <option value="ml">ml</option>
                     </select>
                 </div>
