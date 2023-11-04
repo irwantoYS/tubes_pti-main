@@ -337,7 +337,7 @@
                 echo "<p>Nama Bahan: " . $detail['nama_bahan'] . "-" . $detail['id'] . "</p>";
                 echo "<p>Jumlah: " . $detail['jumlah_bahan'] . " " . $detail['satuan'] . "</p>";
                 echo "<p>Tanggal expired: " . $detail['tanggal_exp'] . "</p>";
-                echo "<p>Harga beli: " . $detail['harga_beli'] . "</p>";
+                echo "<p>Harga beli: " . "Rp " . $detail['harga_beli'] . "</p>";
               }
             } else {
               echo "<tr><td colspan='6'>Tidak ada produk.</td></tr>";
