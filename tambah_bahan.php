@@ -121,7 +121,7 @@
         // Menambahkan event listener ke elemen "nama_bahan" untuk mengganti satuan
         $("#nama_bahan").on("input", function () {
             var selectedBahan = $(this).val();
-            var staticSatuanElement = document.getElementById("static-satuan");
+            var satuanElement = document.getElementById("satuan");
 
             // Mengatur teks statis "Satuan" berdasarkan pilihan "Nama Bahan"
             if (selectedBahan === "Kecap" || selectedBahan === "Minyak Goreng" || selectedBahan === "Saus Sambal" || selectedBahan === "Saus Tomat" || selectedBahan === "Susu" || selectedBahan === "Susu Kental Manis") {
