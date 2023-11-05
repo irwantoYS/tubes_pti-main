@@ -47,36 +47,10 @@
                 </div>
                 <div class="form-group">
                     <label for="composition">Komposisi:</label>
-                    <div>
-                        <?php
-                        include 'koneksi.php';
-
-                        $id = $_GET['id'];
-                        $query = "SELECT * FROM products WHERE id=$id";
-                        $result = $conn->query($query);
-
-                        if ($result->num_rows > 0) {
-                            $row = $result->fetch_assoc();
-                            $selectedComposition = explode(', ', $row['composition']);
-
-                            $compositionQuery = "SELECT DISTINCT nama_bahan FROM bahan";
-                            $compositionResult = $conn->query($compositionQuery);
-
-                            if ($compositionResult->num_rows > 0) {
-                                while ($compositionRow = $compositionResult->fetch_assoc()) {
-                                    $isChecked = in_array($compositionRow['nama_bahan'], $selectedComposition) ? 'checked' : '';
-
-                                    echo '<label>';
-                                    echo '<input type="checkbox" name="selected_composition[]" value="' . $compositionRow['nama_bahan'] . '" ' . $isChecked . '> ' . $compositionRow['nama_bahan'];
-                                    echo '</label><br>';
-                                }
-                            }
-                        }
-                        ?>
-                    </div>
+                    <textarea class="form-control" id="composition"
+                        name="composition"><?php echo $row['composition']; ?></textarea>
                 </div>
                 <button type="submit" class="btn btn-success">Simpan</button>
-                <button type="button" class="btn btn-danger" id="cancelButton">Cancel</button>
             </form>
             <?php
         } else {
@@ -86,12 +60,6 @@
         $conn->close();
         ?>
     </div>
-    <script>
-        // Menambahkan event listener ke tombol "Cancel"
-        document.getElementById("cancelButton").addEventListener("click", function () {
-            history.back(); // Menggunakan fungsi history.back() untuk kembali ke halaman sebelumnya
-        });
-    </script>
 </body>
 
 </html>

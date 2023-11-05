@@ -54,13 +54,6 @@
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
-
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
-
         <li class="nav-item dropdown">
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
@@ -136,39 +129,51 @@
 
         </li><!-- End Notification Nav -->
         <li class="nav-item dropdown pe-3">
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <a
+              class="nav-link nav-profile d-flex align-items-center pe-0"
+              href="#"
+              data-bs-toggle="dropdown"
+            >
+              
+              <span class="d-none d-md-block dropdown-toggle ps-2"
+                >Admin</span
+              > </a
+            ><!-- End Profile Iamge Icon -->
 
-            <span class="d-none d-md-block dropdown-toggle ps-2">Admin</span> </a><!-- End Profile Iamge Icon -->
+            <ul
+              class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
+            >
+              <li class="dropdown-header">
+                <h6>Admin</h6>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
 
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-              <h6>Admin</h6>
-            </li>
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
+             
+              <li>
+                <a
+                  class="dropdown-item d-flex align-items-center"
+                  href="adminprofil.php"
+                >
+                  <i class="bi bi-gear"></i>
+                  <span>Account Management</span>
+                </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
 
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-gear"></i>
-                <span>Account Management</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
-            </li>
-          </ul>
-          <!-- End Profile Dropdown Items -->
-        </li>
-        <!-- End Profile Nav -->
+              <li>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <i class="bi bi-box-arrow-right"></i>
+                  <span>Sign Out</span>
+                </a>
+              </li>
+            </ul>
+            <!-- End Profile Dropdown Items -->
+          </li>
+          <!-- End Profile Nav -->
       </ul>
     </nav><!-- End Icons Navigation -->
 
@@ -190,7 +195,7 @@
 
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-menu-button-wide-fill"></i><span>Inventory</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="bi bi-menu-button-wide-fill"></i><span>Inventory</span><i class="bi bi-chevron-down ms-auto text-dark"></i>
           </a>
           <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
@@ -212,7 +217,7 @@
         </li><!-- End Components Nav -->
         <li class="nav-item">
           <a class="nav-link collapsed" href="penjualan.php">
-            <i class="bi bi-cart"></i>
+          <i class="bi bi-cart"></i>
             <span>Penjualan</span>
           </a>
         </li><!-- End Profile Page Nav -->
@@ -246,193 +251,6 @@
           <!-- Left side columns -->
           <div class="col-lg-8">
             <div class="row">
-
-              <!-- Sales Card -->
-              <div class="col-xxl-4 col-md-6">
-                <div class="card info-card sales-card">
-
-                  <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                      <li class="dropdown-header text-start">
-                        <h6>Filter</h6>
-                      </li>
-
-                      <li><a class="dropdown-item" href="#">Today</a></li>
-                      <li><a class="dropdown-item" href="#">This Month</a></li>
-                      <li><a class="dropdown-item" href="#">This Year</a></li>
-                    </ul>
-                  </div>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Sales <span>| Today</span></h5>
-
-                    <div class="d-flex align-items-center">
-                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                        <i class="bi bi-cart"></i>
-                      </div>
-                      <div class="ps-3">
-                        <h6>145</h6>
-                        <span class="text-success small pt-1 fw-bold">12%</span> <span
-                          class="text-muted small pt-2 ps-1">increase</span>
-
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div><!-- End Sales Card -->
-
-              <!-- Revenue Card -->
-              <div class="col-xxl-4 col-md-6">
-                <div class="card info-card revenue-card">
-
-                  <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                      <li class="dropdown-header text-start">
-                        <h6>Filter</h6>
-                      </li>
-
-                      <li><a class="dropdown-item" href="#">Today</a></li>
-                      <li><a class="dropdown-item" href="#">This Month</a></li>
-                      <li><a class="dropdown-item" href="#">This Year</a></li>
-                    </ul>
-                  </div>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Revenue <span>| This Month</span></h5>
-
-                    <div class="d-flex align-items-center">
-                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                        <i class="bi bi-currency-dollar"></i>
-                      </div>
-                      <div class="ps-3">
-                        <h6>$3,264</h6>
-                        <span class="text-success small pt-1 fw-bold">8%</span> <span
-                          class="text-muted small pt-2 ps-1">increase</span>
-
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div><!-- End Revenue Card -->
-
-              <!-- Customers Card -->
-              <div class="col-xxl-4 col-xl-12">
-
-                <div class="card info-card customers-card">
-
-                  <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                      <li class="dropdown-header text-start">
-                        <h6>Filter</h6>
-                      </li>
-
-                      <li><a class="dropdown-item" href="#">Today</a></li>
-                      <li><a class="dropdown-item" href="#">This Month</a></li>
-                      <li><a class="dropdown-item" href="#">This Year</a></li>
-                    </ul>
-                  </div>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Customers <span>| This Year</span></h5>
-
-                    <div class="d-flex align-items-center">
-                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                        <i class="bi bi-people"></i>
-                      </div>
-                      <div class="ps-3">
-                        <h6>1244</h6>
-                        <span class="text-danger small pt-1 fw-bold">12%</span> <span
-                          class="text-muted small pt-2 ps-1">decrease</span>
-
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
-              </div>
-              <!-- End Customers Card -->
-
-              <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-                  <i class="bi bi-gem"></i><span>Icons</span><i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                  <li>
-                    <a href="icons-bootstrap.html">
-                      <i class="bi bi-circle"></i><span>Bootstrap Icons</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="icons-remix.html">
-                      <i class="bi bi-circle"></i><span>Remix Icons</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="icons-boxicons.html">
-                      <i class="bi bi-circle"></i><span>Boxicons</span>
-                    </a>
-                  </li>
-                </ul>
-              </li><!-- End Icons Nav -->
-
-              <li class="nav-heading">Pages</li>
-
-              <li class="nav-item">
-                <a class="nav-link collapsed" href="users-profile.html">
-                  <i class="bi bi-person"></i>
-                  <span>Profile</span>
-                </a>
-              </li><!-- End Profile Page Nav -->
-
-              <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-faq.html">
-                  <i class="bi bi-question-circle"></i>
-                  <span>F.A.Q</span>
-                </a>
-              </li><!-- End F.A.Q Page Nav -->
-
-              <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-contact.html">
-                  <i class="bi bi-envelope"></i>
-                  <span>Contact</span>
-                </a>
-              </li><!-- End Contact Page Nav -->
-
-              <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-register.html">
-                  <i class="bi bi-card-list"></i>
-                  <span>Register</span>
-                </a>
-              </li><!-- End Register Page Nav -->
-
-              <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-login.html">
-                  <i class="bi bi-box-arrow-in-right"></i>
-                  <span>Login</span>
-                </a>
-              </li><!-- End Login Page Nav -->
-
-              <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-error-404.html">
-                  <i class="bi bi-dash-circle"></i>
-                  <span>Error 404</span>
-                </a>
-              </li><!-- End Error 404 Page Nav -->
-
-              <li class="nav-item">
-                <a class="nav-link " href="pages-blank.html">
-                  <i class="bi bi-file-earmark"></i>
-                  <span>Blank</span>
-                </a>
-              </li><!-- End Blank Page Nav -->
-
-              </ul>
 
   </aside><!-- End Sidebar-->
 
@@ -489,8 +307,8 @@
               while ($row = $result->fetch_assoc()) {
                 echo "<tr>";
                 echo "<td>" . $row['product_name'] . "</td>";
-                echo "<td>" . "Rp " . $row['selling_price'] . "</td>";
-                echo "<td>" . "Rp " . $row['cost_price'] . "</td>";
+                echo "<td>" . $row['selling_price'] . "</td>";
+                echo "<td>" . $row['cost_price'] . "</td>";
                 echo "<td>" . $row['category'] . "</td>";
                 echo "<td>" . $row['composition'] . "</td>";
                 echo "<td>

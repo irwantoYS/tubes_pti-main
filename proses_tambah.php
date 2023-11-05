@@ -5,10 +5,7 @@ $product_name = $_POST['product_name'];
 $selling_price = $_POST['selling_price'];
 $cost_price = $_POST['cost_price'];
 $category = $_POST['category'];
-$selected_composition = $_POST['selected_composition'];
-
-// Menggabungkan komposisi yang dipilih menjadi satu string, pisahkan dengan koma
-$composition = implode(', ', $selected_composition);
+$composition = $_POST['composition'];
 
 $query = "INSERT INTO products (product_name, selling_price, cost_price, category, composition) VALUES ('$product_name', $selling_price, $cost_price, '$category', '$composition')";
 
