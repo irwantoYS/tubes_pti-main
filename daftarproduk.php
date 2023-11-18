@@ -280,7 +280,7 @@ include 'getHargaModal.php';
     </div><!-- End Page Title -->
 
     <section class="section">
-      <div class="container">
+    <div class="container">
         <h2>Daftar Produk</h2>
         <!-- <a href="tambah_produk.php" class="btn btn-primary" style="float:right">Tambah Produk</a> -->
 
@@ -412,9 +412,9 @@ include 'getHargaModal.php';
 
         <br><br>
         <form method="GET">
-          <input type="text" name="search" placeholder="Cari produk...">
-          <button type="submit" class="btn btn-primary">Cari</button>
-          <a href="daftarproduk.php" class="btn btn-secondary" style="background-color: red">Reset</a>
+            <input type="text" name="search" placeholder="Cari produk...">
+            <button type="submit" class="btn btn-primary">Cari</button>
+            <a href="daftarproduk.php" class="btn btn-secondary" style="background-color: red">Reset</a>
         </form>
         <br><br>
         <table class="table">
@@ -432,16 +432,16 @@ include 'getHargaModal.php';
             <?php
             include 'koneksi.php';
 
-            // Periksa apakah ada kata kunci pencarian yang diberikan
-            $search = isset($_GET['search']) ? $_GET['search'] : '';
+                // Periksa apakah ada kata kunci pencarian yang diberikan
+                $search = isset($_GET['search']) ? $_GET['search'] : '';
 
-            // Buat query sesuai dengan kata kunci pencarian
-            $query = "SELECT * FROM products";
-            if (!empty($search)) {
-              $query .= " WHERE product_name LIKE '%$search%' OR category LIKE '%$search%'";
-            }
+                // Buat query sesuai dengan kata kunci pencarian
+                $query = "SELECT * FROM products";
+                if (!empty($search)) {
+                    $query .= " WHERE product_name LIKE '%$search%' OR category LIKE '%$search%'";
+                }
 
-            $result = $conn->query($query);
+                $result = $conn->query($query);
 
             if ($result->num_rows > 0) {
               while ($row = $result->fetch_assoc()) {
@@ -509,9 +509,9 @@ include 'getHargaModal.php';
               echo "<tr><td colspan='6'>Tidak ada produk.</td></tr>";
             }
 
-            $conn->close();
-            ?>
-          </tbody>
+                $conn->close();
+                ?>
+            </tbody>
         </table>
       </div>
     </section>
@@ -531,7 +531,7 @@ include 'getHargaModal.php';
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
-
+  
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
