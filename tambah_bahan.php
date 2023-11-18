@@ -105,7 +105,11 @@
             </div>
             <div class="form-group">
                 <label for="harga_beli">Harga Beli:</label>
-                <input type="number" class="form-control" id="harga_beli" name="harga_beli">
+                <input type="number" class="form-control" id="harga_beli" name="harga_beli" oninput="calculatePricePerGram()">
+            </div>
+            <div class="form-group">
+                <label for="harga_beli">Harga Beli Persatuan:</label>
+                <input type="number" class="form-control" id="harga_beli_pergram" name="harga_beli_pergram" readonly>
             </div>
             <button type="submit" class="btn btn-success">Simpan</button>
             <button type="button" class="btn btn-danger" id="cancelButton">Cancel</button>
@@ -138,6 +142,18 @@
         document.getElementById("cancelButton").addEventListener("click", function () {
             history.back(); // Menggunakan fungsi history.back() untuk kembali ke halaman sebelumnya.
         });
+
+        function calculatePricePerGram() {
+            var hargaBeli = parseFloat(document.getElementById("harga_beli").value);
+            var jumlahBahan = parseFloat(document.getElementById("jumlah_bahan").value);
+            var hargaBeliPerGram = hargaBeli / jumlahBahan;
+
+            if (!isNaN(hargaBeliPerGram)) {
+                document.getElementById("harga_beli_pergram").value = hargaBeliPerGram.toFixed(2);
+            } else {
+                document.getElementById("harga_beli_pergram").value = "";
+            }
+        }
     </script>
 </body>
 

@@ -8,8 +8,9 @@ $kategori_produk = $_POST['kategori_produk'];
 $tanggal_masuk = $_POST['tanggal_masuk'];
 $tanggal_exp = $_POST['tanggal_exp'];
 $harga_beli = $_POST['harga_beli'];
+$harga_beli_pergram = $_POST['harga_beli_pergram'];
 
-$query = "INSERT INTO bahan (nama_bahan, jumlah_bahan, satuan, kategori_produk, tanggal_masuk, tanggal_exp, harga_beli) VALUES ('$nama_bahan', '$jumlah_bahan','$satuan', '$kategori_produk', '$tanggal_masuk', '$tanggal_exp','$harga_beli')";
+$query = "INSERT INTO bahan (nama_bahan, jumlah_bahan, satuan, kategori_produk, tanggal_masuk, tanggal_exp, harga_beli, harga_beli_pergram) VALUES ('$nama_bahan', '$jumlah_bahan','$satuan', '$kategori_produk', '$tanggal_masuk', '$tanggal_exp','$harga_beli','$harga_beli_pergram')";
 
 if ($conn->query($query) === TRUE) {
     header('Location: kelolastokbahan.php');
