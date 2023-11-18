@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
  
 // koneksi
 include 'koneksi.php';
@@ -20,6 +21,29 @@ echo "<script>alert('Gagal menambahkan data'); window.location.href = penjualan.
 }
 }
  
+=======
+
+// koneksi
+include 'koneksi.php';
+
+// simpan data
+if (isset($_POST['submit'])) {
+    $np = $_POST['nama_produk'];
+    $hrgjual = $_POST['harga_jual'];
+    $hrgmodal = $_POST['harga_modal'];
+    $qty = $_POST['kuantitas'];
+    $date = $_POST['tgl'];
+
+    $q = mysqli_query($conn, "INSERT INTO penjualan (nama_produk, harga_jual, harga_modal, kuantitas, tgl) VALUES ('$np', '$hrgjual', '$hrgmodal', '$qty','$date')");
+
+    if ($q) {
+        header('Location: penjualan.php');
+    } else {
+        echo "<script>alert('Gagal menambahkan data'); window.location.href = penjualan.php;</script>";
+    }
+}
+
+>>>>>>> 05098708fb010e5140e9c026a263fbb2ee843bc4
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,6 +68,7 @@ echo "<script>alert('Gagal menambahkan data'); window.location.href = penjualan.
             <div class="form-group">
                 <label for="harga_modal">Harga Modal:</label>
                 <input type="number" class="form-control" id="harga_modal" name="harga_modal">
+<<<<<<< HEAD
             </div>
              <div class="form-group">
                 <label for="kuantitas">Jumlah Terjual:</label>
@@ -54,6 +79,19 @@ echo "<script>alert('Gagal menambahkan data'); window.location.href = penjualan.
                 <input type="date" class="form-control" id="tgl" name="tgl">
             </div>
             
+=======
+            </div>
+            <div class="form-group">
+                <label for="kuantitas">Jumlah Terjual:</label>
+                <input type="number" class="form-control" id="kuantitas" name="kuantitas">
+            </div>
+            <div class="form-group">
+                <label for="tgl">Tanggal:</label>
+                <input type="date" class="form-control" id="tgl" name="tgl">
+                
+            </div>
+
+>>>>>>> 05098708fb010e5140e9c026a263fbb2ee843bc4
             <!-- <div class="form-group">
                 <label for="category">Kategori:</label>
                 <select class="form-control" id="category" name="category">
@@ -63,31 +101,9 @@ echo "<script>alert('Gagal menambahkan data'); window.location.href = penjualan.
             </div>
             <div class="form-group">
                 <label for="composition">Komposisi:</label>
-                <div>
-                    <?php
-                    // Menghubungkan ke database
-                    $conn = new mysqli("localhost", "root", "", "warungupdate");
-
-                    // Memeriksa koneksi
-                    if ($conn->connect_error) {
-                        die("Koneksi gagal: " . $conn->connect_error);
-                    }
-
-                    // Query untuk mendapatkan daftar bahan tanpa duplikasi
-                    $sql = "SELECT DISTINCT nama_bahan FROM bahan";
-                    $result = $conn->query($sql);
-
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo '<input type="checkbox" name="selected_composition[]" value="' . $row["nama_bahan"] . '"> ' . $row["nama_bahan"] . '<br>';
-                        }
-                    }
-
-                    $conn->close();
-                    ?>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-success">Simpan</button>
+                <textarea class="form-control" id="composition" name="composition"></textarea>
+            </div> -->
+            <button type="submit" name="submit" class="btn btn-success">Simpan</button>
             <button type="button" class="btn btn-danger" id="cancelButton">Cancel</button>
         </form>
     </div>

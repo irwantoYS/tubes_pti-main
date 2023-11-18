@@ -127,6 +127,7 @@
             var selectedBahan = $(this).val();
             var satuanElement = document.getElementById("satuan");
 
+<<<<<<< HEAD
             // Mengatur teks statis "Satuan" berdasarkan pilihan "Nama Bahan"
             if (selectedBahan === "Kecap" || selectedBahan === "Minyak Goreng" || selectedBahan === "Saus Sambal" || selectedBahan === "Saus Tomat" || selectedBahan === "Susu" || selectedBahan === "Susu Kental Manis") {
                 staticSatuanElement.textContent = "ml";
@@ -140,6 +141,8 @@
             var selectedBahan = $(this).val();
             var satuanElement = document.getElementById("satuan");
 
+=======
+>>>>>>> 05098708fb010e5140e9c026a263fbb2ee843bc4
             // Mengatur satuan default ke "gram"
             satuanElement.value = "gram";
 
@@ -147,8 +150,12 @@
             if ($("#bahanList option[value='" + selectedBahan + "']").length === 0) {
                 satuanElement.disabled = false;
             } else {
+<<<<<<< HEAD
                 // Mengatur nilai default jika tidak ada pemilihan yang sesuai.
                 staticSatuanElement.textContent = "gram";
+=======
+                satuanElement.disabled = true;
+>>>>>>> 05098708fb010e5140e9c026a263fbb2ee843bc4
             }
         });
 
