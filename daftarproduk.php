@@ -1,3 +1,7 @@
+<?php
+include 'getHargaModal.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,6 +43,26 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+  // Membuat permintaan AJAX
+  $.ajax({
+    type: "GET",
+    url: "getHargaModal.php",
+    dataType: "json",
+    success: function(response) {
+      // Mengambil nilai hargaModal dari respons JSON
+      var hargaModal = response.hargaModal;
+
+      // Menampilkan nilai hargaModal pada elemen dengan id "hargaModalContainer"
+      $("#hargaModalContainer").text("Rp " + hargaModal.toFixed(2));
+    },
+    error: function(error) {
+      console.error("Error:", error);
+    }
+  });
+</script>
 
 <body>
 
@@ -267,70 +291,117 @@
     </div><!-- End Page Title -->
 
     <section class="section">
-      <div class="container">
+    <div class="container">
         <h2>Daftar Produk</h2>
         <a href="tambah_produk.php" class="btn btn-primary" style="float:right">Tambah Produk</a>
         <br><br>
         <form method="GET">
-          <input type="text" name="search" placeholder="Cari produk...">
-          <button type="submit" class="btn btn-primary">Cari</button>
-          <a href="daftarproduk.php" class="btn btn-secondary" style="background-color: red">Reset</a>
+            <input type="text" name="search" placeholder="Cari produk...">
+            <button type="submit" class="btn btn-primary">Cari</button>
+            <a href="daftarproduk.php" class="btn btn-secondary" style="background-color: red">Reset</a>
         </form>
         <br><br>
         <table class="table">
-          <thead>
-            <tr>
-              <th>Nama Produk</th>
-              <th>Harga Jual</th>
-              <th>Harga Modal</th>
-              <th>Kategori</th>
-              <th>Komposisi</th>
-              <th>Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-            include 'koneksi.php';
+            <thead>
+                <tr>
+                    <th>Nama Produk</th>
+                    <th>Harga Jual</th>
+                    <th>Harga Modal</th>
+                    <th>Kategori</th>
+                    <th>Komposisi (gram/ml)</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                include 'koneksi.php';
 
-            // Periksa apakah ada kata kunci pencarian yang diberikan
-            $search = isset($_GET['search']) ? $_GET['search'] : '';
+                // Periksa apakah ada kata kunci pencarian yang diberikan
+                $search = isset($_GET['search']) ? $_GET['search'] : '';
 
-            // Buat query sesuai dengan kata kunci pencarian
-            $query = "SELECT * FROM products";
-            if (!empty($search)) {
-              $query .= " WHERE product_name LIKE '%$search%' OR category LIKE '%$search%'";
-            }
+                // Buat query sesuai dengan kata kunci pencarian
+                $query = "SELECT * FROM products";
+                if (!empty($search)) {
+                    $query .= " WHERE product_name LIKE '%$search%' OR category LIKE '%$search%'";
+                }
 
-            $result = $conn->query($query);
+                $result = $conn->query($query);
 
-            if ($result->num_rows > 0) {
-              while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . $row['product_name'] . "</td>";
-                echo "<td>" . $row['selling_price'] . "</td>";
-                echo "<td>" . $row['cost_price'] . "</td>";
-                echo "<td>" . $row['category'] . "</td>";
-                echo "<td>" . $row['composition'] . "</td>";
-                echo "<td>
-                        <a href='edit.php?id=" . $row['id'] . "' class='btn btn-primary'>Edit</a>
-                        <a href='hapus.php?id=" . $row['id'] . "' class='btn btn-danger'>Hapus</a>
-                    </td>";
-                echo "</tr>";
-              }
-            } else {
-              echo "<tr><td colspan='6'>Tidak ada produk.</td></tr>";
-            }
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $komposisi = json_decode($row['composition'], true);
+                        echo "<tr>";
+                        echo "<td>" . $row['product_name'] . "</td>";
+                        echo "<td>" . "Rp " . $row['selling_price'] . "</td>";
 
-            $conn->close();
-            ?>
-          </tbody>
+                        // Inisialisasi hargaModal di setiap iterasi produk
+                        $hargaModal = 0;
+
+                        foreach ($komposisi as $key => $value) {
+                            if (strpos($key, 'bahan') !== false) {
+                                $index = substr($key, 5);
+                                $jumlahKey = "jumlah{$index}";
+                                $jumlah = $komposisi[$jumlahKey];
+
+                                // Mengambil harga_beli_pergram dari tabel bahan
+                                $namaBahan = $value;
+                                $queryBahan = "SELECT harga_beli_pergram FROM bahan WHERE nama_bahan = '$namaBahan'";
+                                $resultBahan = $conn->query($queryBahan);
+
+                                if ($resultBahan->num_rows > 0) {
+                                    $rowBahan = $resultBahan->fetch_assoc();
+                                    $hargaBahan = $rowBahan['harga_beli_pergram'];
+
+                                    // Menghitung total biaya
+                                    $hargaModal += $hargaBahan * $jumlah;
+                                }
+                            }
+                        }
+                        echo "<td>Rp. " . number_format($hargaModal, 2) . "</td>";
+                        echo "<td>" . $row['category'] . "</td>";
+                        echo "<td>";
+                        echo "<div id='jsonDisplay'>";
+
+                        $keys = array_keys($komposisi);
+                        $count = count($keys);
+
+                        for ($i = 0; $i < $count; $i++) {
+                            $key = $keys[$i];
+                            $value = $komposisi[$key];
+
+                            echo "$value";
+
+                            // Cek apakah bukan elemen terakhir
+                            if ($i < $count - 1) {
+                                echo " : ";
+                                echo $komposisi[$keys[$i + 1]];
+                            }
+
+                            echo "<br>";
+                            $i++; // Pindah ke elemen berikutnya
+                        }
+                        echo "</div>";
+                        echo "<script src='displayJson.js'></script>";
+                        echo "</td>";
+                        echo "<td>
+                                <a href='edit_produk.php?id=" . $row['id'] . "' class='btn btn-primary'>Edit</a>
+                                <a href='hapus.php?id=" . $row['id'] . "' class='btn btn-danger'>Hapus</a>
+                            </td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='6'>Tidak ada produk.</td></tr>";
+                }
+
+                $conn->close();
+                ?>
+            </tbody>
         </table>
-      </div>
-    </section>
+    </div>
+</section>
 
+    
   </main><!-- End #main -->
-
-
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
@@ -344,7 +415,7 @@
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
-
+  
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
