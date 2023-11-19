@@ -129,51 +129,39 @@
 
         </li><!-- End Notification Nav -->
         <li class="nav-item dropdown pe-3">
-            <a
-              class="nav-link nav-profile d-flex align-items-center pe-0"
-              href="#"
-              data-bs-toggle="dropdown"
-            >
-              
-              <span class="d-none d-md-block dropdown-toggle ps-2"
-                >Admin</span
-              > </a
-            ><!-- End Profile Iamge Icon -->
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
 
-            <ul
-              class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
-            >
-              <li class="dropdown-header">
-                <h6>Admin</h6>
-              </li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
+            <span class="d-none d-md-block dropdown-toggle ps-2">Admin</span> </a><!-- End Profile Iamge Icon -->
 
-             
-              <li>
-                <a
-                  class="dropdown-item d-flex align-items-center"
-                  href="users-profile.html"
-                >
-                  <i class="bi bi-gear"></i>
-                  <span>Account Management</span>
-                </a>
-              </li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>Admin</h6>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
 
-              <li>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <i class="bi bi-box-arrow-right"></i>
-                  <span>Sign Out</span>
-                </a>
-              </li>
-            </ul>
-            <!-- End Profile Dropdown Items -->
-          </li>
-          <!-- End Profile Nav -->
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-gear"></i>
+                <span>Account Management</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+          </ul>
+          <!-- End Profile Dropdown Items -->
+        </li>
+        <!-- End Profile Nav -->
       </ul>
     </nav><!-- End Icons Navigation -->
 
@@ -188,34 +176,34 @@
 
         <li class="nav-item">
           <a class="nav-link " href="index.html">
-          <i class="bi bi-house"></i>
+            <i class="bi bi-house"></i>
             <span>Home</span>
           </a>
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
           <a class="nav-link collapsed" href="adminprofil.php">
-          <i class="bi bi-person"></i>
+            <i class="bi bi-person"></i>
             <span>Profile</span>
           </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
           <a class="nav-link collapsed" href="tambah_akun_user.php">
-          <i class="bi bi-person-fill-add"></i>
+            <i class="bi bi-person-fill-add"></i>
             <span>Tambah Akun User</span>
           </a>
         </li><!-- End add user Account Nav -->
 
         <li class="nav-item">
           <a class="nav-link collapsed" href="cek_data_akun.php">
-          <i class="bi bi-clipboard"></i>
+            <i class="bi bi-clipboard"></i>
             <span>Cek Data Akun</span>
           </a>
         </li><!-- End check Data account Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="pages-login.html">
+          <a class="nav-link collapsed" href="pages-login.php">
             <i class="bi bi-box-arrow-in-right"></i>
             <span>Logout</span>
           </a>
@@ -229,44 +217,45 @@
 
   <main id="main" class="main">
     <section class="section">
-    <h4 style="background-color: black" class="rounded-top py-2 px-1 text-light text-center mb-0 fw-bold" >Add Account</h4>
+      <h4 style="background-color: black" class="rounded-top py-2 px-1 text-light text-center mb-0 fw-bold">Add Account
+      </h4>
       <div id="formContainer" class="rounded-bottom py-3 px-5 mt-0" style="background-color: #04c99e">
-        <form method="GET">
-       
-        <div class="form-group">
-                <label for="product_name">Username (how your name will appear to other users on the site) :</label>
-                <input type="text" class="form-control" id="username" name="username">
-            </div>
-            <br>
-        <div class="form-group">
-                <label for="password_account">Password :</label>
-                <input type="password" class="form-control" id="password" name="password">
-            </div>
-            <br>
-            <div class="form-group">
-                <label for="confirm_password_account">Confirm Passowrd :</label>
-                <input type="password" class="form-control" id="confirm_password" name="confirm_password">
-            </div>
-            <br>
-            <div class="form-group">
-                <label for="account_status">Status :</label>
-                <select class="form-control" id="status" name="status">
-                    <option value="approved">Approved</option>
-                    <option value="reject">Reject</option>
-                </select>
-            </div>
-            <br>
-            <div class="form-group">
-                <label for="account_role">Role :</label>
-                <select class="form-control" id="role" name="role">
-                    <option value="admin">Admin</option>
-                    <option value="user">User</option>
-                </select>
-            </div>
-            <br>
-            <button type="submit" class="btn btn-success">Simpan</button>
-            <button type="button" class="btn btn-danger" id="cancelButton">Cancel</button>
-  
+        <form action='proses_tambah_akun.php' method="POST">
+
+          <div class="form-group">
+            <label for="product_name">Username (how your name will appear to other users on the site) :</label>
+            <input type="text" class="form-control" id="username" name="username">
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="password_account">Password :</label>
+            <input type="password" class="form-control" id="password" name="password">
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="confirm_password_account">Confirm Passowrd :</label>
+            <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="account_status">Status :</label>
+            <select class="form-control" id="status" name="status">
+              <option value="approved">Approved</option>
+              <option value="reject">Reject</option>
+            </select>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="account_role">Role :</label>
+            <select class="form-control" id="role" name="role">
+              <option value="admin">Admin</option>
+              <option value="user">User</option>
+            </select>
+          </div>
+          <br>
+          <button type="submit" class="btn btn-success">Simpan</button>
+          <button type="button" class="btn btn-danger" id="cancelButton">Cancel</button>
+        </form>
       </div>
     </section>
 
@@ -288,6 +277,11 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById("cancelButton").addEventListener("click", function () {
+            history.back(); // Menggunakan fungsi history.back() untuk kembali ke halaman sebelumnya.
+        });
+  </script>
 
 </body>
 

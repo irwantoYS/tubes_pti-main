@@ -70,8 +70,33 @@
                         Enter your username & password to login
                       </p>
                     </div>
+                       <?php
+                        session_start(); // Mulai sesi PHP
+                        include 'koneksi.php';
 
-                    <form class="row g-3 needs-validation" novalidate>
+                        // Jika formulir dikirim
+                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                            $username = $_POST['username'];
+                            $password = $_POST['password'];
+
+                            // Query untuk memeriksa keberadaan username dan password di database
+                            $query = "SELECT * FROM akun WHERE username='$username' AND password='$password'";
+                            $result = $conn->query($query);
+
+                            if ($result->num_rows == 1) {
+                                // Jika username dan password benar
+                                $row = $result->fetch_assoc();
+                                $_SESSION['user_id'] = $row['id']; // Simpan ID pengguna ke dalam sesi
+                                header("Location: index.html"); // Redirect ke halaman dashboard atau halaman selanjutnya
+                                exit();
+                            } else {
+                                echo "<script>alert('Username dan Password Salah');</script>";
+                                
+                            }
+                        }
+                        ?>
+
+                    <form class="row g-3 needs-validation" novalidate method="post">
                       <div class="col-12">
                         <label for="yourUsername" class="form-label"
                           >Username</label
@@ -81,29 +106,23 @@
                             type="text"
                             name="username"
                             class="form-control"
-                            id="yourUsername"
+                            id="username"
                             required
                           />
-                          <div class="invalid-feedback">
-                            Please enter your username.
-                          </div>
                         </div>
                       </div>
 
                       <div class="col-12">
-                        <label for="yourPassword" class="form-label"
+                        <label for="password" class="form-label"
                           >Password</label
                         >
                         <input
                           type="password"
                           name="password"
                           class="form-control"
-                          id="yourPassword"
+                          id="password"
                           required
                         />
-                        <div class="invalid-feedback">
-                          Please enter your password!
-                        </div>
                       </div>
 
                       <div class="col-12">
@@ -121,14 +140,13 @@
                         </div>
                       </div>
                       <div class="col-12">
-                        <a
+                        <button
                           style="background-color: #04c99e"
                           class="btn btn-primary w-100"
                           type="submit"
-                          href="index.html"
                         >
                           Login
-                        </a>
+                        </button>
                       </div>
                     </form>
                   </div>
