@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -136,26 +139,17 @@
 
         </li><!-- End Notification Nav -->
         <li class="nav-item dropdown pe-3">
-            <a
-              class="nav-link nav-profile d-flex align-items-center pe-0"
-              href="#"
-              data-bs-toggle="dropdown"
-            >
-             
-              <span class="d-none d-md-block dropdown-toggle ps-2"
-                >Admin</span
-              > </a
-            ><!-- End Profile Iamge Icon -->
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
 
-            <ul
-              class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
-            >
-              <li class="dropdown-header">
-                <h6>Admin</h6>
-              </li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
+            <span class="d-none d-md-block dropdown-toggle ps-2">Admin</span> </a><!-- End Profile Iamge Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>Admin</h6>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
 
               <li>
                 <a
@@ -170,16 +164,16 @@
                 <hr class="dropdown-divider" />
               </li>
 
-              <li>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <i class="bi bi-box-arrow-right"></i>
-                  <span>Sign Out</span>
-                </a>
-              </li>
-            </ul>
-            <!-- End Profile Dropdown Items -->
-          </li>
-          <!-- End Profile Nav -->
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+          </ul>
+          <!-- End Profile Dropdown Items -->
+        </li>
+        <!-- End Profile Nav -->
       </ul>
     </nav><!-- End Icons Navigation -->
 
@@ -223,7 +217,7 @@
         </li><!-- End Components Nav -->
         <li class="nav-item">
           <a class="nav-link collapsed" href="penjualan.php">
-          <i class="bi bi-cart"></i>
+            <i class="bi bi-cart"></i>
             <span>Penjualan</span>
           </a>
         </li><!-- End Profile Page Nav -->
@@ -271,10 +265,10 @@
     <section class="section">
       <div class="container">
         <h2>Daftar Stok Bahan</h2>
-        <a href="tambah.php" class="btn btn-primary" style="float:right">Tambah Produk</a>
+        <a href="tambah_bahan.php" class="btn btn-primary" style="float:right">Tambah Bahan</a>
         <br><br>
         <form method="GET">
-          <input type="text" name="search" placeholder="Cari produk...">
+          <input type="text" name="search" placeholder="Cari bahan...">
           <button type="submit" class="btn btn-primary">Cari</button>
           <a href="kelolastokbahan.php" class="btn btn-secondary" style="background-color: red">Reset</a>
         </form>
@@ -282,12 +276,10 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Nama Produk</th>
-              <th>Harga Jual</th>
-              <th>Harga Modal</th>
+              <th>Nama Bahan</th>
+              <th>Sisa Stock</th>
               <th>Kategori</th>
-              <th>Komposisi</th>
-              <th>Aksi</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -298,29 +290,53 @@
             $search = isset($_GET['search']) ? $_GET['search'] : '';
 
             // Buat query sesuai dengan kata kunci pencarian
-            $query = "SELECT * FROM products";
+            $query = "SELECT * FROM bahan";
             if (!empty($search)) {
-              $query .= " WHERE product_name LIKE '%$search%' OR category LIKE '%$search%'";
+              $query .= " WHERE nama_bahan LIKE '%$search%' OR kategori_produk LIKE '%$search%'";
             }
+            $query .= " ORDER BY nama_bahan";
 
             $result = $conn->query($query);
 
-            if ($result->num_rows > 0) {
-              while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . $row['product_name'] . "</td>";
-                echo "<td>" . $row['selling_price'] . "</td>";
-                echo "<td>" . $row['cost_price'] . "</td>";
-                echo "<td>" . $row['category'] . "</td>";
-                echo "<td>" . $row['composition'] . "</td>";
-                echo "<td>
-                        <a href='edit.php?id=" . $row['id'] . "' class='btn btn-primary'>Edit</a>
-                        <a href='hapus.php?id=" . $row['id'] . "' class='btn btn-danger'>Hapus</a>
-                    </td>";
-                echo "</tr>";
+            $grouped_data = [];
+
+            while ($row = $result->fetch_assoc()) {
+              $nama_bahan = $row['nama_bahan'];
+              if (!isset($grouped_data[$nama_bahan])) {
+                $grouped_data[$nama_bahan] = [
+                  'jumlah_bahan' => 0,
+                  'kategori_produk' => $row['kategori_produk'],
+                  'details' => []
+                ];
               }
-            } else {
-              echo "<tr><td colspan='6'>Tidak ada produk.</td></tr>";
+
+              $grouped_data[$nama_bahan]['jumlah_bahan'] += $row['jumlah_bahan'];
+
+              // Tambahkan detail ke dalam kelompok
+              $grouped_data[$nama_bahan]['details'][] = $row;
+            }
+
+            foreach ($grouped_data as $nama_bahan => $data_bahan) {
+              echo "<tr>";
+              echo "<td>" . $nama_bahan . "</td>";
+              echo "<td>" . $data_bahan['jumlah_bahan'] . (isset($row['satuan']) ? $row['satuan'] : '') . "</td>";
+              echo "<td>" . $data_bahan['kategori_produk'] . "</td>";
+              echo "<td>";
+
+              // Tampilkan rincian dalam elemen <details>
+              echo "<details>";
+              foreach ($data_bahan['details'] as $detail) {
+                echo "<p><b>" . $detail['tanggal_masuk'] . "</b></p>";
+                echo "<p>Nama Bahan: " . $detail['nama_bahan'] . "-" . $detail['id'] . "</p>";
+                echo "<p>Jumlah: " . $detail['jumlah_bahan'] . " " . $detail['satuan'] . "</p>";
+                echo "<p>Tanggal expired: " . $detail['tanggal_exp'] . "</p>";
+                echo "<p>Harga beli: " . $detail['harga_beli'] . "</p>";
+              }
+              echo "</div>";
+              echo "</details>";
+
+              echo "</td>";
+              echo "</tr>";
             }
 
             $conn->close();
@@ -329,14 +345,10 @@
         </table>
       </div>
     </section>
-
   </main><!-- End #main -->
-
-
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
-
   <!-- Vendor JS Files -->
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

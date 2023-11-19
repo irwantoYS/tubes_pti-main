@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2023 at 05:35 PM
+-- Generation Time: Nov 04, 2023 at 11:20 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -18,8 +18,36 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `coba`
+-- Database: `warungupdate`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bahan`
+--
+
+CREATE TABLE `bahan` (
+  `id` int(11) NOT NULL,
+  `nama_bahan` varchar(255) NOT NULL,
+  `jumlah_bahan` int(255) NOT NULL,
+  `satuan` enum('gram','kg','ml') NOT NULL,
+  `kategori_produk` enum('kitchen','bar') NOT NULL,
+  `tanggal_masuk` date NOT NULL,
+  `tanggal_exp` date NOT NULL,
+  `harga_beli` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bahan`
+--
+
+INSERT INTO `bahan` (`id`, `nama_bahan`, `jumlah_bahan`, `satuan`, `kategori_produk`, `tanggal_masuk`, `tanggal_exp`, `harga_beli`) VALUES
+(3, 'beras', 2, 'kg', 'kitchen', '2023-11-03', '2023-12-03', 20000),
+(5, 'beras', 5, 'kg', 'kitchen', '2024-01-03', '2024-01-03', 30000),
+(9, 'kopi', 100, 'gram', 'bar', '2023-11-03', '2023-12-03', 20000),
+(10, 'kopi', 30, 'gram', 'bar', '2023-11-03', '2023-12-22', 30000),
+(11, 'tomat', 1000, 'gram', 'kitchen', '2023-11-03', '2023-11-10', 20000);
 
 -- --------------------------------------------------------
 
@@ -30,8 +58,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
   `product_name` varchar(255) NOT NULL,
-  `selling_price` decimal(10,2) NOT NULL,
-  `cost_price` decimal(10,2) NOT NULL,
+  `selling_price` int(255) NOT NULL,
+  `cost_price` int(255) NOT NULL,
   `category` enum('kitchen','bar') NOT NULL,
   `composition` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -41,8 +69,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `product_name`, `selling_price`, `cost_price`, `category`, `composition`) VALUES
-(2, 'bagas', '200.00', '400.00', 'bar', 'safa'),
-(3, 'dihyab', '24.00', '54.00', 'kitchen', '');
+(7, 'nasi', 5000, 1000, 'kitchen', 'beras'),
+(12, 'nasi tomat', 20000, 1200, 'kitchen', 'beras, tomat');
 
 -- --------------------------------------------------------
 
@@ -61,11 +89,18 @@ CREATE TABLE `property` (
 --
 
 INSERT INTO `property` (`id`, `nama_properti`, `jumlah_properti`) VALUES
-(1238, 'meja', 43);
+(1238, 'meja', 43),
+(1239, 'Meja', 10);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `bahan`
+--
+ALTER TABLE `bahan`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `products`
@@ -84,16 +119,22 @@ ALTER TABLE `property`
 --
 
 --
+-- AUTO_INCREMENT for table `bahan`
+--
+ALTER TABLE `bahan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `property`
 --
 ALTER TABLE `property`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1239;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1240;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
