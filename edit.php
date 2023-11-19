@@ -45,6 +45,47 @@
                             echo 'selected'; ?>>Bar</option>
                     </select>
                 </div>
+<!-- 
+                <div class="form-group">
+                    <label for="username">Username :</label>
+                    <select class="form-control" id="username" name="username">
+                        <option value="kitchen" <?php if ($row['username'] == 'kitchen')
+                            echo 'selected'; ?>>Kitchen</option>
+                        <option value="bar" <?php if ($row['username'] == 'bar')
+                            echo 'selected'; ?>>Bar</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password :</label>
+                    <select class="form-control" id="password" name="password">
+                        <option value="kitchen" <?php if ($row['password'] == 'kitchen')
+                            echo 'selected'; ?>>Kitchen</option>
+                        <option value="bar" <?php if ($row['password'] == 'bar')
+                            echo 'selected'; ?>>Bar</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Role :</label>
+                    <select class="form-control" id="role" name="role">
+                        <option value="kitchen" <?php if ($row['role'] == 'kitchen')
+                            echo 'selected'; ?>>Kitchen</option>
+                        <option value="bar" <?php if ($row['role'] == 'bar')
+                            echo 'selected'; ?>>Bar</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="status">Status :</label>
+                    <select class="form-control" id="status" name="status">
+                        <option value="kitchen" <?php if ($row['status'] == 'kitchen')
+                            echo 'selected'; ?>>Kitchen</option>
+                        <option value="bar" <?php if ($row['status'] == 'bar')
+                            echo 'selected'; ?>>Bar</option>
+                    </select>
+                </div> -->
+
                 <div class="form-group">
                     <label for="composition">Komposisi:</label>
                     <textarea class="form-control" id="composition"
