@@ -1,8 +1,3 @@
-<?php
- 
-// koneksi
-include 'koneksi.php'
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +5,7 @@ include 'koneksi.php'
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Penjualan</title>
+  <title>Cek Data Akun</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -45,7 +40,7 @@ include 'koneksi.php'
   ======================================================== -->
 </head>
 
-<body>
+<body style="background-color: #D9D9D9">
 
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
@@ -59,13 +54,6 @@ include 'koneksi.php'
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
-
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
-
         <li class="nav-item dropdown">
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
@@ -141,22 +129,32 @@ include 'koneksi.php'
 
         </li><!-- End Notification Nav -->
         <li class="nav-item dropdown pe-3">
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <a
+              class="nav-link nav-profile d-flex align-items-center pe-0"
+              href="#"
+              data-bs-toggle="dropdown"
+            >
+              
+              <span class="d-none d-md-block dropdown-toggle ps-2"
+                >Admin</span
+              > </a
+            ><!-- End Profile Iamge Icon -->
 
-            <span class="d-none d-md-block dropdown-toggle ps-2">Admin</span> </a><!-- End Profile Iamge Icon -->
+            <ul
+              class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
+            >
+              <li class="dropdown-header">
+                <h6>Admin</h6>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
 
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-              <h6>Admin</h6>
-            </li>
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-
+             
               <li>
                 <a
                   class="dropdown-item d-flex align-items-center"
-                  href="adminprofil.php"
+                  href="users-profile.html"
                 >
                   <i class="bi bi-gear"></i>
                   <span>Account Management</span>
@@ -166,16 +164,16 @@ include 'koneksi.php'
                 <hr class="dropdown-divider" />
               </li>
 
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
-            </li>
-          </ul>
-          <!-- End Profile Dropdown Items -->
-        </li>
-        <!-- End Profile Nav -->
+              <li>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <i class="bi bi-box-arrow-right"></i>
+                  <span>Sign Out</span>
+                </a>
+              </li>
+            </ul>
+            <!-- End Profile Dropdown Items -->
+          </li>
+          <!-- End Profile Nav -->
       </ul>
     </nav><!-- End Icons Navigation -->
 
@@ -190,39 +188,31 @@ include 'koneksi.php'
 
         <li class="nav-item">
           <a class="nav-link " href="index.html">
-            <i class="bi bi-grid"></i>
-            <span>Dashboard</span>
+          <i class="bi bi-house"></i>
+            <span>Home</span>
           </a>
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-menu-button-wide-fill"></i><span>Inventory</span><i class="bi bi-chevron-down ms-auto text-dark"></i>
-          </a>
-          <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-            <li>
-              <a href="daftarproduk.php">
-                <i class="bi bi-circle"></i><span>Daftar Produk</span>
-              </a>
-            </li>
-            <li>
-              <a href="kelolastokbahan.php">
-                <i class="bi bi-circle"></i><span>Kelola Stok Bahan</span>
-              </a>
-            </li>
-            <li>
-              <a href="kelolaproperty.php">
-                <i class="bi bi-circle"></i><span>Kelola Property</span>
-              </a>
-            </li>
-          </ul>
-        </li><!-- End Components Nav -->
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="penjualan.php">
-            <i class="bi bi-cart"></i>
-            <span>Penjualan</span>
+          <a class="nav-link collapsed" href="adminprofil.php">
+          <i class="bi bi-person"></i>
+            <span>Profile</span>
           </a>
         </li><!-- End Profile Page Nav -->
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="tambah_akun_user.php">
+          <i class="bi bi-person-fill-add"></i>
+            <span>Tambah Akun User</span>
+          </a>
+        </li><!-- End add user Account Nav -->
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="cek_data_akun.php">
+          <i class="bi bi-clipboard"></i>
+            <span>Cek Data Akun</span>
+          </a>
+        </li><!-- End check Data account Nav -->
 
         <li class="nav-item">
           <a class="nav-link collapsed" href="pages-login.html">
@@ -234,125 +224,82 @@ include 'koneksi.php'
       </ul>
 
     </aside><!-- End Sidebar-->
-
-    <main id="main" class="main">
-
-      <div class="pagetitle">
-        <h1>Dashboard</h1>
-        <nav>
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Dashboard</li>
-          </ol>
-        </nav>
-      </div><!-- End Page Title -->
-
-      <section class="section dashboard">
-        <div class="row">
-
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
 
-    <div class="pagetitle">
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">Penjualan</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
+<section class="section">
+  <br>
+  <div class="container rounded py-2 px-3" style="background-color: white">
+    <h4 class="fw-bold mb-0 py-1">Data Akun <a href="tambah_akun_user.php" class="btn btn-success" style="float:right">Tambah Akun</a></h4>
+    <br>
+    <div>
+    <form class="border-top border-bottom pt-3 pb-3 mb-3" method="GET" action='cek_data_akun.php'>
+      <input class="rounded" type="text" name="search" placeholder="Cari produk...">
+      <button type="submit" class="btn btn-success px-2 py-1">Cari</button>
+      <a href="daftarproduk.php" class="btn btn-danger px-2 py-1">Reset</a>
+      
+        <select class="ms-5 rounded" id='sort-select' name='sort' onchange='this.form.submit()'>
+        <option value='admin' " . ($sort == 'admin' ? 'selected' : '') . ">Admin</option>
+        <option value='user' " . ($sort == 'user' ? 'selected' : '') . ">User</option>
+        </select>
 
-    <section class="section">
-      <div class="container">
-        <h2>Data Penjualan</h2>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <a href="laporanexcel.php" class="btn btn-success me-md-2" type="button">Excel</a>
-          <a href="tambah.php" class="btn btn-success" type="button">Tambah Penjualan</a>
-        </div>
-        <br><br>
-        <br><br>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>No.</th>
-              <th>Tanggal</th>
-              <th>Nama Produk</th>
-              <th>Harga Jual</th>
-              <th>Harga Modal</th>
-              <th>Jumlah Terjual</th>
-              <th>Total</th>
-              <!-- <th>Aksi</th> -->
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-            $q = mysqli_query($conn, "SELECT * FROM penjualan");
-            $total = 0;
-            $tot_bayar = 0;
-            $no = 1;
+        <select class="ms-3 rounded" id='sort-select' name='sort' onchange='this.form.submit()'>
+        <option value='approved' " . ($sort == 'approved' ? 'selected' : '') . ">Approved</option>
+        <option value='reject' " . ($sort == 'Reject' ? 'selected' : '') . ">Reject</option>
+        </select>
+    </form>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Password</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        include 'koneksi.php';
 
+        // Periksa apakah ada kata kunci pencarian yang diberikan
+        $search = isset($_GET['search']) ? $_GET['search'] : '';
 
-            // Periksa apakah ada kata kunci pencarian yang diberikan
-            // $search = isset($_GET['search']) ? $_GET['search'] : '';
+        // Buat query sesuai dengan kata kunci pencarian
+        $query = "SELECT * FROM products";
+        if (!empty($search)) {
+          $query .= " WHERE product_name LIKE '%$search%' OR category LIKE '%$search%'";
+        }
 
-            // Buat query sesuai dengan kata kunci pencarian
-            // $query = "SELECT * FROM products";
-            // if (!empty($search)) {
-            //   $query .= " WHERE product_name LIKE '%$search%' OR category LIKE '%$search%'";
-            // }
+        $result = $conn->query($query);
 
-            // $result = $conn->query($query);
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . $row['product_name'] . "</td>";
+            echo "<td>" . $row['selling_price'] . "</td>";
+            echo "<td>" . $row['cost_price'] . "</td>";
+            echo "<td>" . $row['category'] . "</td>";
+            echo "<td>
+                    <a href='edit.php?id=" . $row['id'] . "' class='btn btn-success'>Edit</a>
+                    <a href='hapus.php?id=" . $row['id'] . "' class='btn btn-danger'>Hapus</a>
+                </td>";
+            echo "</tr>";
+          }
+        } else {
+          echo "<tr><td colspan='6'>Tidak ada produk.</td></tr>";
+        }
 
-            // if ($result->num_rows > 0) {
-            //   while ($row = $result->fetch_assoc()) {
-            //     echo "<tr>";
-            //     echo "<td>" . $row['product_name'] . "</td>";
-            //     echo "<td>" . $row['selling_price'] . "</td>";
-            //     echo "<td>" . $row['cost_price'] . "</td>";
-            //     echo "<td>" . $row['category'] . "</td>";
-            //     echo "<td>" . $row['composition'] . "</td>";
-            //     // echo "<td>
-            //     //         <a href='edit.php?id=" . $row['id'] . "' class='btn btn-primary'>Edit</a>
-            //     //         <a href='hapus.php?id=" . $row['id'] . "' class='btn btn-danger'>Hapus</a>
-            //     //     </td>";
-            //     echo "</tr>";
-            //   }
-            // } else {
-            //   echo "<tr><td colspan='6'>Tidak ada produk.</td></tr>";
-            // }
+        $conn->close();
+        ?>
+      </tbody>
+    </table>
+  </div>
+</section>
 
-            // $conn->close();
-            while ($r = $q->fetch_assoc()) {
-            // total adalah hasil dari harga x qty
-            $ttlhargajual = $r['harga_jual'] * $r['kuantitas'];
-            $ttlhargamodal = $r['harga_modal'] * $r['kuantitas'];  
-            $total = $ttlhargajual - $ttlhargamodal;
-            // total bayar adalah penjumlahan dari keseluruhan total
-            $tot_bayar += $total;
-            ?>
-            <tr>
-              <td><?= $no++ ?></td>
-              <td><?= $r['tgl'] ?></td>
-              <td><?= ucwords($r['nama_produk']) ?></td>
-              <td><?= $r['harga_jual'] ?></td>
-              <td><?= $r['harga_modal'] ?></td>
-              <td><?= $r['kuantitas'] ?></td>
-              <td><?= $total ?></td>
-            </tr>
-            <?php
-            }
-            ?>
-            <tr>
-              <th colspan="6">Keuntungan</th>
-              <th><?= $tot_bayar ?></th>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-  </main><!-- End #main -->
+</main><!-- End #main -->
 
 
 
