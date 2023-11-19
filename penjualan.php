@@ -194,7 +194,7 @@ include 'koneksi.php'
 
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-menu-button-wide-fill"></i><span>Inventory</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="bi bi-menu-button-wide-fill"></i><span>Inventory</span><i class="bi bi-chevron-down ms-auto text-dark"></i>
           </a>
           <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
