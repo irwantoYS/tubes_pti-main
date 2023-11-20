@@ -235,7 +235,7 @@
     <br>
     <div>
     <form class="border-top border-bottom pt-3 pb-3 mb-3" method="GET" action='cek_data_akun.php'>
-      <input class="rounded" type="text" name="search" placeholder="Cari produk...">
+      <input class="rounded" type="text" name="search" placeholder="Cari username...">
       <button type="submit" class="btn btn-success px-2 py-1">Cari</button>
       <a href="daftarproduk.php" class="btn btn-danger px-2 py-1">Reset</a>
       
@@ -270,7 +270,7 @@
         // Buat query sesuai dengan kata kunci pencarian
         $query = "SELECT * FROM akun";
         if (!empty($search)) {
-          $query .= " WHERE product_name LIKE '%$search%' OR category LIKE '%$search%'";
+          $query .= " WHERE username LIKE '%$search%'";
         }
 
         $result = $conn->query($query);
