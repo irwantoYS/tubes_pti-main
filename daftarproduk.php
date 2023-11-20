@@ -78,13 +78,6 @@ include 'getHargaModal.php';
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
-
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
-
         <li class="nav-item dropdown">
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
@@ -172,16 +165,19 @@ include 'getHargaModal.php';
               <hr class="dropdown-divider" />
             </li>
 
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="adminprofil.php">
-                <i class="bi bi-gear"></i>
-                <span>Account Management</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
+             
+              <li>
+                <a
+                  class="dropdown-item d-flex align-items-center"
+                  href="users-profile.html"
+                >
+                  <i class="bi bi-gear"></i>
+                  <span>Account Management</span>
+                </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
 
             <li>
               <a class="dropdown-item d-flex align-items-center" href="#">
@@ -214,7 +210,7 @@ include 'getHargaModal.php';
 
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-menu-button-wide-fill"></i><span>Inventory</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="bi bi-menu-button-wide-fill"></i><span>Inventory</span><i class="bi bi-chevron-down ms-auto text-dark"></i>
           </a>
           <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
@@ -242,7 +238,7 @@ include 'getHargaModal.php';
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="pages-login.php">
+          <a class="nav-link collapsed" href="pages-login.html">
             <i class="bi bi-box-arrow-in-right"></i>
             <span>Logout</span>
           </a>
@@ -271,193 +267,6 @@ include 'getHargaModal.php';
           <div class="col-lg-8">
             <div class="row">
 
-              <!-- Sales Card -->
-              <div class="col-xxl-4 col-md-6">
-                <div class="card info-card sales-card">
-
-                  <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                      <li class="dropdown-header text-start">
-                        <h6>Filter</h6>
-                      </li>
-
-                      <li><a class="dropdown-item" href="#">Today</a></li>
-                      <li><a class="dropdown-item" href="#">This Month</a></li>
-                      <li><a class="dropdown-item" href="#">This Year</a></li>
-                    </ul>
-                  </div>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Sales <span>| Today</span></h5>
-
-                    <div class="d-flex align-items-center">
-                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                        <i class="bi bi-cart"></i>
-                      </div>
-                      <div class="ps-3">
-                        <h6>145</h6>
-                        <span class="text-success small pt-1 fw-bold">12%</span> <span
-                          class="text-muted small pt-2 ps-1">increase</span>
-
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div><!-- End Sales Card -->
-
-              <!-- Revenue Card -->
-              <div class="col-xxl-4 col-md-6">
-                <div class="card info-card revenue-card">
-
-                  <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                      <li class="dropdown-header text-start">
-                        <h6>Filter</h6>
-                      </li>
-
-                      <li><a class="dropdown-item" href="#">Today</a></li>
-                      <li><a class="dropdown-item" href="#">This Month</a></li>
-                      <li><a class="dropdown-item" href="#">This Year</a></li>
-                    </ul>
-                  </div>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Revenue <span>| This Month</span></h5>
-
-                    <div class="d-flex align-items-center">
-                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                        <i class="bi bi-currency-dollar"></i>
-                      </div>
-                      <div class="ps-3">
-                        <h6>$3,264</h6>
-                        <span class="text-success small pt-1 fw-bold">8%</span> <span
-                          class="text-muted small pt-2 ps-1">increase</span>
-
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div><!-- End Revenue Card -->
-
-              <!-- Customers Card -->
-              <div class="col-xxl-4 col-xl-12">
-
-                <div class="card info-card customers-card">
-
-                  <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                      <li class="dropdown-header text-start">
-                        <h6>Filter</h6>
-                      </li>
-
-                      <li><a class="dropdown-item" href="#">Today</a></li>
-                      <li><a class="dropdown-item" href="#">This Month</a></li>
-                      <li><a class="dropdown-item" href="#">This Year</a></li>
-                    </ul>
-                  </div>
-
-                  <div class="card-body">
-                    <h5 class="card-title">Customers <span>| This Year</span></h5>
-
-                    <div class="d-flex align-items-center">
-                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                        <i class="bi bi-people"></i>
-                      </div>
-                      <div class="ps-3">
-                        <h6>1244</h6>
-                        <span class="text-danger small pt-1 fw-bold">12%</span> <span
-                          class="text-muted small pt-2 ps-1">decrease</span>
-
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
-              </div>
-              <!-- End Customers Card -->
-
-              <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-                  <i class="bi bi-gem"></i><span>Icons</span><i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                  <li>
-                    <a href="icons-bootstrap.html">
-                      <i class="bi bi-circle"></i><span>Bootstrap Icons</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="icons-remix.html">
-                      <i class="bi bi-circle"></i><span>Remix Icons</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="icons-boxicons.html">
-                      <i class="bi bi-circle"></i><span>Boxicons</span>
-                    </a>
-                  </li>
-                </ul>
-              </li><!-- End Icons Nav -->
-
-              <li class="nav-heading">Pages</li>
-
-              <li class="nav-item">
-                <a class="nav-link collapsed" href="adminprofil.php">
-                  <i class="bi bi-person"></i>
-                  <span>Profile</span>
-                </a>
-              </li><!-- End Profile Page Nav -->
-
-              <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-faq.html">
-                  <i class="bi bi-question-circle"></i>
-                  <span>F.A.Q</span>
-                </a>
-              </li><!-- End F.A.Q Page Nav -->
-
-              <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-contact.html">
-                  <i class="bi bi-envelope"></i>
-                  <span>Contact</span>
-                </a>
-              </li><!-- End Contact Page Nav -->
-
-              <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-register.html">
-                  <i class="bi bi-card-list"></i>
-                  <span>Register</span>
-                </a>
-              </li><!-- End Register Page Nav -->
-
-              <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-login.php">
-                  <i class="bi bi-box-arrow-in-right"></i>
-                  <span>Login</span>
-                </a>
-              </li><!-- End Login Page Nav -->
-
-              <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-error-404.html">
-                  <i class="bi bi-dash-circle"></i>
-                  <span>Error 404</span>
-                </a>
-              </li><!-- End Error 404 Page Nav -->
-
-              <li class="nav-item">
-                <a class="nav-link " href="pages-blank.html">
-                  <i class="bi bi-file-earmark"></i>
-                  <span>Blank</span>
-                </a>
-              </li><!-- End Blank Page Nav -->
-
-              </ul>
-
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
@@ -475,7 +284,134 @@ include 'getHargaModal.php';
     <section class="section">
     <div class="container">
         <h2>Daftar Produk</h2>
-        <a href="tambah_produk.php" class="btn btn-primary" style="float:right">Tambah Produk</a>
+        <!-- <a href="tambah_produk.php" class="btn btn-primary" style="float:right">Tambah Produk</a> -->
+
+<!-- Tombol untuk memicu modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="float:right">
+        Tambah Produk
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+  $(document).ready(function () {
+    $('#myModal').on('show.bs.modal', function (e) {
+      // Load the external page content into the modal
+      $(this).find('.modal-content').load('tambah_produk.php');
+    });
+  });
+</script>
+
+
+    <!-- Skrip Anda yang sudah ada untuk menambahkan komposisi dan mengisi datalist -->
+    <script>
+        document.getElementById("cancelButton").addEventListener("click", function () {
+            history.back();
+        });
+
+        var compositionCounter = 1;
+
+        function addComposition() {
+
+            var compositionInputs = document.getElementById("compositionInputs");
+
+            if (!document.getElementById("bahanList")) {
+                var datalist = document.createElement("datalist");
+                datalist.id = "bahanList";
+                compositionInputs.appendChild(datalist);
+            }
+
+            var spaceInput = compositionInputs.appendChild(document.createElement("br"));
+
+            var inputName = document.createElement("input");
+            inputName.type = "text";
+            inputName.name = "selected_composition[]";
+            inputName.placeholder = "Nama Bahan";
+            inputName.setAttribute("list", "bahanList"); // Menggunakan setAttribute untuk mengatasi masalah di Firefox
+            inputName.required = true;
+            compositionInputs.appendChild(inputName);
+
+            var inputAmount = document.createElement("input");
+            inputAmount.type = "number";
+            inputAmount.name = "selected_amount[]";
+            inputAmount.placeholder = "Jumlah";
+            inputAmount.required = true;
+            compositionInputs.appendChild(inputAmount);
+
+            var cancelButtonName = document.createElement("button");
+            cancelButtonName.type = "button";
+            cancelButtonName.innerHTML = "Remove";
+            cancelButtonName.onclick = function () {
+                compositionInputs.removeChild(spaceInput);
+                compositionInputs.removeChild(inputName);
+                compositionInputs.removeChild(inputAmount);
+                compositionInputs.removeChild(cancelButtonName);
+            };
+            compositionInputs.appendChild(cancelButtonName);
+
+            // Memperbarui datalist dengan nama bahan yang baru
+            fillBahanList();
+            compositionCounter++;
+        }
+
+        function prepareCompositionInputs() {
+            var compositionInputs = document.getElementById("compositionInputs");
+
+            while (compositionInputs.childNodes.length > compositionCounter * 2) {
+                compositionInputs.removeChild(compositionInputs.lastChild);
+                compositionInputs.removeChild(compositionInputs.lastChild);
+            }
+        }
+
+        // Function untuk mengisi datalist dengan data dari database
+        function fillBahanList() {
+            var allCompositionInputs = document.getElementsByName("selected_composition[]");
+            var datalist = document.getElementById("bahanList");
+
+            // Menggunakan AJAX untuk mendapatkan data dari server
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var bahanNames = JSON.parse(xhr.responseText);
+
+                    // Menghapus semua opsi di datalist
+                    datalist.innerHTML = "";
+
+                    var uniqueBahanNames = new Set(bahanNames.map(bahan => bahan.nama_bahan));
+
+                    uniqueBahanNames.forEach(function (bahan) {
+                        var option = document.createElement("option");
+                        option.value = bahan;
+                        datalist.appendChild(option);
+                    });
+
+                    // Menambahkan opsi baru ke datalist
+                    allCompositionInputs.forEach(function (input) {
+                        var option = document.createElement("option");
+                        option.value = input.value;
+                        datalist.appendChild(option);
+                    });
+                }
+            };
+
+            xhr.open("GET", "get_bahan_names.php", true);
+            xhr.send();
+        }
+
+        // Panggil fungsi untuk mengisi datalist saat halaman dimuat
+        fillBahanList();
+    </script>
+
         <br><br>
         <form method="GET">
             <input type="text" name="search" placeholder="Cari produk...">

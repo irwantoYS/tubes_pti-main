@@ -12,15 +12,15 @@
         <form action="proses_tambah_produk.php" method="post">
             <div class="form-group">
                 <label for="product_name">Nama Produk:</label>
-                <input type="text" class="form-control" id="product_name" name="product_name">
+                <input type="text" style="width: 40%;" class="form-control" id="product_name" name="product_name">
             </div>
             <div class="form-group">
                 <label for="selling_price">Harga Jual:</label>
-                <input type="number" class="form-control" id="selling_price" name="selling_price">
+                <input type="number" style="width: 40%;" class="form-control" id="selling_price" name="selling_price">
             </div>
             <div class="form-group">
                 <label for="category">Kategori:</label>
-                <select class="form-control" id="category" name="category">
+                <select style="width: 40%;" class="form-control" id="category" name="category">
                     <option value="kitchen">Kitchen</option>
                     <option value="bar">Bar</option>
                 </select>
