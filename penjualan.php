@@ -1,3 +1,8 @@
+<?php
+
+// koneksi
+include 'koneksi.php'
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -136,50 +141,38 @@
 
         </li><!-- End Notification Nav -->
         <li class="nav-item dropdown pe-3">
-            <a
-              class="nav-link nav-profile d-flex align-items-center pe-0"
-              href="#"
-              data-bs-toggle="dropdown"
-            >
-             
-              <span class="d-none d-md-block dropdown-toggle ps-2"
-                >Admin</span
-              > </a
-            ><!-- End Profile Iamge Icon -->
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
 
-            <ul
-              class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
-            >
-              <li class="dropdown-header">
-                <h6>Admin</h6>
-              </li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
+            <span class="d-none d-md-block dropdown-toggle ps-2">Admin</span> </a><!-- End Profile Iamge Icon -->
 
-              <li>
-                <a
-                  class="dropdown-item d-flex align-items-center"
-                  href="adminprofil.php"
-                >
-                  <i class="bi bi-gear"></i>
-                  <span>Account Management</span>
-                </a>
-              </li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>Admin</h6>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
 
-              <li>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <i class="bi bi-box-arrow-right"></i>
-                  <span>Sign Out</span>
-                </a>
-              </li>
-            </ul>
-            <!-- End Profile Dropdown Items -->
-          </li>
-          <!-- End Profile Nav -->
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="adminprofil.php">
+                <i class="bi bi-gear"></i>
+                <span>Account Management</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+          </ul>
+          <!-- End Profile Dropdown Items -->
+        </li>
+        <!-- End Profile Nav -->
       </ul>
     </nav><!-- End Icons Navigation -->
 
@@ -201,7 +194,7 @@
 
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-menu-button-wide-fill"></i><span>Inventory</span><i class="bi bi-chevron-down ms-auto text-dark"></i>
+            <i class="bi bi-menu-button-wide-fill"></i><span>Inventory</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
@@ -223,13 +216,13 @@
         </li><!-- End Components Nav -->
         <li class="nav-item">
           <a class="nav-link collapsed" href="penjualan.php">
-          <i class="bi bi-cart"></i>
+            <i class="bi bi-cart"></i>
             <span>Penjualan</span>
           </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="pages-login.html">
+          <a class="nav-link collapsed" href="pages-login.php">
             <i class="bi bi-box-arrow-in-right"></i>
             <span>Logout</span>
           </a>
@@ -254,6 +247,197 @@
       <section class="section dashboard">
         <div class="row">
 
+          <!-- Left side columns -->
+          <div class="col-lg-8">
+            <div class="row">
+
+              <!-- Sales Card -->
+              <div class="col-xxl-4 col-md-6">
+                <div class="card info-card sales-card">
+
+                  <div class="filter">
+                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                      <li class="dropdown-header text-start">
+                        <h6>Filter</h6>
+                      </li>
+
+                      <li><a class="dropdown-item" href="#">Today</a></li>
+                      <li><a class="dropdown-item" href="#">This Month</a></li>
+                      <li><a class="dropdown-item" href="#">This Year</a></li>
+                    </ul>
+                  </div>
+
+                  <div class="card-body">
+                    <h5 class="card-title">Sales <span>| Today</span></h5>
+
+                    <div class="d-flex align-items-center">
+                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                        <i class="bi bi-cart"></i>
+                      </div>
+                      <div class="ps-3">
+                        <h6>145</h6>
+                        <span class="text-success small pt-1 fw-bold">12%</span> <span
+                          class="text-muted small pt-2 ps-1">increase</span>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div><!-- End Sales Card -->
+
+              <!-- Revenue Card -->
+              <div class="col-xxl-4 col-md-6">
+                <div class="card info-card revenue-card">
+
+                  <div class="filter">
+                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                      <li class="dropdown-header text-start">
+                        <h6>Filter</h6>
+                      </li>
+
+                      <li><a class="dropdown-item" href="#">Today</a></li>
+                      <li><a class="dropdown-item" href="#">This Month</a></li>
+                      <li><a class="dropdown-item" href="#">This Year</a></li>
+                    </ul>
+                  </div>
+
+                  <div class="card-body">
+                    <h5 class="card-title">Revenue <span>| This Month</span></h5>
+
+                    <div class="d-flex align-items-center">
+                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                        <i class="bi bi-currency-dollar"></i>
+                      </div>
+                      <div class="ps-3">
+                        <h6>$3,264</h6>
+                        <span class="text-success small pt-1 fw-bold">8%</span> <span
+                          class="text-muted small pt-2 ps-1">increase</span>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div><!-- End Revenue Card -->
+
+              <!-- Customers Card -->
+              <div class="col-xxl-4 col-xl-12">
+
+                <div class="card info-card customers-card">
+
+                  <div class="filter">
+                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                      <li class="dropdown-header text-start">
+                        <h6>Filter</h6>
+                      </li>
+
+                      <li><a class="dropdown-item" href="#">Today</a></li>
+                      <li><a class="dropdown-item" href="#">This Month</a></li>
+                      <li><a class="dropdown-item" href="#">This Year</a></li>
+                    </ul>
+                  </div>
+
+                  <div class="card-body">
+                    <h5 class="card-title">Customers <span>| This Year</span></h5>
+
+                    <div class="d-flex align-items-center">
+                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                        <i class="bi bi-people"></i>
+                      </div>
+                      <div class="ps-3">
+                        <h6>1244</h6>
+                        <span class="text-danger small pt-1 fw-bold">12%</span> <span
+                          class="text-muted small pt-2 ps-1">decrease</span>
+
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <!-- End Customers Card -->
+
+              <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+                  <i class="bi bi-gem"></i><span>Icons</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                  <li>
+                    <a href="icons-bootstrap.html">
+                      <i class="bi bi-circle"></i><span>Bootstrap Icons</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="icons-remix.html">
+                      <i class="bi bi-circle"></i><span>Remix Icons</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="icons-boxicons.html">
+                      <i class="bi bi-circle"></i><span>Boxicons</span>
+                    </a>
+                  </li>
+                </ul>
+              </li><!-- End Icons Nav -->
+
+              <li class="nav-heading">Pages</li>
+
+              <li class="nav-item">
+                <a class="nav-link collapsed" href="adminprofil.php">
+                  <i class="bi bi-person"></i>
+                  <span>Profile</span>
+                </a>
+              </li><!-- End Profile Page Nav -->
+
+              <li class="nav-item">
+                <a class="nav-link collapsed" href="pages-faq.html">
+                  <i class="bi bi-question-circle"></i>
+                  <span>F.A.Q</span>
+                </a>
+              </li><!-- End F.A.Q Page Nav -->
+
+              <li class="nav-item">
+                <a class="nav-link collapsed" href="pages-contact.html">
+                  <i class="bi bi-envelope"></i>
+                  <span>Contact</span>
+                </a>
+              </li><!-- End Contact Page Nav -->
+
+              <li class="nav-item">
+                <a class="nav-link collapsed" href="pages-register.html">
+                  <i class="bi bi-card-list"></i>
+                  <span>Register</span>
+                </a>
+              </li><!-- End Register Page Nav -->
+
+              <li class="nav-item">
+                <a class="nav-link collapsed" href="pages-login.php">
+                  <i class="bi bi-box-arrow-in-right"></i>
+                  <span>Login</span>
+                </a>
+              </li><!-- End Login Page Nav -->
+
+              <li class="nav-item">
+                <a class="nav-link collapsed" href="pages-error-404.html">
+                  <i class="bi bi-dash-circle"></i>
+                  <span>Error 404</span>
+                </a>
+              </li><!-- End Error 404 Page Nav -->
+
+              <li class="nav-item">
+                <a class="nav-link " href="pages-blank.html">
+                  <i class="bi bi-file-earmark"></i>
+                  <span>Blank</span>
+                </a>
+              </li><!-- End Blank Page Nav -->
+
+              </ul>
+
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
@@ -270,64 +454,102 @@
     <section class="section">
       <div class="container">
         <h2>Data Penjualan</h2>
-        <a href="tambah.php" class="btn btn-primary" style="float:right">Tambah Penjualan</a>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <a href="laporanexcel.php" class="btn btn-success me-md-2" type="button">Excel</a>
+          <a href="tambah_penjualan.php" class="btn btn-success" type="button">Tambah Penjualan</a>
+        </div>
         <br><br>
-        <form method="GET">
-          <input type="text" name="search" placeholder="Cari produk...">
-          <button type="submit" class="btn btn-primary">Cari</button>
-          <a href="penjualan.php" class="btn btn-secondary" style="background-color: red">Reset</a>
-        </form>
         <br><br>
         <table class="table">
           <thead>
             <tr>
+              <th>No.</th>
+              <th>Tanggal</th>
               <th>Nama Produk</th>
+              <!-- <th>Komposisi</th> -->
               <th>Harga Jual</th>
               <th>Harga Modal</th>
-              <th>Kategori</th>
-              <th>Komposisi</th>
-              <th>Aksi</th>
+              <th>Jumlah Terjual</th>
+              <th>Total</th>
             </tr>
           </thead>
           <tbody>
             <?php
-            include 'koneksi.php';
+            $q = mysqli_query($conn, "SELECT penjualan.*, products.product_name, products.composition FROM penjualan
+                    JOIN products ON penjualan.nama_produk = products.product_name");
+            $total = 0;
+            $tot_bayar = 0;
+            $no = 1;
+            while ($r = $q->fetch_assoc()) {
+              // Inisialisasi hargaModal di setiap iterasi produk
+              $hargaModal = 0;
+              $komposisi = json_decode($r['composition'], true);
 
-            // Periksa apakah ada kata kunci pencarian yang diberikan
-            $search = isset($_GET['search']) ? $_GET['search'] : '';
+              foreach ($komposisi as $key => $value) {
+                if (strpos($key, 'bahan') !== false) {
+                  $index = substr($key, 5);
+                  $jumlahKey = "jumlah{$index}";
+                  $jumlah = $komposisi[$jumlahKey];
 
-            // Buat query sesuai dengan kata kunci pencarian
-            $query = "SELECT * FROM products";
-            if (!empty($search)) {
-              $query .= " WHERE product_name LIKE '%$search%' OR category LIKE '%$search%'";
-            }
+                  // Mengambil harga_beli_pergram dari tabel bahan
+                  $namaBahan = $value;
+                  $queryBahan = "SELECT harga_beli_pergram FROM bahan WHERE nama_bahan = '$namaBahan'";
+                  $resultBahan = $conn->query($queryBahan);
 
-            $result = $conn->query($query);
+                  if ($resultBahan->num_rows > 0) {
+                    $rowBahan = $resultBahan->fetch_assoc();
+                    $hargaBahan = $rowBahan['harga_beli_pergram'];
 
-            if ($result->num_rows > 0) {
-              while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . $row['product_name'] . "</td>";
-                echo "<td>" . $row['selling_price'] . "</td>";
-                echo "<td>" . $row['cost_price'] . "</td>";
-                echo "<td>" . $row['category'] . "</td>";
-                echo "<td>" . $row['composition'] . "</td>";
-                echo "<td>
-                        <a href='edit.php?id=" . $row['id'] . "' class='btn btn-primary'>Edit</a>
-                        <a href='hapus.php?id=" . $row['id'] . "' class='btn btn-danger'>Hapus</a>
-                    </td>";
-                echo "</tr>";
+                    // Menghitung total biaya
+                    $hargaModal += $hargaBahan * $jumlah;
+                  }
+                }
               }
-            } else {
-              echo "<tr><td colspan='6'>Tidak ada produk.</td></tr>";
-            }
 
-            $conn->close();
+              // total adalah hasil dari harga x qty
+              $ttlhargajual = $r['harga_jual'] * $r['kuantitas'];
+              $total = $ttlhargajual - $hargaModal * $r['kuantitas'];
+
+              // total bayar adalah penjumlahan dari keseluruhan total
+              $tot_bayar += $total;
+              ?>
+              <tr>
+                <td>
+                  <?= $no++ ?>
+                </td>
+                <td>
+                  <?= $r['tgl'] ?>
+                </td>
+                <td>
+                  <?= ucwords($r['product_name']) ?>
+                </td>
+                <td>
+                  <?= $r['harga_jual'] ?>
+                </td>
+                <td>
+                  <?= number_format($hargaModal, 2) ?>
+                </td>
+                <td>
+                  <?= $r['kuantitas'] ?>
+                </td>
+                <td>
+                  <?= $total ?>
+                </td>
+              </tr>
+              <?php
+            }
             ?>
+            <tr>
+              <th colspan="6">Keuntungan</th>
+              <th>
+                <?= $tot_bayar ?>
+              </th>
+            </tr>
           </tbody>
         </table>
       </div>
     </section>
+
 
   </main><!-- End #main -->
 

@@ -154,7 +154,7 @@
               <li>
                 <a
                   class="dropdown-item d-flex align-items-center"
-                  href="users-profile.html"
+                  href="adminprofil.php"
                 >
                   <i class="bi bi-gear"></i>
                   <span>Account Management</span>
@@ -215,7 +215,7 @@
         </li><!-- End check Data account Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="pages-login.html">
+          <a class="nav-link collapsed" href="pages-login.php">
             <i class="bi bi-box-arrow-in-right"></i>
             <span>Logout</span>
           </a>
@@ -235,9 +235,9 @@
     <br>
     <div>
     <form class="border-top border-bottom pt-3 pb-3 mb-3" method="GET" action='cek_data_akun.php'>
-      <input class="rounded" type="text" name="search" placeholder="Cari produk...">
+      <input class="rounded" type="text" name="search" placeholder="Cari username...">
       <button type="submit" class="btn btn-success px-2 py-1">Cari</button>
-      <a href="daftarproduk.php" class="btn btn-danger px-2 py-1">Reset</a>
+      <a href="cek_data_akun.php" class="btn btn-danger px-2 py-1">Reset</a>
       
         <select class="ms-5 rounded" id='sort-select' name='sort' onchange='this.form.submit()'>
         <option value='admin' " . ($sort == 'admin' ? 'selected' : '') . ">Admin</option>
@@ -268,9 +268,9 @@
         $search = isset($_GET['search']) ? $_GET['search'] : '';
 
         // Buat query sesuai dengan kata kunci pencarian
-        $query = "SELECT * FROM products";
+        $query = "SELECT * FROM akun";
         if (!empty($search)) {
-          $query .= " WHERE product_name LIKE '%$search%' OR category LIKE '%$search%'";
+          $query .= " WHERE username LIKE '%$search%'";
         }
 
         $result = $conn->query($query);
@@ -278,13 +278,13 @@
         if ($result->num_rows > 0) {
           while ($row = $result->fetch_assoc()) {
             echo "<tr>";
-            echo "<td>" . $row['product_name'] . "</td>";
-            echo "<td>" . $row['selling_price'] . "</td>";
-            echo "<td>" . $row['cost_price'] . "</td>";
-            echo "<td>" . $row['category'] . "</td>";
+            echo "<td>" . $row['username'] . "</td>";
+            echo "<td>" . $row['password'] . "</td>";
+            echo "<td>" . $row['status'] . "</td>";
+            echo "<td>" . $row['role'] . "</td>";
             echo "<td>
-                    <a href='edit.php?id=" . $row['id'] . "' class='btn btn-success'>Edit</a>
-                    <a href='hapus.php?id=" . $row['id'] . "' class='btn btn-danger'>Hapus</a>
+                    <a href='edit_akun.php?id=" . $row['id'] . "' class='btn btn-success'>Edit</a>
+                    <a href='hapus_akun.php?id=" . $row['id'] . "' class='btn btn-danger'>Hapus</a>
                 </td>";
             echo "</tr>";
           }

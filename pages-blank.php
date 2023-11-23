@@ -148,18 +148,15 @@
               <hr class="dropdown-divider" />
             </li>
 
-              <li>
-                <a
-                  class="dropdown-item d-flex align-items-center"
-                  href="adminprofil.php"
-                >
-                  <i class="bi bi-gear"></i>
-                  <span>Account Management</span>
-                </a>
-              </li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="adminprofil.php">
+                <i class="bi bi-gear"></i>
+                <span>Account Management</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
 
             <li>
               <a class="dropdown-item d-flex align-items-center" href="#">
@@ -220,7 +217,7 @@
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="pages-login.html">
+          <a class="nav-link collapsed" href="pages-login.php">
             <i class="bi bi-box-arrow-in-right"></i>
             <span>Login</span>
           </a>
@@ -386,7 +383,7 @@
               <li class="nav-heading">Pages</li>
 
               <li class="nav-item">
-                <a class="nav-link collapsed" href="users-profile.html">
+                <a class="nav-link collapsed" href="adminprofil.php">
                   <i class="bi bi-person"></i>
                   <span>Profile</span>
                 </a>
@@ -414,7 +411,7 @@
               </li><!-- End Register Page Nav -->
 
               <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-login.html">
+                <a class="nav-link collapsed" href="pages-login.php">
                   <i class="bi bi-box-arrow-in-right"></i>
                   <span>Login</span>
                 </a>

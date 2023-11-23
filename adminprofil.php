@@ -154,7 +154,7 @@
               <li>
                 <a
                   class="dropdown-item d-flex align-items-center"
-                  href="users-profile.html"
+                  href="adminprofil.php"
                 >
                   <i class="bi bi-gear"></i>
                   <span>Account Management</span>
@@ -215,7 +215,7 @@
         </li><!-- End check Data account Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="pages-login.html">
+          <a class="nav-link collapsed" href="pages-login.php">
             <i class="bi bi-box-arrow-in-right"></i>
             <span>Logout</span>
           </a>
