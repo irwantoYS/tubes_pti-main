@@ -237,7 +237,7 @@
     <form class="border-top border-bottom pt-3 pb-3 mb-3" method="GET" action='cek_data_akun.php'>
       <input class="rounded" type="text" name="search" placeholder="Cari username...">
       <button type="submit" class="btn btn-success px-2 py-1">Cari</button>
-      <a href="daftarproduk.php" class="btn btn-danger px-2 py-1">Reset</a>
+      <a href="cek_data_akun.php" class="btn btn-danger px-2 py-1">Reset</a>
       
         <select class="ms-5 rounded" id='sort-select' name='sort' onchange='this.form.submit()'>
         <option value='admin' " . ($sort == 'admin' ? 'selected' : '') . ">Admin</option>
