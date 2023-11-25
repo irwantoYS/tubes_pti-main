@@ -25,6 +25,41 @@ if (isset($_POST['submit'])) {
     } else {
         echo "<script>alert('Gagal menambahkan data'); window.location.href = penjualan.php;</script>";
     }
+    
+    $selectedOption = mysqli_fetch_assoc(mysqli_query($conn, "SELECT composition FROM products WHERE product_name = '$np'"));
+
+    $komposisi = json_decode($selectedOption['composition'], true);
+    foreach ($komposisi as $key => $value) {
+        // Memeriksa apakah kunci mengandung substring "bahan"
+        if (strpos($key, 'bahan') !== false) {
+            // Mengambil nilai dari JSON
+            $bahan = $value;
+            $jumlah = intval($komposisi['jumlah' . substr($key, 5)]);
+            $totalBahanTerpakai = $jumlah * $qty;
+    
+            // Ambil data dari database
+            $query = "SELECT jumlah_bahan FROM bahan WHERE nama_bahan = '$bahan' ORDER BY id ASC LIMIT 1";
+            $result = mysqli_query($conn, $query);
+    
+            if ($result) {
+                // Ambil hasil kueri
+                $row = mysqli_fetch_assoc($result);
+                $jumlahDiDatabase = $row['jumlah_bahan'];
+    
+                if ($totalBahanTerpakai <= $jumlahDiDatabase) {
+                    $jumlahDiDatabase -= $totalBahanTerpakai;
+                    
+                    $updateQuery = "UPDATE bahan SET jumlah_bahan = '$jumlahDiDatabase' WHERE nama_bahan = '$bahan'";
+                    $updateResult = mysqli_query($conn, $updateQuery);
+                    if (!$updateResult) {
+                        echo "<script>alert('Gagal mengupdate stok bahan');</script>";
+                    }
+                } else {
+                    echo "<script>alert('Stok bahan tidak mencukupi'); window.location.href = penjualan.php;</script>";
+                }
+            }
+        }
+    }
 }
 
 ?>
@@ -71,6 +106,9 @@ if (isset($_POST['submit'])) {
             <button type="button" class="btn btn-danger" id="cancelButton">Cancel</button>
         </form>
     </div>
+
+    <?php
+    ?>
 
     <script>
         // Menambahkan event listener ke tombol "Cancel"

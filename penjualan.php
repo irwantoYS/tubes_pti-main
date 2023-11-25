@@ -475,7 +475,7 @@ include 'koneksi.php'
               <th>Harga Jual</th>
               <th>Harga Modal</th>
               <th>Jumlah Terjual</th>
-              <th>Total</th>
+              <th>Total Keuntungan</th>
             </tr>
           </thead>
           <tbody>
