@@ -3,6 +3,11 @@
 // koneksi
 include 'koneksi.php'
 ?>
+<?php
+ 
+// koneksi
+include 'koneksi.php'
+?>
 <!DOCTYPE html>
 <html lang="en">
 

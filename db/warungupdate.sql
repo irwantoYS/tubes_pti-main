@@ -107,6 +107,29 @@ INSERT INTO `penjualan` (`id`, `nama_produk`, `harga_jual`, `harga_modal`, `kuan
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `penjualan`
+--
+
+CREATE TABLE `penjualan` (
+  `nama_produk` char(30) NOT NULL,
+  `harga_jual` double NOT NULL,
+  `harga_modal` double NOT NULL,
+  `kuantitas` double NOT NULL,
+  `tgl` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `penjualan`
+--
+
+INSERT INTO `penjualan` (`nama_produk`, `harga_jual`, `harga_modal`, `kuantitas`, `tgl`) VALUES
+('Ayam', 20000, 10000, 10, '2022-02-02'),
+('Bebek', 10000, 5000, 10, '2023-11-04'),
+('Sayur', 5000, 3000, 2, '2023-02-22');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `products`
 --
 

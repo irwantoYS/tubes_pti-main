@@ -2,6 +2,10 @@
 include 'getHargaModal.php';
 ?>
 
+<?php
+include 'getHargaModal.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -418,19 +422,19 @@ include 'getHargaModal.php';
         </form>
         <br><br>
         <table class="table">
-          <thead>
-            <tr>
-              <th>Nama Produk</th>
-              <th>Harga Jual</th>
-              <th>Harga Modal</th>
-              <th>Kategori</th>
-              <th>Komposisi (gram/ml)</th>
-              <th>Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-            include 'koneksi.php';
+            <thead>
+                <tr>
+                    <th>Nama Produk</th>
+                    <th>Harga Jual</th>
+                    <th>Harga Modal</th>
+                    <th>Kategori</th>
+                    <th>Komposisi (gram/ml)</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                include 'koneksi.php';
 
                 // Periksa apakah ada kata kunci pencarian yang diberikan
                 $search = isset($_GET['search']) ? $_GET['search'] : '';
@@ -443,80 +447,80 @@ include 'getHargaModal.php';
 
                 $result = $conn->query($query);
 
-            if ($result->num_rows > 0) {
-              while ($row = $result->fetch_assoc()) {
-                $komposisi = json_decode($row['composition'], true);
-                echo "<tr>";
-                echo "<td>" . $row['product_name'] . "</td>";
-                echo "<td>" . "Rp " . $row['selling_price'] . "</td>";
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $komposisi = json_decode($row['composition'], true);
+                        echo "<tr>";
+                        echo "<td>" . $row['product_name'] . "</td>";
+                        echo "<td>" . "Rp " . $row['selling_price'] . "</td>";
 
-                // Inisialisasi hargaModal di setiap iterasi produk
-                $hargaModal = 0;
+                        // Inisialisasi hargaModal di setiap iterasi produk
+                        $hargaModal = 0;
 
-                foreach ($komposisi as $key => $value) {
-                  if (strpos($key, 'bahan') !== false) {
-                    $index = substr($key, 5);
-                    $jumlahKey = "jumlah{$index}";
-                    $jumlah = $komposisi[$jumlahKey];
+                        foreach ($komposisi as $key => $value) {
+                            if (strpos($key, 'bahan') !== false) {
+                                $index = substr($key, 5);
+                                $jumlahKey = "jumlah{$index}";
+                                $jumlah = $komposisi[$jumlahKey];
 
-                    // Mengambil harga_beli_pergram dari tabel bahan
-                    $namaBahan = $value;
-                    $queryBahan = "SELECT harga_beli_pergram FROM bahan WHERE nama_bahan = '$namaBahan'";
-                    $resultBahan = $conn->query($queryBahan);
+                                // Mengambil harga_beli_pergram dari tabel bahan
+                                $namaBahan = $value;
+                                $queryBahan = "SELECT harga_beli_pergram FROM bahan WHERE nama_bahan = '$namaBahan'";
+                                $resultBahan = $conn->query($queryBahan);
 
-                    if ($resultBahan->num_rows > 0) {
-                      $rowBahan = $resultBahan->fetch_assoc();
-                      $hargaBahan = $rowBahan['harga_beli_pergram'];
+                                if ($resultBahan->num_rows > 0) {
+                                    $rowBahan = $resultBahan->fetch_assoc();
+                                    $hargaBahan = $rowBahan['harga_beli_pergram'];
 
-                      // Menghitung total biaya
-                      $hargaModal += $hargaBahan * $jumlah;
-                    }
-                  }
-                }
-                echo "<td>Rp. " . number_format($hargaModal, 2) . "</td>";
-                echo "<td>" . $row['category'] . "</td>";
-                echo "<td>";
-                echo "<div id='jsonDisplay'>";
+                                    // Menghitung total biaya
+                                    $hargaModal += $hargaBahan * $jumlah;
+                                }
+                            }
+                        }
+                        echo "<td>Rp. " . number_format($hargaModal, 2) . "</td>";
+                        echo "<td>" . $row['category'] . "</td>";
+                        echo "<td>";
+                        echo "<div id='jsonDisplay'>";
 
-                $keys = array_keys($komposisi);
-                $count = count($keys);
+                        $keys = array_keys($komposisi);
+                        $count = count($keys);
 
-                for ($i = 0; $i < $count; $i++) {
-                  $key = $keys[$i];
-                  $value = $komposisi[$key];
+                        for ($i = 0; $i < $count; $i++) {
+                            $key = $keys[$i];
+                            $value = $komposisi[$key];
 
-                  echo "$value";
+                            echo "$value";
 
-                  // Cek apakah bukan elemen terakhir
-                  if ($i < $count - 1) {
-                    echo " : ";
-                    echo $komposisi[$keys[$i + 1]];
-                  }
+                            // Cek apakah bukan elemen terakhir
+                            if ($i < $count - 1) {
+                                echo " : ";
+                                echo $komposisi[$keys[$i + 1]];
+                            }
 
-                  echo "<br>";
-                  $i++; // Pindah ke elemen berikutnya
-                }
-                echo "</div>";
-                echo "<script src='displayJson.js'></script>";
-                echo "</td>";
-                echo "<td>
+                            echo "<br>";
+                            $i++; // Pindah ke elemen berikutnya
+                        }
+                        echo "</div>";
+                        echo "<script src='displayJson.js'></script>";
+                        echo "</td>";
+                        echo "<td>
                                 <a href='edit_produk.php?id=" . $row['id'] . "' class='btn btn-primary'>Edit</a>
                                 <a href='hapus.php?id=" . $row['id'] . "' class='btn btn-danger'>Hapus</a>
                             </td>";
-                echo "</tr>";
-              }
-            } else {
-              echo "<tr><td colspan='6'>Tidak ada produk.</td></tr>";
-            }
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='6'>Tidak ada produk.</td></tr>";
+                }
 
                 $conn->close();
                 ?>
             </tbody>
         </table>
-      </div>
-    </section>
+    </div>
+</section>
 
-
+    
   </main><!-- End #main -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
