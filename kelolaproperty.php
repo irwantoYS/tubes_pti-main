@@ -478,11 +478,11 @@
             $query = "SELECT * FROM property";
             if (!empty($search)) {
               // Menggunakan prepared statement untuk menghindari SQL injection
-              $query = "SELECT * FROM property WHERE nama_properti LIKE ? OR category LIKE ?";
+              $query = "SELECT * FROM property WHERE nama_properti LIKE ?";
               $stmt = $conn->prepare($query);
               // Tambahkan wildcard (%) ke kata kunci
               $searchParam = "%" . $search . "%";
-              $stmt->bind_param("ss", $searchParam, $searchParam);
+              $stmt->bind_param("s", $searchParam);
               $stmt->execute();
               $result = $stmt->get_result();
             } else {

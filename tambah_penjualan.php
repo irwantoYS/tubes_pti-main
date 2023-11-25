@@ -43,6 +43,7 @@ if (isset($_POST['submit'])) {
             <div class="form-group">
                 <label for="nama_produk">Nama Produk:</label>
                 <select class="form-control" id="nama_produk" name="nama_produk" onchange="updateHargaJual()">
+                    <option value="" disabled selected hidden>Pilih Produk</option>
                     <?php echo $produk_options; ?>
                 </select>
             </div>
