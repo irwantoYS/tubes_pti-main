@@ -259,12 +259,12 @@
             echo "<td>" . $row['role'] . "</td>";
             echo "<td>
                     <a href='edit_akun.php?id=" . $row['id'] . "' class='btn btn-success'>Edit</a>
-                    <a href='hapus_akun.php?id=" . $row['id'] . "' class='btn btn-danger'>Hapus</a>
+                    <a href='#' onclick='confirmDelete(" . $row['id'] . ")' class='btn btn-danger'>Hapus</a>
                 </td>";
             echo "</tr>";
           }
         } else {
-          echo "<tr><td colspan='6'>Tidak ada produk.</td></tr>";
+          echo "<tr><td colspan='6'>Tidak ada Akun.</td></tr>";
         }
 
         $conn->close();
@@ -295,5 +295,13 @@
   <script src="assets/js/main.js"></script>
 
 </body>
-
+<script>
+    function confirmDelete(id) {
+        var result = confirm("Apakah Anda yakin ingin menghapus akun ini?");
+        if (result) {
+            // Redirect atau lakukan tindakan penghapusan di sini, misalnya dengan AJAX atau formulir tersembunyi
+            window.location.href = 'hapus_akun.php?id=' + id;
+        }
+    }
+</script>
 </html>
