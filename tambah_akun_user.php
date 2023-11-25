@@ -173,21 +173,6 @@
     <aside id="sidebar" class="sidebar" style="background-color: #04c99e">
 
       <ul class="sidebar-nav" id="sidebar-nav">
-
-        <li class="nav-item">
-          <a class="nav-link " href="index.html">
-            <i class="bi bi-house"></i>
-            <span>Home</span>
-          </a>
-        </li><!-- End Dashboard Nav -->
-
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="adminprofil.php">
-            <i class="bi bi-person"></i>
-            <span>Profile</span>
-          </a>
-        </li><!-- End Profile Page Nav -->
-
         <li class="nav-item">
           <a class="nav-link collapsed" href="tambah_akun_user.php">
             <i class="bi bi-person-fill-add"></i>

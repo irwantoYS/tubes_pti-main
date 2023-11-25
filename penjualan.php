@@ -1,8 +1,8 @@
 <?php
- 
+
 // koneksi
 include 'koneksi.php'
-?>
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -154,7 +154,7 @@ include 'koneksi.php'
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="adminprofil.php">
+              <a class="dropdown-item d-flex align-items-center" href="cek_data_akun.php">
                 <i class="bi bi-gear"></i>
                 <span>Account Management</span>
               </a>
@@ -388,7 +388,7 @@ include 'koneksi.php'
               <li class="nav-heading">Pages</li>
 
               <li class="nav-item">
-                <a class="nav-link collapsed" href="adminprofil.php">
+                <a class="nav-link collapsed" href="cek_data_akun.php">
                   <i class="bi bi-person"></i>
                   <span>Profile</span>
                 </a>
@@ -456,7 +456,7 @@ include 'koneksi.php'
         <h2>Data Penjualan</h2>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
           <a href="laporanexcel.php" class="btn btn-success me-md-2" type="button">Excel</a>
-          <a href="tambah.php" class="btn btn-success" type="button">Tambah Penjualan</a>
+          <a href="tambah_penjualan.php" class="btn btn-success" type="button">Tambah Penjualan</a>
         </div>
         <br><br>
         <br><br>
@@ -466,79 +466,90 @@ include 'koneksi.php'
               <th>No.</th>
               <th>Tanggal</th>
               <th>Nama Produk</th>
+              <!-- <th>Komposisi</th> -->
               <th>Harga Jual</th>
               <th>Harga Modal</th>
               <th>Jumlah Terjual</th>
               <th>Total</th>
-              <!-- <th>Aksi</th> -->
             </tr>
           </thead>
           <tbody>
             <?php
-            $q = mysqli_query($conn, "SELECT * FROM penjualan");
+            $q = mysqli_query($conn, "SELECT penjualan.*, products.product_name, products.composition FROM penjualan
+                    JOIN products ON penjualan.nama_produk = products.product_name");
             $total = 0;
             $tot_bayar = 0;
             $no = 1;
-
-
-            // Periksa apakah ada kata kunci pencarian yang diberikan
-            // $search = isset($_GET['search']) ? $_GET['search'] : '';
-
-            // Buat query sesuai dengan kata kunci pencarian
-            // $query = "SELECT * FROM products";
-            // if (!empty($search)) {
-            //   $query .= " WHERE product_name LIKE '%$search%' OR category LIKE '%$search%'";
-            // }
-
-            // $result = $conn->query($query);
-
-            // if ($result->num_rows > 0) {
-            //   while ($row = $result->fetch_assoc()) {
-            //     echo "<tr>";
-            //     echo "<td>" . $row['product_name'] . "</td>";
-            //     echo "<td>" . $row['selling_price'] . "</td>";
-            //     echo "<td>" . $row['cost_price'] . "</td>";
-            //     echo "<td>" . $row['category'] . "</td>";
-            //     echo "<td>" . $row['composition'] . "</td>";
-            //     // echo "<td>
-            //     //         <a href='edit.php?id=" . $row['id'] . "' class='btn btn-primary'>Edit</a>
-            //     //         <a href='hapus.php?id=" . $row['id'] . "' class='btn btn-danger'>Hapus</a>
-            //     //     </td>";
-            //     echo "</tr>";
-            //   }
-            // } else {
-            //   echo "<tr><td colspan='6'>Tidak ada produk.</td></tr>";
-            // }
-
-            // $conn->close();
             while ($r = $q->fetch_assoc()) {
-            // total adalah hasil dari harga x qty
-            $ttlhargajual = $r['harga_jual'] * $r['kuantitas'];
-            $ttlhargamodal = $r['harga_modal'] * $r['kuantitas'];  
-            $total = $ttlhargajual - $ttlhargamodal;
-            // total bayar adalah penjumlahan dari keseluruhan total
-            $tot_bayar += $total;
-            ?>
-            <tr>
-              <td><?= $no++ ?></td>
-              <td><?= $r['tgl'] ?></td>
-              <td><?= ucwords($r['nama_produk']) ?></td>
-              <td><?= $r['harga_jual'] ?></td>
-              <td><?= $r['harga_modal'] ?></td>
-              <td><?= $r['kuantitas'] ?></td>
-              <td><?= $total ?></td>
-            </tr>
-            <?php
+              // Inisialisasi hargaModal di setiap iterasi produk
+              $hargaModal = 0;
+              $komposisi = json_decode($r['composition'], true);
+
+              foreach ($komposisi as $key => $value) {
+                if (strpos($key, 'bahan') !== false) {
+                  $index = substr($key, 5);
+                  $jumlahKey = "jumlah{$index}";
+                  $jumlah = $komposisi[$jumlahKey];
+
+                  // Mengambil harga_beli_pergram dari tabel bahan
+                  $namaBahan = $value;
+                  $queryBahan = "SELECT harga_beli_pergram FROM bahan WHERE nama_bahan = '$namaBahan'";
+                  $resultBahan = $conn->query($queryBahan);
+
+                  if ($resultBahan->num_rows > 0) {
+                    $rowBahan = $resultBahan->fetch_assoc();
+                    $hargaBahan = $rowBahan['harga_beli_pergram'];
+
+                    // Menghitung total biaya
+                    $hargaModal += $hargaBahan * $jumlah;
+                  }
+                }
+              }
+
+              // total adalah hasil dari harga x qty
+              $ttlhargajual = $r['harga_jual'] * $r['kuantitas'];
+              $total = $ttlhargajual - $hargaModal * $r['kuantitas'];
+
+              // total bayar adalah penjumlahan dari keseluruhan total
+              $tot_bayar += $total;
+              ?>
+              <tr>
+                <td>
+                  <?= $no++ ?>
+                </td>
+                <td>
+                  <?= $r['tgl'] ?>
+                </td>
+                <td>
+                  <?= ucwords($r['product_name']) ?>
+                </td>
+                <td>
+                  <?= $r['harga_jual'] ?>
+                </td>
+                <td>
+                  <?= number_format($hargaModal, 2) ?>
+                </td>
+                <td>
+                  <?= $r['kuantitas'] ?>
+                </td>
+                <td>
+                  <?= $total ?>
+                </td>
+              </tr>
+              <?php
             }
             ?>
             <tr>
               <th colspan="6">Keuntungan</th>
-              <th><?= $tot_bayar ?></th>
+              <th>
+                <?= $tot_bayar ?>
+              </th>
             </tr>
           </tbody>
         </table>
       </div>
     </section>
+
 
   </main><!-- End #main -->
 
