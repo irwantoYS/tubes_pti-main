@@ -451,9 +451,38 @@
     </div><!-- End Page Title -->
 
     <section class="section">
-      <div class="container">
+    <div class="container rounded py-2 px-3 shadow bg-body rounded" style="background-color: white">
         <h2>Daftar Stok Bahan</h2>
-        <a href="tambah_bahan.php" class="btn btn-primary" style="float:right">Tambah Bahan</a>
+        <!-- <a href="tambah_bahan.php" class="btn btn-primary" style="float:right">Tambah Bahan</a> -->
+
+<!-- Tombol untuk memicu modal -->
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" style="float:right">
+        Tambah Bahan
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content py-4">
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- skrip untuk menampilkan page pada modal -->
+    <script>
+  $(document).ready(function () {
+    $('#myModal').on('show.bs.modal', function (e) {
+      // Load the external page content into the modal
+      $(this).find('.modal-content').load('tambah_bahan.php');
+    });
+  });
+</script>
+
+
         <br><br>
         <form method="GET">
           <input type="text" name="search" placeholder="Cari bahan...">

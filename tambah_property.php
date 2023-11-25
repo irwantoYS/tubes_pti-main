@@ -26,7 +26,7 @@
     <script>
         // Menambahkan event listener ke tombol "Cancel"
         document.getElementById("cancelButton").addEventListener("click", function () {
-            history.back(); // Menggunakan fungsi history.back() untuk kembali ke halaman sebelumnya
+            window.location.href='kelolaproperty.php'
         });
     </script>
 </body>

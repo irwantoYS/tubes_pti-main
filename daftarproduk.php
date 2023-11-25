@@ -199,7 +199,7 @@ include 'getHargaModal.php';
       <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-          <a class="nav-link " href="index.html">
+          <a class="nav-link" href="index.html">
             <i class="bi bi-grid"></i>
             <span>Dashboard</span>
           </a>
@@ -280,19 +280,19 @@ include 'getHargaModal.php';
     </div><!-- End Page Title -->
 
     <section class="section">
-    <div class="container">
+    <div class="container rounded py-2 px-3 shadow bg-body rounded" style="background-color: white">
         <h2>Daftar Produk</h2>
         
 
 <!-- Tombol untuk memicu modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="float:right">
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" style="float:right">
         Tambah Produk
     </button>
 
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content py-4">
                 
             </div>
         </div>

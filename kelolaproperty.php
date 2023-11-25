@@ -442,13 +442,13 @@
     </div><!-- End Page Title -->
 
     <section class="section">
-      <div class="container">
+    <div class="container rounded py-2 px-3 shadow bg-body rounded" style="background-color: white">
         <h2>Daftar Property</h2>
         <!-- <a href="tambah_property.php" class="btn btn-primary" style="float:right">Tambah Property</a> -->
 
 
 <!-- Tombol untuk memicu modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="float:right">
+<button type="button" class="btn btn-success " data-toggle="modal" data-target="#myModal" style="float:right">
         Tambah Produk
     </button>
 

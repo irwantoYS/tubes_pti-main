@@ -42,13 +42,13 @@ if (isset($_POST['submit'])) {
         <form action="" method="post">
             <div class="form-group">
                 <label for="nama_produk">Nama Produk:</label>
-                <select class="form-control" id="nama_produk" name="nama_produk" onchange="updateHargaJual()">
+                <select style="width: 40%;" class="form-control" id="nama_produk" name="nama_produk" onchange="updateHargaJual()">
                     <?php echo $produk_options; ?>
                 </select>
             </div>
             <div class="form-group">
                 <label for="harga_jual">Harga Jual:</label>
-                <input type="number" class="form-control" id="harga_jual" name="harga_jual" readonly>
+                <input style="width: 40%;" type="number" class="form-control" id="harga_jual" name="harga_jual" readonly>
             </div>
             <!-- <div class="form-group">
                 <label for="harga_modal">Harga Modal:</label>
@@ -56,11 +56,11 @@ if (isset($_POST['submit'])) {
             </div> -->
             <div class="form-group">
                 <label for="kuantitas">Jumlah Terjual:</label>
-                <input type="number" class="form-control" id="kuantitas" name="kuantitas">
+                <input style="width: 40%;" type="number" class="form-control" id="kuantitas" name="kuantitas">
             </div>
             <div class="form-group">
                 <label for="tgl">Tanggal:</label>
-                <input type="date" class="form-control" id="tgl" name="tgl">
+                <input style="width: 40%;" type="date" class="form-control" id="tgl" name="tgl">
             </div>
             <!-- <div class="form-group">
                 <label for="komposisi">Komposisi:</label>
@@ -73,9 +73,9 @@ if (isset($_POST['submit'])) {
     </div>
 
     <script>
-        // Menambahkan event listener ke tombol "Cancel"
-        document.getElementById("cancelButton").addEventListener("click", function () {
-            history.back(); // Menggunakan fungsi history.back() untuk kembali ke halaman sebelumnya
+         // Menambahkan event listener ke tombol "Cancel"
+         document.getElementById("cancelButton").addEventListener("click", function () {
+            window.location.href='penjualan.php'
         });
 
         function updateHargaJual() {

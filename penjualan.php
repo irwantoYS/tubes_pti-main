@@ -452,11 +452,38 @@ include 'koneksi.php'
     </div><!-- End Page Title -->
 
     <section class="section">
-      <div class="container">
-        <h2>Data Penjualan</h2>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <div class="container rounded py-2 px-3 shadow mb-5 bg-body rounded" style="background-color: white">
+        <h2 class="mt-3">Data Penjualan</h2>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end" >
           <a href="laporanexcel.php" class="btn btn-success me-md-2" type="button">Excel</a>
-          <a href="tambah.php" class="btn btn-success" type="button">Tambah Penjualan</a>
+        
+        <!-- Tombol untuk memicu modal -->
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" style="float:right">
+        Tambah Produk
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content py-4">
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- skrip untuk menampilkan page pada modal -->
+    <script>
+  $(document).ready(function () {
+    $('#myModal').on('show.bs.modal', function (e) {
+      // Load the external page content into the modal
+      $(this).find('.modal-content').load('tambah_penjualan.php');
+    });
+  });
+</script>
+        
         </div>
         <br><br>
         <br><br>
