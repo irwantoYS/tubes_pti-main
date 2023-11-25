@@ -45,7 +45,7 @@
         <form action="proses_tambah_bahan.php" method="post">
             <div class="form-group">
                 <label for="nama_bahan">Nama Bahan:</label>
-                <input type="text" class="form-control" id="nama_bahan" name="nama_bahan" list="bahanList">
+                <input type="text" class="form-control" id="nama_bahan" name="nama_bahan" list="bahanList" required>
                 <datalist id="bahanList">
                     <option value="Ayam">
                     <option value="Bawang Bombay">
@@ -80,7 +80,7 @@
             <div class="form-group">
                 <div class="a">
                     <label for="jumlah_bahan">Jumlah Bahan:</label>
-                    <input type="number" class="form-control" id="jumlah_bahan" name="jumlah_bahan">
+                    <input type="number" class="form-control" id="jumlah_bahan" name="jumlah_bahan" required>
                     <label class="b">Satuan:</label>
                     <select class="form-control" id="satuan" name="satuan">
                         <option value="gram">gram</option>
@@ -90,22 +90,23 @@
             </div>
             <div class="form-group">
                 <label for="kategori_produk">Kategori:</label>
-                <select class="form-control" id="kategori_produk" name="kategori_produk">
+                <select class="form-control" id="kategori_produk" name="kategori_produk" required>
                     <option value="kitchen">Kitchen</option>
                     <option value="bar">Bar</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="tanggal_masuk">Tanggal Masuk:</label>
-                <input type="date" class="form-control" id="tanggal_masuk" name="tanggal_masuk">
+                <input type="date" class="form-control" id="tanggal_masuk" name="tanggal_masuk" required>
             </div>
             <div class="form-group">
                 <label for="tanggal_exp">Tanggal EXP:</label>
-                <input type="date" class="form-control" id="tanggal_exp" name="tanggal_exp">
+                <input type="date" class="form-control" id="tanggal_exp" name="tanggal_exp" required>
             </div>
             <div class="form-group">
                 <label for="harga_beli">Harga Beli:</label>
-                <input type="number" class="form-control" id="harga_beli" name="harga_beli" oninput="calculatePricePerGram()">
+                <input type="number" class="form-control" id="harga_beli" name="harga_beli"
+                    oninput="calculatePricePerGram()">
             </div>
             <div class="form-group">
                 <label for="harga_beli">Harga Beli Persatuan:</label>
@@ -157,4 +158,4 @@
     </script>
 </body>
 
-</html> 
+</html>
