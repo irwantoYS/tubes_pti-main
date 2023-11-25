@@ -256,7 +256,37 @@
     <section class="section">
       <div class="container">
         <h2>Daftar Property</h2>
-        <a href="tambah_property.php" class="btn btn-primary" style="float:right">Tambah Property</a>
+        <!-- <a href="tambah_property.php" class="btn btn-primary" style="float:right">Tambah Property</a> -->
+
+
+<!-- Tombol untuk memicu modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="float:right">
+        Tambah Produk
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content py-4">
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- skrip untuk menampilkan page pada modal -->
+    <script>
+  $(document).ready(function () {
+    $('#myModal').on('show.bs.modal', function (e) {
+      // Load the external page content into the modal
+      $(this).find('.modal-content').load('tambah_property.php');
+    });
+  });
+</script>
+
+
         <br><br>
         <form method="GET">
           <input type="text" name="search" placeholder="Cari property...">
