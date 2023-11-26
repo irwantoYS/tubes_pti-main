@@ -153,7 +153,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="pages-login.php">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -264,7 +264,7 @@
   <script src="assets/js/main.js"></script>
   <script>
     document.getElementById("cancelButton").addEventListener("click", function () {
-            history.back(); // Menggunakan fungsi history.back() untuk kembali ke halaman sebelumnya.
+           window.location.href = 'cek_data_akun.php'; // Menggunakan fungsi history.back() untuk kembali ke halaman sebelumnya.
         });
   </script>
 

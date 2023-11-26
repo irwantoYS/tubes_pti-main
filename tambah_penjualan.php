@@ -42,7 +42,8 @@ if (isset($_POST['submit'])) {
         <form action="" method="post">
             <div class="form-group">
                 <label for="nama_produk">Nama Produk:</label>
-                <select class="form-control" id="nama_produk" name="nama_produk" onchange="updateHargaJual()">
+                <select class="form-control" id="nama_produk" name="nama_produk" onchange="updateHargaJual()" required>
+                    <option value="" disabled selected hidden>Pilih Produk</option>
                     <?php echo $produk_options; ?>
                 </select>
             </div>
@@ -56,11 +57,11 @@ if (isset($_POST['submit'])) {
             </div> -->
             <div class="form-group">
                 <label for="kuantitas">Jumlah Terjual:</label>
-                <input type="number" class="form-control" id="kuantitas" name="kuantitas">
+                <input type="number" class="form-control" id="kuantitas" name="kuantitas" required>
             </div>
             <div class="form-group">
                 <label for="tgl">Tanggal:</label>
-                <input type="date" class="form-control" id="tgl" name="tgl">
+                <input type="date" class="form-control" id="tgl" name="tgl" required>
             </div>
             <!-- <div class="form-group">
                 <label for="komposisi">Komposisi:</label>

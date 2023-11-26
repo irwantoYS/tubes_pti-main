@@ -41,7 +41,7 @@
 
     <script>
     document.getElementById("cancelButton").addEventListener("click", function () {
-        window.location.href = 'daftarproduk.php';
+        window.location.href='daftarproduk.php'
     });
 
     var compositionCounter = 1;

@@ -154,7 +154,7 @@ include 'koneksi.php'
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="cek_data_akun.php">
+              <a class="dropdown-item d-flex align-items-center" href="adminprofil.php">
                 <i class="bi bi-gear"></i>
                 <span>Account Management</span>
               </a>
@@ -164,7 +164,7 @@ include 'koneksi.php'
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="pages-login.php">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -388,7 +388,7 @@ include 'koneksi.php'
               <li class="nav-heading">Pages</li>
 
               <li class="nav-item">
-                <a class="nav-link collapsed" href="cek_data_akun.php">
+                <a class="nav-link collapsed" href="adminprofil.php">
                   <i class="bi bi-person"></i>
                   <span>Profile</span>
                 </a>
@@ -454,10 +454,20 @@ include 'koneksi.php'
     <section class="section">
       <div class="container">
         <h2>Data Penjualan</h2>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <a href="laporanexcel.php" class="btn btn-success me-md-2" type="button">Excel</a>
-          <a href="tambah_penjualan.php" class="btn btn-success" type="button">Tambah Penjualan</a>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
+          <a href="laporanexcel.php" class="btn btn-success" type="button">Excel</a>
+          <a href="tambah_penjualan.php" class="btn btn-primary" type="button">Tambah Penjualan</a>
         </div>
+        <form method="post" action="">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Cari Produk..." name="search">
+            <input type="date" class="form-control" name="start_date" placeholder="Tanggal Awal">
+            <input type="date" class="form-control" name="end_date" placeholder="Tanggal Akhir">
+            <button class="btn btn-primary " type="submit" name="submit" style="color: white;">Cari</button>
+            <button class="btn btn-danger " type="submit" name="reset" style="color: white;">Reset</button>
+          </div>
+        </form>
+
         <br><br>
         <br><br>
         <table class="table">
@@ -466,7 +476,6 @@ include 'koneksi.php'
               <th>No.</th>
               <th>Tanggal</th>
               <th>Nama Produk</th>
-              <!-- <th>Komposisi</th> -->
               <th>Harga Jual</th>
               <th>Harga Modal</th>
               <th>Jumlah Terjual</th>
@@ -475,8 +484,26 @@ include 'koneksi.php'
           </thead>
           <tbody>
             <?php
+            // Check if the form is submitted
+            if (isset($_POST['submit'])) {
+              $search = mysqli_real_escape_string($conn, $_POST['search']);
+              $start_date = $_POST['start_date'];
+              $end_date = $_POST['end_date'];
+
+              $searchQuery = "AND products.product_name LIKE '%$search%'";
+
+              if (!empty($start_date) && !empty($end_date)) {
+                // Adding date range filter
+                $searchQuery .= " AND penjualan.tgl BETWEEN '$start_date' AND '$end_date'";
+              }
+            } else {
+              $searchQuery = ''; // Empty search query
+            }
+
             $q = mysqli_query($conn, "SELECT penjualan.*, products.product_name, products.composition FROM penjualan
-                    JOIN products ON penjualan.nama_produk = products.product_name");
+                    JOIN products ON penjualan.nama_produk = products.product_name $searchQuery
+                    ORDER BY penjualan.tgl DESC");
+
             $total = 0;
             $tot_bayar = 0;
             $no = 1;
@@ -549,6 +576,7 @@ include 'koneksi.php'
         </table>
       </div>
     </section>
+
 
 
   </main><!-- End #main -->

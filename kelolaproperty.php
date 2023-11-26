@@ -55,12 +55,6 @@
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
 
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
-
         <li class="nav-item dropdown">
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
@@ -149,7 +143,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="cek_data_akun.php">
+              <a class="dropdown-item d-flex align-items-center" href="adminprofil.php">
                 <i class="bi bi-gear"></i>
                 <span>Account Management</span>
               </a>
@@ -159,7 +153,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="pages-login.php">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -189,7 +183,7 @@
 
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-menu-button-wide-fill"></i><span>Inventory</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="bi bi-menu-button-wide-fill"></i><span>Inventory</span><i class="bi bi-chevron-down ms-auto text-dark"></i>
           </a>
           <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
@@ -214,7 +208,7 @@
             <i class="bi bi-cart"></i>
             <span>Penjualan</span>
           </a>
-        </li><!-- End Profile Page Nav -->
+        </li><!-- End sell Page Nav -->
 
         <li class="nav-item">
           <a class="nav-link collapsed" href="pages-login.php">
@@ -383,7 +377,7 @@
               <li class="nav-heading">Pages</li>
 
               <li class="nav-item">
-                <a class="nav-link collapsed" href="cek_data_akun.php">
+                <a class="nav-link collapsed" href="adminprofil.php">
                   <i class="bi bi-person"></i>
                   <span>Profile</span>
                 </a>
@@ -448,9 +442,39 @@
     </div><!-- End Page Title -->
 
     <section class="section">
-      <div class="container">
+    <div class="container rounded py-2 px-3 shadow bg-body rounded" style="background-color: white">
         <h2>Daftar Property</h2>
-        <a href="tambah_property.php" class="btn btn-primary" style="float:right">Tambah Property</a>
+        <!-- <a href="tambah_property.php" class="btn btn-primary" style="float:right">Tambah Property</a> -->
+
+
+<!-- Tombol untuk memicu modal -->
+<button type="button" class="btn btn-success " data-toggle="modal" data-target="#myModal" style="float:right">
+        Tambah Produk
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content py-4">
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- skrip untuk menampilkan page pada modal -->
+    <script>
+  $(document).ready(function () {
+    $('#myModal').on('show.bs.modal', function (e) {
+      // Load the external page content into the modal
+      $(this).find('.modal-content').load('tambah_property.php');
+    });
+  });
+</script>
+
+
         <br><br>
         <form method="GET">
           <input type="text" name="search" placeholder="Cari property...">

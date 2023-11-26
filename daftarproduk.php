@@ -51,14 +51,14 @@ include 'getHargaModal.php';
     type: "GET",
     url: "getHargaModal.php",
     dataType: "json",
-    success: function (response) {
+    success: function(response) {
       // Mengambil nilai hargaModal dari respons JSON
       var hargaModal = response.hargaModal;
 
       // Menampilkan nilai hargaModal pada elemen dengan id "hargaModalContainer"
       $("#hargaModalContainer").text("Rp " + hargaModal.toFixed(2));
     },
-    error: function (error) {
+    error: function(error) {
       console.error("Error:", error);
     }
   });
@@ -167,7 +167,7 @@ include 'getHargaModal.php';
 
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="cek_data_akun.php">
+              <a class="dropdown-item d-flex align-items-center" href="adminprofil.php">
                 <i class="bi bi-gear"></i>
                 <span>Account Management</span>
               </a>
@@ -177,7 +177,7 @@ include 'getHargaModal.php';
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="pages-login.php">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -199,7 +199,7 @@ include 'getHargaModal.php';
       <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-          <a class="nav-link " href="index.html">
+          <a class="nav-link" href="index.html">
             <i class="bi bi-grid"></i>
             <span>Dashboard</span>
           </a>
@@ -280,53 +280,54 @@ include 'getHargaModal.php';
     </div><!-- End Page Title -->
 
     <section class="section">
-      <div class="container">
+    <div class="container rounded py-2 px-3 shadow bg-body rounded" style="background-color: white">
         <h2>Daftar Produk</h2>
-        <!-- <a href="tambah_produk.php" class="btn btn-primary" style="float:right">Tambah Produk</a> -->
+        
 
-        <!-- Tombol untuk memicu modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="float:right">
-          Tambah Produk
-        </button>
+<!-- Tombol untuk memicu modal -->
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" style="float:right">
+        Tambah Produk
+    </button>
 
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content py-4">
+                
             </div>
-          </div>
         </div>
+    </div>
 
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-        <script>
-          $(document).ready(function () {
-            $('#myModal').on('show.bs.modal', function (e) {
-              // Load the external page content into the modal
-              $(this).find('.modal-content').load('tambah_produk.php');
-            });
-          });
-        </script>
+    <!-- skrip untuk menampilkan page pada modal -->
+    <script>
+  $(document).ready(function () {
+    $('#myModal').on('show.bs.modal', function (e) {
+      // Load the external page content into the modal
+      $(this).find('.modal-content').load('tambah_produk.php');
+    });
+  });
+</script>
 
 
-        <!-- Skrip Anda yang sudah ada untuk menambahkan komposisi dan mengisi datalist -->
-        <script>
-          document.getElementById("cancelButton").addEventListener("click", function () {
-            window.location.href = 'daftarproduk.php';
-          });
+    <!-- Skrip Anda yang sudah ada untuk menambahkan komposisi dan mengisi datalist -->
+    <script>
+        document.getElementById("cancelButton").addEventListener("click", function () {
+            history.back();
+        });
 
-          var compositionCounter = 1;
+        var compositionCounter = 1;
 
-          function addComposition() {
+        function addComposition() {
 
             var compositionInputs = document.getElementById("compositionInputs");
 
             if (!document.getElementById("bahanList")) {
-              var datalist = document.createElement("datalist");
-              datalist.id = "bahanList";
-              compositionInputs.appendChild(datalist);
+                var datalist = document.createElement("datalist");
+                datalist.id = "bahanList";
+                compositionInputs.appendChild(datalist);
             }
 
             var spaceInput = compositionInputs.appendChild(document.createElement("br"));
@@ -350,173 +351,173 @@ include 'getHargaModal.php';
             cancelButtonName.type = "button";
             cancelButtonName.innerHTML = "Remove";
             cancelButtonName.onclick = function () {
-              compositionInputs.removeChild(spaceInput);
-              compositionInputs.removeChild(inputName);
-              compositionInputs.removeChild(inputAmount);
-              compositionInputs.removeChild(cancelButtonName);
+                compositionInputs.removeChild(spaceInput);
+                compositionInputs.removeChild(inputName);
+                compositionInputs.removeChild(inputAmount);
+                compositionInputs.removeChild(cancelButtonName);
             };
             compositionInputs.appendChild(cancelButtonName);
 
             // Memperbarui datalist dengan nama bahan yang baru
             fillBahanList();
             compositionCounter++;
-          }
+        }
 
-          function prepareCompositionInputs() {
+        function prepareCompositionInputs() {
             var compositionInputs = document.getElementById("compositionInputs");
 
             while (compositionInputs.childNodes.length > compositionCounter * 2) {
-              compositionInputs.removeChild(compositionInputs.lastChild);
-              compositionInputs.removeChild(compositionInputs.lastChild);
+                compositionInputs.removeChild(compositionInputs.lastChild);
+                compositionInputs.removeChild(compositionInputs.lastChild);
             }
-          }
+        }
 
-          // Function untuk mengisi datalist dengan data dari database
-          function fillBahanList() {
+        // Function untuk mengisi datalist dengan data dari database
+        function fillBahanList() {
             var allCompositionInputs = document.getElementsByName("selected_composition[]");
             var datalist = document.getElementById("bahanList");
 
             // Menggunakan AJAX untuk mendapatkan data dari server
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
-              if (xhr.readyState == 4 && xhr.status == 200) {
-                var bahanNames = JSON.parse(xhr.responseText);
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var bahanNames = JSON.parse(xhr.responseText);
 
-                // Menghapus semua opsi di datalist
-                datalist.innerHTML = "";
+                    // Menghapus semua opsi di datalist
+                    datalist.innerHTML = "";
 
-                var uniqueBahanNames = new Set(bahanNames.map(bahan => bahan.nama_bahan));
+                    var uniqueBahanNames = new Set(bahanNames.map(bahan => bahan.nama_bahan));
 
-                uniqueBahanNames.forEach(function (bahan) {
-                  var option = document.createElement("option");
-                  option.value = bahan;
-                  datalist.appendChild(option);
-                });
+                    uniqueBahanNames.forEach(function (bahan) {
+                        var option = document.createElement("option");
+                        option.value = bahan;
+                        datalist.appendChild(option);
+                    });
 
-                // Menambahkan opsi baru ke datalist
-                allCompositionInputs.forEach(function (input) {
-                  var option = document.createElement("option");
-                  option.value = input.value;
-                  datalist.appendChild(option);
-                });
-              }
+                    // Menambahkan opsi baru ke datalist
+                    allCompositionInputs.forEach(function (input) {
+                        var option = document.createElement("option");
+                        option.value = input.value;
+                        datalist.appendChild(option);
+                    });
+                }
             };
 
             xhr.open("GET", "get_bahan_names.php", true);
             xhr.send();
-          }
+        }
 
-          // Panggil fungsi untuk mengisi datalist saat halaman dimuat
-          fillBahanList();
-        </script>
+        // Panggil fungsi untuk mengisi datalist saat halaman dimuat
+        fillBahanList();
+    </script>
 
         <br><br>
         <form method="GET">
-          <input type="text" name="search" placeholder="Cari produk...">
-          <button type="submit" class="btn btn-primary">Cari</button>
-          <a href="daftarproduk.php" class="btn btn-secondary" style="background-color: red">Reset</a>
+            <input type="text" name="search" placeholder="Cari produk...">
+            <button type="submit" class="btn btn-primary">Cari</button>
+            <a href="daftarproduk.php" class="btn btn-secondary" style="background-color: red">Reset</a>
         </form>
         <br><br>
         <table class="table">
-          <thead>
-            <tr>
-              <th>Nama Produk</th>
-              <th>Harga Jual</th>
-              <th>Harga Modal</th>
-              <th>Kategori</th>
-              <th>Komposisi (gram/ml)</th>
-              <th>Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-            include 'koneksi.php';
+            <thead>
+                <tr>
+                    <th>Nama Produk</th>
+                    <th>Harga Jual</th>
+                    <th>Harga Modal</th>
+                    <th>Kategori</th>
+                    <th>Komposisi (gram/ml)</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                include 'koneksi.php';
 
-            // Periksa apakah ada kata kunci pencarian yang diberikan
-            $search = isset($_GET['search']) ? $_GET['search'] : '';
+                // Periksa apakah ada kata kunci pencarian yang diberikan
+                $search = isset($_GET['search']) ? $_GET['search'] : '';
 
-            // Buat query sesuai dengan kata kunci pencarian
-            $query = "SELECT * FROM products";
-            if (!empty($search)) {
-              $query .= " WHERE product_name LIKE '%$search%' OR category LIKE '%$search%'";
-            }
-
-            $result = $conn->query($query);
-
-            if ($result->num_rows > 0) {
-              while ($row = $result->fetch_assoc()) {
-                $komposisi = json_decode($row['composition'], true);
-                echo "<tr>";
-                echo "<td>" . $row['product_name'] . "</td>";
-                echo "<td>" . "Rp " . $row['selling_price'] . "</td>";
-
-                // Inisialisasi hargaModal di setiap iterasi produk
-                $hargaModal = 0;
-
-                foreach ($komposisi as $key => $value) {
-                  if (strpos($key, 'bahan') !== false) {
-                    $index = substr($key, 5);
-                    $jumlahKey = "jumlah{$index}";
-                    $jumlah = $komposisi[$jumlahKey];
-
-                    // Mengambil harga_beli_pergram dari tabel bahan
-                    $namaBahan = $value;
-                    $queryBahan = "SELECT harga_beli_pergram FROM bahan WHERE nama_bahan = '$namaBahan'";
-                    $resultBahan = $conn->query($queryBahan);
-
-                    if ($resultBahan->num_rows > 0) {
-                      $rowBahan = $resultBahan->fetch_assoc();
-                      $hargaBahan = $rowBahan['harga_beli_pergram'];
-
-                      // Menghitung total biaya
-                      $hargaModal += $hargaBahan * $jumlah;
-                    }
-                  }
+                // Buat query sesuai dengan kata kunci pencarian
+                $query = "SELECT * FROM products";
+                if (!empty($search)) {
+                    $query .= " WHERE product_name LIKE '%$search%' OR category LIKE '%$search%'";
                 }
-                echo "<td>Rp. " . number_format($hargaModal, 2) . "</td>";
-                echo "<td>" . $row['category'] . "</td>";
-                echo "<td>";
-                echo "<div id='jsonDisplay'>";
 
-                $keys = array_keys($komposisi);
-                $count = count($keys);
+                $result = $conn->query($query);
 
-                for ($i = 0; $i < $count; $i++) {
-                  $key = $keys[$i];
-                  $value = $komposisi[$key];
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $komposisi = json_decode($row['composition'], true);
+                        echo "<tr>";
+                        echo "<td>" . $row['product_name'] . "</td>";
+                        echo "<td>" . "Rp " . $row['selling_price'] . "</td>";
 
-                  echo "$value";
+                        // Inisialisasi hargaModal di setiap iterasi produk
+                        $hargaModal = 0;
 
-                  // Cek apakah bukan elemen terakhir
-                  if ($i < $count - 1) {
-                    echo " : ";
-                    echo $komposisi[$keys[$i + 1]];
-                  }
+                        foreach ($komposisi as $key => $value) {
+                            if (strpos($key, 'bahan') !== false) {
+                                $index = substr($key, 5);
+                                $jumlahKey = "jumlah{$index}";
+                                $jumlah = $komposisi[$jumlahKey];
 
-                  echo "<br>";
-                  $i++; // Pindah ke elemen berikutnya
-                }
-                echo "</div>";
-                echo "<script src='displayJson.js'></script>";
-                echo "</td>";
-                echo "<td>
+                                // Mengambil harga_beli_pergram dari tabel bahan
+                                $namaBahan = $value;
+                                $queryBahan = "SELECT harga_beli_pergram FROM bahan WHERE nama_bahan = '$namaBahan'";
+                                $resultBahan = $conn->query($queryBahan);
+
+                                if ($resultBahan->num_rows > 0) {
+                                    $rowBahan = $resultBahan->fetch_assoc();
+                                    $hargaBahan = $rowBahan['harga_beli_pergram'];
+
+                                    // Menghitung total biaya
+                                    $hargaModal += $hargaBahan * $jumlah;
+                                }
+                            }
+                        }
+                        echo "<td>Rp. " . number_format($hargaModal, 2) . "</td>";
+                        echo "<td>" . $row['category'] . "</td>";
+                        echo "<td>";
+                        echo "<div id='jsonDisplay'>";
+
+                        $keys = array_keys($komposisi);
+                        $count = count($keys);
+
+                        for ($i = 0; $i < $count; $i++) {
+                            $key = $keys[$i];
+                            $value = $komposisi[$key];
+
+                            echo "$value";
+
+                            // Cek apakah bukan elemen terakhir
+                            if ($i < $count - 1) {
+                                echo " : ";
+                                echo $komposisi[$keys[$i + 1]];
+                            }
+
+                            echo "<br>";
+                            $i++; // Pindah ke elemen berikutnya
+                        }
+                        echo "</div>";
+                        echo "<script src='displayJson.js'></script>";
+                        echo "</td>";
+                        echo "<td>
                                 <a href='edit_produk.php?id=" . $row['id'] . "' class='btn btn-primary'>Edit</a>
                                 <a href='hapus.php?id=" . $row['id'] . "' class='btn btn-danger'>Hapus</a>
                             </td>";
-                echo "</tr>";
-              }
-            } else {
-              echo "<tr><td colspan='6'>Tidak ada produk.</td></tr>";
-            }
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='6'>Tidak ada produk.</td></tr>";
+                }
 
-            $conn->close();
-            ?>
-          </tbody>
+                $conn->close();
+                ?>
+            </tbody>
         </table>
-      </div>
-    </section>
+    </div>
+</section>
 
-
+    
   </main><!-- End #main -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
@@ -531,7 +532,7 @@ include 'getHargaModal.php';
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
-
+  
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
