@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) {
                 if ($totalBahanTerpakai <= $jumlahDiDatabase) {
                     $jumlahDiDatabase -= $totalBahanTerpakai;
                     
-                    $updateQuery = "UPDATE bahan SET jumlah_bahan = '$jumlahDiDatabase' WHERE nama_bahan = '$bahan'";
+                    $updateQuery = "UPDATE bahan SET jumlah_bahan = '$jumlahDiDatabase' WHERE nama_bahan = '$bahan' ORDER BY id ASC LIMIT 1";
                     $updateResult = mysqli_query($conn, $updateQuery);
 
                     if (!$updateResult) {
@@ -51,7 +51,7 @@ if (isset($_POST['submit'])) {
                     }
 
                 } else if ($totalBahanTerpakai == $jumlahDiDatabase){
-                    $updateQuery1 = "UPDATE bahan SET jumlah_bahan = '$jumlahDiDatabase' WHERE nama_bahan = '$bahan'";
+                    $updateQuery1 = "UPDATE bahan SET jumlah_bahan = '$jumlahDiDatabase' WHERE nama_bahan = '$bahan' ORDER BY id ASC LIMIT 1";
                     $updateResult1 = mysqli_query($conn, $updateQuery1);
                     $updateQuery2 = "DELETE FROM bahan WHERE nama_bahan = '$bahan'";
                     $updateResult2 = mysqli_query($conn, $updateQuery2);
