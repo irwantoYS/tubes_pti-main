@@ -153,7 +153,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-login.php">
+              <a class="dropdown-item d-flex align-items-center" href="index.php">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -211,7 +211,7 @@
         </li><!-- End sell Page Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="pages-login.php">
+          <a class="nav-link collapsed" href="index.php">
             <i class="bi bi-box-arrow-in-right"></i>
             <span>Logout</span>
           </a>
@@ -405,7 +405,7 @@
               </li><!-- End Register Page Nav -->
 
               <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-login.html">
+                <a class="nav-link collapsed" href="index.php">
                   <i class="bi bi-box-arrow-in-right"></i>
                   <span>Login</span>
                 </a>
@@ -465,7 +465,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- skrip untuk menampilkan page pada modal -->
-    <script>
+<script>
   $(document).ready(function () {
     $('#myModal').on('show.bs.modal', function (e) {
       // Load the external page content into the modal

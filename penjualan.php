@@ -1,8 +1,13 @@
 <?php
-
+ 
 // koneksi
 include 'koneksi.php'
-  ?>
+?>
+<?php
+ 
+// koneksi
+include 'koneksi.php'
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -154,7 +159,7 @@ include 'koneksi.php'
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="adminprofil.php">
+              <a class="dropdown-item d-flex align-items-center" href="index.php">
                 <i class="bi bi-gear"></i>
                 <span>Account Management</span>
               </a>
@@ -164,7 +169,7 @@ include 'koneksi.php'
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-login.php">
+              <a class="dropdown-item d-flex align-items-center" href="#">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -222,7 +227,7 @@ include 'koneksi.php'
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="pages-login.php">
+          <a class="nav-link collapsed" href="index.php">
             <i class="bi bi-box-arrow-in-right"></i>
             <span>Logout</span>
           </a>
@@ -455,9 +460,33 @@ include 'koneksi.php'
       <div class="container">
         <h2>Data Penjualan</h2>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
-          <a href="laporanexcel.php" class="btn btn-success" type="button">Excel</a>
+          <a href="laporanexcel.php" class="btn btn-success me-md-2" type="button">Excel</a>
           <a href="tambah_penjualan.php" class="btn btn-primary" type="button">Tambah Penjualan</a>
         </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content py-4">
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- skrip untuk menampilkan page pada modal -->
+<script>
+  $(document).ready(function () {
+    $('#myModal').on('show.bs.modal', function (e) {
+      // Load the external page content into the modal
+      $(this).find('.modal-content').load('tambah_property.php');
+    });
+  });
+</script>
+
         <form method="post" action="">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Cari Produk..." name="search">
@@ -476,15 +505,15 @@ include 'koneksi.php'
               <th>No.</th>
               <th>Tanggal</th>
               <th>Nama Produk</th>
+              <!-- <th>Komposisi</th> -->
               <th>Harga Jual</th>
               <th>Harga Modal</th>
               <th>Jumlah Terjual</th>
-              <th>Total</th>
+              <th>Total Keuntungan</th>
             </tr>
           </thead>
           <tbody>
             <?php
-            // Check if the form is submitted
             if (isset($_POST['submit'])) {
               $search = mysqli_real_escape_string($conn, $_POST['search']);
               $start_date = $_POST['start_date'];
@@ -503,7 +532,6 @@ include 'koneksi.php'
             $q = mysqli_query($conn, "SELECT penjualan.*, products.product_name, products.composition FROM penjualan
                     JOIN products ON penjualan.nama_produk = products.product_name $searchQuery
                     ORDER BY penjualan.tgl DESC");
-
             $total = 0;
             $tot_bayar = 0;
             $no = 1;
@@ -576,7 +604,6 @@ include 'koneksi.php'
         </table>
       </div>
     </section>
-
 
 
   </main><!-- End #main -->

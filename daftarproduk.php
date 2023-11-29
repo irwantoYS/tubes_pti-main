@@ -177,7 +177,7 @@ include 'getHargaModal.php';
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-login.php">
+              <a class="dropdown-item d-flex align-items-center" href="index.php">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -236,7 +236,7 @@ include 'getHargaModal.php';
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="pages-login.html">
+          <a class="nav-link collapsed" href="index.php">
             <i class="bi bi-box-arrow-in-right"></i>
             <span>Logout</span>
           </a>
