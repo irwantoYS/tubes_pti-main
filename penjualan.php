@@ -464,13 +464,12 @@ include 'koneksi.php'
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambahPenjualanModal">
             Tambah Penjualan
           </button>
-          <!-- <?php include 'tambah_penjualan.php'; ?> -->
+          <?php include 'tambah_penjualan.php'; ?>
         </div>
 
 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        
 
 
         <form method="get" action="" class="row g-3">
