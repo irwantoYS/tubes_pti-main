@@ -461,39 +461,31 @@ include 'koneksi.php'
         <h2>Data Penjualan</h2>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
           <a href="laporanexcel.php" class="btn btn-success me-md-2" type="button">Excel</a>
-          <a href="tambah_penjualan.php" class="btn btn-primary" type="button">Tambah Penjualan</a>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambahPenjualanModal">
+            Tambah Penjualan
+          </button>
+          <!-- <?php include 'tambah_penjualan.php'; ?> -->
         </div>
 
 
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content py-4">
-                
-            </div>
-        </div>
-    </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <!-- skrip untuk menampilkan page pada modal -->
-<script>
-  $(document).ready(function () {
-    $('#myModal').on('show.bs.modal', function (e) {
-      // Load the external page content into the modal
-      $(this).find('.modal-content').load('tambah_property.php');
-    });
-  });
-</script>
-
-        <form method="post" action="">
-          <div class="input-group">
+        <form method="get" action="" class="row g-3">
+          <div class="col-md-4">
             <input type="text" class="form-control" placeholder="Cari Produk..." name="search">
+          </div>
+          <div class="col-md-3">
             <input type="date" class="form-control" name="start_date" placeholder="Tanggal Awal">
+          </div>
+          <div class="col-md-3">
             <input type="date" class="form-control" name="end_date" placeholder="Tanggal Akhir">
-            <button class="btn btn-primary " type="submit" name="submit" style="color: white;">Cari</button>
-            <button class="btn btn-danger " type="submit" name="reset" style="color: white;">Reset</button>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-primary" type="submit" name="submit">Cari</button>
+            <button class="btn btn-danger" type="submit" name="reset">Reset</button>
           </div>
         </form>
 
@@ -514,24 +506,24 @@ include 'koneksi.php'
           </thead>
           <tbody>
             <?php
-            if (isset($_POST['submit'])) {
-              $search = mysqli_real_escape_string($conn, $_POST['search']);
-              $start_date = $_POST['start_date'];
-              $end_date = $_POST['end_date'];
+            if (isset($_GET['submit'])) {
+               $search = mysqli_real_escape_string($conn, $_GET['search']);
+               $start_date = $_GET['start_date'];
+               $end_date = $_GET['end_date'];
 
-              $searchQuery = "AND products.product_name LIKE '%$search%'";
+               $searchQuery = "AND products.product_name LIKE '%$search%'";
 
-              if (!empty($start_date) && !empty($end_date)) {
-                // Adding date range filter
-                $searchQuery .= " AND penjualan.tgl BETWEEN '$start_date' AND '$end_date'";
+               if (!empty($start_date) && !empty($end_date)) {
+                   // Adding date range filter
+                   $searchQuery .= " AND penjualan.tgl BETWEEN '$start_date' AND '$end_date'";
+               }
+              } else {
+                  $searchQuery = ''; // Empty search query
               }
-            } else {
-              $searchQuery = ''; // Empty search query
-            }
-
-            $q = mysqli_query($conn, "SELECT penjualan.*, products.product_name, products.composition FROM penjualan
-                    JOIN products ON penjualan.nama_produk = products.product_name $searchQuery
-                    ORDER BY penjualan.tgl DESC");
+              
+              $q = mysqli_query($conn, "SELECT penjualan.*, products.product_name, products.composition FROM penjualan
+                          JOIN products ON penjualan.nama_produk = products.product_name $searchQuery
+                          ORDER BY penjualan.tgl DESC");
             $total = 0;
             $tot_bayar = 0;
             $no = 1;
@@ -568,30 +560,30 @@ include 'koneksi.php'
               // total bayar adalah penjumlahan dari keseluruhan total
               $tot_bayar += $total;
               ?>
-              <tr>
-                <td>
-                  <?= $no++ ?>
-                </td>
-                <td>
-                  <?= $r['tgl'] ?>
-                </td>
-                <td>
-                  <?= ucwords($r['product_name']) ?>
-                </td>
-                <td>
-                  <?= $r['harga_jual'] ?>
-                </td>
-                <td>
-                  <?= number_format($hargaModal, 2) ?>
-                </td>
-                <td>
-                  <?= $r['kuantitas'] ?>
-                </td>
-                <td>
-                  <?= $total ?>
-                </td>
-              </tr>
-              <?php
+            <tr>
+              <td>
+                <?= $no++ ?>
+              </td>
+              <td>
+                <?= $r['tgl'] ?>
+              </td>
+              <td>
+                <?= ucwords($r['product_name']) ?>
+              </td>
+              <td>
+                <?= $r['harga_jual'] ?>
+              </td>
+              <td>
+                <?= number_format($hargaModal, 2) ?>
+              </td>
+              <td>
+                <?= $r['kuantitas'] ?>
+              </td>
+              <td>
+                <?= $total ?>
+              </td>
+            </tr>
+            <?php
             }
             ?>
             <tr>
