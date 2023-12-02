@@ -12,6 +12,8 @@ include 'koneksi.php'
 <html lang="en">
 
 <head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -461,15 +463,35 @@ include 'koneksi.php'
         <h2>Data Penjualan</h2>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
           <a href="laporanexcel.php" class="btn btn-success me-md-2" type="button">Excel</a>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambahPenjualanModal">
-            Tambah Penjualan
-          </button>
-          <?php include 'tambah_penjualan.php'; ?>
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" style="float:right">
+        Tambah Penjualan
+    </button>
+          
         </div>
 
 
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content py-4">
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- skrip untuk menampilkan page pada modal -->
+    <script>
+  $(document).ready(function () {
+    $('#myModal').on('show.bs.modal', function (e) {
+      // Load the external page content into the modal
+      $(this).find('.modal-content').load('tambah_penjualan.php');
+    });
+  });
+</script>
+
         
 
 
