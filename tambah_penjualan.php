@@ -120,7 +120,7 @@ if (isset($_POST['submit'])) {
                         <input type="date" class="form-control" id="tgl" name="tgl">
                     </div>
                     <button type="submit" name="submit" class="btn btn-success">Simpan</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" id="cancelButton" data-dismiss="modal">Close</button>
                 </form>
             </div>
         </div>
@@ -132,7 +132,7 @@ if (isset($_POST['submit'])) {
 
     <script>
         // Menambahkan event listener ke tombol "Cancel"
-        document.getElementById("cancelButton").addEventListener("click", function () {
+        document.getElementById("cancelButton").addEventListener("cancel", function () {
             window.location.href = 'penjualan.php';
         });
 

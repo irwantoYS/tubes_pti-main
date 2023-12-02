@@ -451,7 +451,7 @@
     </div><!-- End Page Title -->
 
     <section class="section">
-    <div class="container rounded py-2 px-3 shadow bg-body rounded" style="background-color: white">
+    <!-- <div class="container rounded py-2 px-3 shadow bg-body rounded" style="background-color: white"> -->
         <h2>Daftar Stok Bahan</h2>
         <!-- <a href="tambah_bahan.php" class="btn btn-primary" style="float:right">Tambah Bahan</a> -->
 
