@@ -87,12 +87,12 @@
                                 // Jika username dan password benar
                                 $row = $result->fetch_assoc();
                                 $_SESSION['user_id'] = $row['id']; // Simpan ID pengguna ke dalam sesi
-                                header("Location: index.html"); // Redirect ke halaman dashboard atau halaman selanjutnya
+                                header("Location: dashboard.php"); // Redirect ke halaman dashboard atau halaman selanjutnya
                                 exit();
                             } else {
-                                echo "<script>alert('Username dan Password Salah');</script>";
-                                
+                                echo "<script>alert('Username dan Password Salah');</script>";    
                             }
+                            
                         }
                         ?>
 
