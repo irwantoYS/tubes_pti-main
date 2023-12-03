@@ -148,7 +148,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="adminprofil.php">
+              <a class="dropdown-item d-flex align-items-center" href="cek_data_akun.php">
                 <i class="bi bi-gear"></i>
                 <span>Account Management</span>
               </a>
