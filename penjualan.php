@@ -542,6 +542,13 @@ include 'koneksi.php'
               } else {
                   $searchQuery = ''; // Empty search query
               }
+              $startDateTime = new DateTime($start_date);
+              $endDateTime = new DateTime($end_date);
+              if ($startDateTime > $endDateTime) {
+                echo "<script>alert('waktu awal harus lebih lama dibandingkan dengan waktu akhir')</script>";
+                echo "<script>window.history.back();</script>"; // Go back to the previous page
+                exit;
+              }
               
               $q = mysqli_query($conn, "SELECT penjualan.*, products.product_name, products.composition FROM penjualan
                           JOIN products ON penjualan.nama_produk = products.product_name $searchQuery
