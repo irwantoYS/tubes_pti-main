@@ -3,11 +3,10 @@
 // koneksi
 include 'koneksi.php'
 ?>
-<?php
- 
-// koneksi
-include 'koneksi.php'
-?>
+<?php 
+   session_start();
+   include "koneksi.php";
+   if (isset($_SESSION['username']) && isset($_SESSION['id'])) {   ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -147,6 +146,7 @@ include 'koneksi.php'
           </ul><!-- End Notification Dropdown Items -->
 
         </li><!-- End Notification Nav -->
+        <?php if ($_SESSION['role'] == 'admin') {?>
         <li class="nav-item dropdown pe-3">
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
 
@@ -179,6 +179,7 @@ include 'koneksi.php'
           </ul>
           <!-- End Profile Dropdown Items -->
         </li>
+        <?php }else{?><li class="nav-item dropdown pe-3"><?=$_SESSION['username']?></li><?php } ?>
         <!-- End Profile Nav -->
       </ul>
     </nav><!-- End Icons Navigation -->
@@ -652,3 +653,6 @@ include 'koneksi.php'
 </body>
 
 </html>
+<?php }else{
+	header("Location: index.php");
+} ?>

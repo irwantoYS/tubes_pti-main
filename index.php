@@ -1,3 +1,6 @@
+<?php 
+   session_start();
+   if (!isset($_SESSION['username']) && !isset($_SESSION['id'])) {   ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -71,7 +74,7 @@
                       </p>
                     </div>
                        <?php
-                        session_start(); // Mulai sesi PHP
+                       
                         include 'koneksi.php';
 
                         // Jika formulir dikirim
@@ -86,9 +89,12 @@
                             if ($result->num_rows == 1) {
                                 // Jika username dan password benar
                                 $row = $result->fetch_assoc();
-                                $_SESSION['user_id'] = $row['id']; // Simpan ID pengguna ke dalam sesi
+        		                    $_SESSION['id'] = $row['id'];
+        		                    $_SESSION['role'] = $row['role'];
+        		                    $_SESSION['username'] = $row['username'];
                                 header("Location: dashboard.php"); // Redirect ke halaman dashboard atau halaman selanjutnya
                                 exit();
+                                
                             } else {
                                 echo "<script>alert('Username dan Password Salah');</script>";    
                             }
@@ -166,3 +172,4 @@
     ></a>
   </body>
 </html>
+<?php } ?>

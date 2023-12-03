@@ -1,3 +1,8 @@
+<?php 
+   session_start();
+   include "koneksi.php";
+   if (isset($_SESSION['username']) && isset($_SESSION['id'])) {   ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -136,7 +141,7 @@
             <!-- End Notification Dropdown Items -->
           </li>
           <!-- End Notification Nav -->
-
+<?php if ($_SESSION['role'] == 'admin') {?>
           <li class="nav-item dropdown pe-3">
             <a
               class="nav-link nav-profile d-flex align-items-center pe-0"
@@ -182,6 +187,7 @@
             </ul>
             <!-- End Profile Dropdown Items -->
           </li>
+          <?php }else{?><li class="nav-item dropdown pe-3"><?=$_SESSION['username']?></li><?php } ?>
           <!-- End Profile Nav -->
         </ul>
       </nav>
@@ -682,3 +688,6 @@
     <script src="assets/js/main.js"></script>
   </body>
 </html>
+<?php }else{
+	header("Location: index.php");
+} ?>
