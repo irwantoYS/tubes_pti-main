@@ -46,7 +46,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="dashboard.php" class="logo d-flex align-items-center">
         <span class="d-none d-lg-block" style="color: #04c99e;">Warung Update</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -54,12 +54,6 @@
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
-
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
 
         <li class="nav-item dropdown">
 
@@ -159,7 +153,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="index.php">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -181,7 +175,7 @@
       <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-          <a class="nav-link " href="index.html">
+          <a class="nav-link " href="dashboard.php">
             <i class="bi bi-grid"></i>
             <span>Dashboard</span>
           </a>
@@ -189,7 +183,8 @@
 
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-menu-button-wide-fill"></i><span>Inventory</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="bi bi-menu-button-wide-fill"></i><span>Inventory</span><i
+              class="bi bi-chevron-down ms-auto text-dark"></i>
           </a>
           <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
@@ -214,10 +209,10 @@
             <i class="bi bi-cart"></i>
             <span>Penjualan</span>
           </a>
-        </li><!-- End Profile Page Nav -->
+        </li><!-- End sell Page Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="pages-login.php">
+          <a class="nav-link collapsed" href="index.php">
             <i class="bi bi-box-arrow-in-right"></i>
             <span>Logout</span>
           </a>
@@ -233,7 +228,7 @@
         <h1>Dashboard</h1>
         <nav>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
             <li class="breadcrumb-item active">Dashboard</li>
           </ol>
         </nav>
@@ -411,7 +406,7 @@
               </li><!-- End Register Page Nav -->
 
               <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-login.html">
+                <a class="nav-link collapsed" href="index.php">
                   <i class="bi bi-box-arrow-in-right"></i>
                   <span>Login</span>
                 </a>
@@ -440,7 +435,7 @@
     <div class="pagetitle">
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
           <li class="breadcrumb-item active">Inventory</li>
           <li class="breadcrumb-item active">Kelola Property</li>
         </ol>
@@ -448,9 +443,39 @@
     </div><!-- End Page Title -->
 
     <section class="section">
-      <div class="container">
+      <div class="container rounded py-2 px-3 shadow bg-body rounded" style="background-color: white">
         <h2>Daftar Property</h2>
-        <a href="tambah_property.php" class="btn btn-primary" style="float:right">Tambah Property</a>
+        <!-- <a href="tambah_property.php" class="btn btn-primary" style="float:right">Tambah Property</a> -->
+
+
+        <!-- Tombol untuk memicu modal -->
+        <button type="button" class="btn btn-success " data-toggle="modal" data-target="#myModal" style="float:right">
+          Tambah Property
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content py-4">
+
+            </div>
+          </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!-- skrip untuk menampilkan page pada modal -->
+        <script>
+          $(document).ready(function () {
+            $('#myModal').on('show.bs.modal', function (e) {
+              // Load the external page content into the modal
+              $(this).find('.modal-content').load('tambah_property.php');
+            });
+          });
+        </script>
+
+
         <br><br>
         <form method="GET">
           <input type="text" name="search" placeholder="Cari property...">

@@ -74,7 +74,7 @@ include 'getHargaModal.php';
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="dashboard.php" class="logo d-flex align-items-center">
         <span class="d-none d-lg-block" style="color: #04c99e;">Warung Update</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -181,7 +181,7 @@ include 'getHargaModal.php';
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="index.php">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -203,7 +203,7 @@ include 'getHargaModal.php';
       <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-          <a class="nav-link " href="index.html">
+          <a class="nav-link" href="dashboard.php">
             <i class="bi bi-grid"></i>
             <span>Dashboard</span>
           </a>
@@ -240,7 +240,7 @@ include 'getHargaModal.php';
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="pages-login.html">
+          <a class="nav-link collapsed" href="index.php">
             <i class="bi bi-box-arrow-in-right"></i>
             <span>Logout</span>
           </a>
@@ -256,7 +256,7 @@ include 'getHargaModal.php';
         <h1>Dashboard</h1>
         <nav>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
             <li class="breadcrumb-item active">Dashboard</li>
           </ol>
         </nav>
@@ -276,7 +276,7 @@ include 'getHargaModal.php';
     <div class="pagetitle">
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
           <li class="breadcrumb-item active">Inventory</li>
           <li class="breadcrumb-item active">Daftar Produk</li>
         </ol>
@@ -284,19 +284,19 @@ include 'getHargaModal.php';
     </div><!-- End Page Title -->
 
     <section class="section">
-    <div class="container">
+      <div class="container rounded py-2 px-3 shadow bg-body rounded" style="background-color: white">
         <h2>Daftar Produk</h2>
-        <!-- <a href="tambah_produk.php" class="btn btn-primary" style="float:right">Tambah Produk</a> -->
+
 
         <!-- Tombol untuk memicu modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="float:right">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" style="float:right">
           Tambah Produk
         </button>
 
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content py-4">
 
             </div>
           </div>
@@ -305,6 +305,7 @@ include 'getHargaModal.php';
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+        <!-- skrip untuk menampilkan page pada modal -->
         <script>
           $(document).ready(function () {
             $('#myModal').on('show.bs.modal', function (e) {

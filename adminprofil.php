@@ -46,7 +46,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="dashboard.php" class="logo d-flex align-items-center">
         <span class="d-none d-lg-block" style="color: #04c99e;">Warung Update</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -129,51 +129,39 @@
 
         </li><!-- End Notification Nav -->
         <li class="nav-item dropdown pe-3">
-            <a
-              class="nav-link nav-profile d-flex align-items-center pe-0"
-              href="#"
-              data-bs-toggle="dropdown"
-            >
-              
-              <span class="d-none d-md-block dropdown-toggle ps-2"
-                >Admin</span
-              > </a
-            ><!-- End Profile Iamge Icon -->
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
 
-            <ul
-              class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
-            >
-              <li class="dropdown-header">
-                <h6>Admin</h6>
-              </li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
+            <span class="d-none d-md-block dropdown-toggle ps-2">Admin</span> </a><!-- End Profile Iamge Icon -->
 
-             
-              <li>
-                <a
-                  class="dropdown-item d-flex align-items-center"
-                  href="adminprofil.php"
-                >
-                  <i class="bi bi-gear"></i>
-                  <span>Account Management</span>
-                </a>
-              </li>
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>Admin</h6>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
 
-              <li>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <i class="bi bi-box-arrow-right"></i>
-                  <span>Sign Out</span>
-                </a>
-              </li>
-            </ul>
-            <!-- End Profile Dropdown Items -->
-          </li>
-          <!-- End Profile Nav -->
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="cek_data_akun.php">
+                <i class="bi bi-gear"></i>
+                <span>Account Management</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="index.php">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+          </ul>
+          <!-- End Profile Dropdown Items -->
+        </li>
+        <!-- End Profile Nav -->
       </ul>
     </nav><!-- End Icons Navigation -->
 
@@ -187,35 +175,21 @@
       <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-          <a class="nav-link " href="index.html">
-          <i class="bi bi-house"></i>
-            <span>Home</span>
-          </a>
-        </li><!-- End Dashboard Nav -->
-
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="adminprofil.php">
-          <i class="bi bi-person"></i>
-            <span>Profile</span>
-          </a>
-        </li><!-- End Profile Page Nav -->
-
-        <li class="nav-item">
           <a class="nav-link collapsed" href="tambah_akun_user.php">
-          <i class="bi bi-person-fill-add"></i>
+            <i class="bi bi-person-fill-add"></i>
             <span>Tambah Akun User</span>
           </a>
         </li><!-- End add user Account Nav -->
 
         <li class="nav-item">
           <a class="nav-link collapsed" href="cek_data_akun.php">
-          <i class="bi bi-clipboard"></i>
+            <i class="bi bi-clipboard"></i>
             <span>Cek Data Akun</span>
           </a>
         </li><!-- End check Data account Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="pages-login.php">
+          <a class="nav-link collapsed" href="index.php">
             <i class="bi bi-box-arrow-in-right"></i>
             <span>Logout</span>
           </a>
@@ -229,33 +203,34 @@
 
   <main id="main" class="main">
     <section class="section">
-    <h4 style="background-color: black" class="rounded-top py-2 px-1 text-light text-center mb-0 fw-bold" >Account Details</h4>
+      <h4 style="background-color: black" class="rounded-top py-2 px-1 text-light text-center mb-0 fw-bold">Account
+        Details</h4>
       <div id="formContainer" class="rounded-bottom py-3 px-5 mt-0" style="background-color: #04c99e">
         <form method="GET">
-       
-        <div class="form-group">
-                <label for="product_name">Username :</label>
-                <input type="text" class="form-control" id="username" name="username">
-            </div>
-            <br>
-            <div class="form-group">
-                <label for="selling_price">Current Password :</label>
-                <input type="password" class="form-control" id="current_password" name="current_password">
-            </div>
-            <br>
-            <div class="form-group">
-                <label for="cost_price">New Password :</label>
-                <input type="password" class="form-control" id="new_password" name="new_password">
-            </div>
-            <br>
-            <div class="form-group">
-                <label for="cost_price">Confirm Password :</label>
-                <input type="password" class="form-control" id="confirm_password" name="confirm_password">
-            </div>
-            <br>
-            <button type="submit" class="btn btn-success">Simpan</button>
-            <button type="button" class="btn btn-danger" id="cancelButton">Cancel</button>
-  
+
+          <div class="form-group">
+            <label for="product_name">Username :</label>
+            <input type="text" class="form-control" id="username" name="username">
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="selling_price">Current Password :</label>
+            <input type="password" class="form-control" id="current_password" name="current_password">
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="cost_price">New Password :</label>
+            <input type="password" class="form-control" id="new_password" name="new_password">
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="cost_price">Confirm Password :</label>
+            <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+          </div>
+          <br>
+          <button type="submit" class="btn btn-success">Simpan</button>
+          <button type="button" class="btn btn-danger" id="cancelButton">Cancel</button>
+
       </div>
     </section>
 

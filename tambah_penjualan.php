@@ -85,31 +85,47 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-    <div class="container">
-        <h2>Tambah Penjualan</h2>
-        <form action="" method="post">
-            <div class="form-group">
-                <label for="nama_produk">Nama Produk:</label>
-                <select class="form-control" id="nama_produk" name="nama_produk" onchange="updateHargaJual()">
-                    <?php echo $produk_options; ?>
-                </select>
+    <!-- Modal -->
+<div class="modal fade" id="tambahPenjualanModal" tabindex="-1" role="dialog"
+    aria-labelledby="tambahPenjualanModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tambahPenjualanModalLabel">Tambah Penjualan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="form-group">
-                <label for="harga_jual">Harga Jual:</label>
-                <input type="number" class="form-control" id="harga_jual" name="harga_jual" readonly>
+            <div class="modal-body">
+                <!-- Isi formulir untuk menambahkan penjualan -->
+                <form action="" method="post">
+                    <div class="form-group">
+                        <label for="nama_produk">Nama Produk:</label>
+                        <select class="form-control" id="nama_produk" name="nama_produk"
+                            onchange="updateHargaJual()">
+                            <option value="" disabled selected hidden>Pilih Produk</option>
+                            <?php echo $produk_options; ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="harga_jual">Harga Jual:</label>
+                        <input type="number" class="form-control" id="harga_jual" name="harga_jual" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="kuantitas">Jumlah Terjual:</label>
+                        <input type="number" class="form-control" id="kuantitas" name="kuantitas">
+                    </div>
+                    <div class="form-group">
+                        <label for="tgl">Tanggal:</label>
+                        <input type="date" class="form-control" id="tgl" name="tgl">
+                    </div>
+                    <button type="submit" name="submit" class="btn btn-success">Simpan</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="kuantitas">Jumlah Terjual:</label>
-                <input type="number" class="form-control" id="kuantitas" name="kuantitas">
-            </div>
-            <div class="form-group">
-                <label for="tgl">Tanggal:</label>
-                <input type="date" class="form-control" id="tgl" name="tgl">
-            </div>
-            <button type="submit" name="submit" class="btn btn-success">Simpan</button>
-            <button type="button" class="btn btn-danger" id="cancelButton">Cancel</button>
-        </form>
+        </div>
     </div>
+</div>
 
     <?php
     ?>

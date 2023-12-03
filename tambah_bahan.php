@@ -45,7 +45,7 @@
         <form action="proses_tambah_bahan.php" method="post">
             <div class="form-group">
                 <label for="nama_bahan">Nama Bahan:</label>
-                <input type="text" class="form-control" id="nama_bahan" name="nama_bahan" list="bahanList">
+                <input type="text" style="width: 40%;" class="form-control" id="nama_bahan" name="nama_bahan" list="bahanList">
                 <datalist id="bahanList">
                     <option value="Ayam">
                     <option value="Bawang Bombay">
@@ -78,11 +78,11 @@
                 </datalist>
             </div>
             <div class="form-group">
-                <div class="a">
+                <div class="a flex-column align-items-start" >
                     <label for="jumlah_bahan">Jumlah Bahan:</label>
-                    <input type="number" class="form-control" id="jumlah_bahan" name="jumlah_bahan">
+                    <input type="number" style="width: 40%;" class="form-control" id="jumlah_bahan" name="jumlah_bahan">
                     <label class="b">Satuan:</label>
-                    <select class="form-control" id="satuan" name="satuan">
+                    <select style="width: 40%;" class="form-control" id="satuan" name="satuan">
                         <option value="gram">gram</option>
                         <option value="ml">ml</option>
                     </select>
@@ -90,26 +90,26 @@
             </div>
             <div class="form-group">
                 <label for="kategori_produk">Kategori:</label>
-                <select class="form-control" id="kategori_produk" name="kategori_produk">
+                <select class="form-control" style="width: 40%;" id="kategori_produk" name="kategori_produk">
                     <option value="kitchen">Kitchen</option>
                     <option value="bar">Bar</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="tanggal_masuk">Tanggal Masuk:</label>
-                <input type="date" class="form-control" id="tanggal_masuk" name="tanggal_masuk">
+                <input type="date" style="width: 40%;" class="form-control" id="tanggal_masuk" name="tanggal_masuk">
             </div>
             <div class="form-group">
                 <label for="tanggal_exp">Tanggal EXP:</label>
-                <input type="date" class="form-control" id="tanggal_exp" name="tanggal_exp">
+                <input type="date" style="width: 40%;" class="form-control" id="tanggal_exp" name="tanggal_exp">
             </div>
             <div class="form-group">
                 <label for="harga_beli">Harga Beli:</label>
-                <input type="number" class="form-control" id="harga_beli" name="harga_beli" oninput="calculatePricePerGram()">
+                <input type="number" style="width: 40%;" class="form-control" id="harga_beli" name="harga_beli" oninput="calculatePricePerGram()">
             </div>
             <div class="form-group">
                 <label for="harga_beli">Harga Beli Persatuan:</label>
-                <input type="number" class="form-control" id="harga_beli_pergram" name="harga_beli_pergram" readonly>
+                <input type="number" style="width: 40%;" class="form-control" id="harga_beli_pergram" name="harga_beli_pergram" readonly>
             </div>
             <button type="submit" class="btn btn-success">Simpan</button>
             <button type="button" class="btn btn-danger" id="cancelButton">Cancel</button>
@@ -117,6 +117,11 @@
     </div>
 
     <script>
+         // Menambahkan event listener ke tombol "Cancel"
+         document.getElementById("cancelButton").addEventListener("click", function () {
+            window.location.href='kelolastokbahan.php'
+        });
+
         // Inisialisasi autocomplete pada input "nama_bahan"
         $("#nama_bahan").autocomplete({
             source: ["Ayam", "Bawang Bombay", "Bawang Merah", "Bawang Putih", "Beras", "Cabai Hijau", "Cabai Merah", "Cabai Rawit", "Garam", "Gula", "Kecap", "Keju", "Kentang", "Kopi", "Mentega", "Minyak Goreng", "Powdered Cookies and Cream", "Powdered Green Tea", "Powdered Red Velvet", "Powdered Vanilla", "Saus Sambal", "Saus Tomat", "Selada", "Susu", "Susu Kental Manis", "Tahu", "Timun", "Tomat"],
@@ -136,11 +141,6 @@
             } else {
                 satuanElement.disabled = true;
             }
-        });
-
-        // Menambahkan event listener ke tombol "Cancel"
-        document.getElementById("cancelButton").addEventListener("click", function () {
-            history.back(); // Menggunakan fungsi history.back() untuk kembali ke halaman sebelumnya.
         });
 
         function calculatePricePerGram() {

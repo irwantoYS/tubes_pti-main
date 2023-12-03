@@ -59,7 +59,6 @@
                     <button type="button" class="btn btn-primary" onclick="addComposition()">Tambah Komposisi</button>
                 </div>
                 <button type="submit" class="btn btn-success">Simpan</button>
-                <button type="button" class="btn btn-danger" id="cancelButton">Cancel</button>
             </form>
             <?php
         } else {
@@ -72,7 +71,7 @@
 
     <script>
         document.getElementById("cancelButton").addEventListener("click", function () {
-            history.back();
+           window.location.href = 'daftarproduk.php';
         });
 
         var compositionCounter = <?php echo $compositionCounter; ?>;

@@ -1,10 +1,16 @@
 <?php
  
+
+// koneksi
+include 'koneksi.php'
+  ?>
+<?php
+
 // koneksi
 include 'koneksi.php'
 ?>
 <?php
- 
+
 // koneksi
 include 'koneksi.php'
 ?>
@@ -56,7 +62,7 @@ include 'koneksi.php'
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="dashboard.php" class="logo d-flex align-items-center">
         <span class="d-none d-lg-block" style="color: #04c99e;">Warung Update</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -159,7 +165,7 @@ include 'koneksi.php'
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="index.php">
                 <i class="bi bi-gear"></i>
                 <span>Account Management</span>
               </a>
@@ -191,7 +197,7 @@ include 'koneksi.php'
       <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-          <a class="nav-link " href="index.html">
+          <a class="nav-link " href="dashboard.php">
             <i class="bi bi-grid"></i>
             <span>Dashboard</span>
           </a>
@@ -227,7 +233,7 @@ include 'koneksi.php'
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="pages-login.php">
+          <a class="nav-link collapsed" href="index.php">
             <i class="bi bi-box-arrow-in-right"></i>
             <span>Logout</span>
           </a>
@@ -243,7 +249,7 @@ include 'koneksi.php'
         <h1>Dashboard</h1>
         <nav>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
             <li class="breadcrumb-item active">Dashboard</li>
           </ol>
         </nav>
@@ -450,7 +456,7 @@ include 'koneksi.php'
     <div class="pagetitle">
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
           <li class="breadcrumb-item active">Penjualan</li>
         </ol>
       </nav>
@@ -461,16 +467,30 @@ include 'koneksi.php'
         <h2>Data Penjualan</h2>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
           <a href="laporanexcel.php" class="btn btn-success me-md-2" type="button">Excel</a>
-          <a href="tambah_penjualan.php" class="btn btn-primary" type="button">Tambah Penjualan</a>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambahPenjualanModal">
+            Tambah Penjualan
+          </button>
+          <?php include 'tambah_penjualan.php'; ?>
         </div>
 
-        <form method="post" action="">
-          <div class="input-group">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+        <form method="get" action="" class="row g-3">
+          <div class="col-md-4">
             <input type="text" class="form-control" placeholder="Cari Produk..." name="search">
+          </div>
+          <div class="col-md-3">
             <input type="date" class="form-control" name="start_date" placeholder="Tanggal Awal">
+          </div>
+          <div class="col-md-3">
             <input type="date" class="form-control" name="end_date" placeholder="Tanggal Akhir">
-            <button class="btn btn-primary " type="submit" name="submit" style="color: white;">Cari</button>
-            <button class="btn btn-danger " type="submit" name="reset" style="color: white;">Reset</button>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-primary" type="submit" name="submit">Cari</button>
+            <button class="btn btn-danger" type="submit" name="reset">Reset</button>
           </div>
         </form>
 
@@ -491,10 +511,10 @@ include 'koneksi.php'
           </thead>
           <tbody>
             <?php
-            if (isset($_POST['submit'])) {
-              $search = mysqli_real_escape_string($conn, $_POST['search']);
-              $start_date = $_POST['start_date'];
-              $end_date = $_POST['end_date'];
+            if (isset($_GET['submit'])) {
+              $search = mysqli_real_escape_string($conn, $_GET['search']);
+              $start_date = $_GET['start_date'];
+              $end_date = $_GET['end_date'];
 
               $searchQuery = "AND products.product_name LIKE '%$search%'";
 
@@ -507,8 +527,8 @@ include 'koneksi.php'
             }
 
             $q = mysqli_query($conn, "SELECT penjualan.*, products.product_name, products.composition FROM penjualan
-                    JOIN products ON penjualan.nama_produk = products.product_name $searchQuery
-                    ORDER BY penjualan.tgl DESC");
+                          JOIN products ON penjualan.nama_produk = products.product_name $searchQuery
+                          ORDER BY penjualan.tgl DESC");
             $total = 0;
             $tot_bayar = 0;
             $no = 1;
