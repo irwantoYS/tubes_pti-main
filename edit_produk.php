@@ -18,7 +18,9 @@
 
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            ?>
+            $compositionData = json_decode($row['composition'], true);
+            $compositionCounter = 0;
+        ?>
             <form action="proses_edit_produk.php" method="post">
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                 <div class="form-group">
@@ -43,26 +45,33 @@
                 <div class="form-group" id="compositionSection">
                     <label for="composition">Komposisi:</label>
                     <div id="compositionInputs">
-                        <?php
-                            $compositionData = json_decode($row['composition'], true);
-                        ?>
                         <?php foreach ($compositionData as $key => $value) : ?>
-                            <div class="composition-input-container">
-                                <input type="hidden" name="selected_composition_key[]" value="<?php echo $key; ?>">
-                                
-                                <input type="text" name="selected_composition_value[]" value="<?php echo $value; ?>" >
-                                
-                                <button type="button" onclick="removeComposition(this)">Remove</button>
-                            </div>
+                            <?php 
+                            if (strpos($key, 'bahan') !== false) {
+                                echo '<input type="hidden" name="selected_composition_key[]" value="' . $key . '">';
+                                echo '<input type="text" name="selected_composition_value[]" placeholder="Nama Bahan" list ="bahanList" value="' . $value . '" required>';
+                                echo '<datalist id="bahanList"></datalist>';
+                                $compositionCounter++;
+                            } else {
+                                echo '<input type="hidden" name="selected_composition_key[]" value="' . $key . '">';
+                                echo '<input type="number" name="selected_composition_value[]" placeholder="Jumlah" list ="bahanList" value="' . $value . '" required>';
+                                if ($compositionCounter !== 1) {
+                                    echo '<button type="button" onclick="removeComposition(this)">Remove</button>';
+                                }
+                                echo '<br>';
+                            }
+                            ?>
                         <?php endforeach; ?>
                     </div>
                     <button type="button" class="btn btn-primary" onclick="addComposition()">Tambah Komposisi</button>
                 </div>
+                <input type="hidden" name="compositionCounter" value="<?php echo $compositionCounter; ?>">
                 <button type="submit" class="btn btn-success">Simpan</button>
+                <button type="button" class="btn btn-danger" id="cancelButton">Batal</button>
             </form>
             <?php
         } else {
-            echo "Produk tidak ditemukan.";
+            echo "<script>alert('Produk tidak ada'); window.location.href = 'daftarproduk.php';</script>";
         }
 
         $conn->close();
@@ -71,21 +80,54 @@
 
     <script>
         document.getElementById("cancelButton").addEventListener("click", function () {
-           window.location.href = 'daftarproduk.php';
+            window.location.href = 'daftarproduk.php';
         });
+
+        function fillBahanList() {
+            var allCompositionInputs = document.getElementsByName("selected_composition[]");
+            var datalist = document.getElementById("bahanList");
+
+            // Menggunakan AJAX untuk mendapatkan data dari server
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var bahanNames = JSON.parse(xhr.responseText);
+
+                    // Menghapus semua opsi di datalist
+                    datalist.innerHTML = "";
+
+                    var uniqueBahanNames = new Set(bahanNames.map(bahan => bahan.nama_bahan));
+
+                    uniqueBahanNames.forEach(function (bahan) {
+                        var option = document.createElement("option");
+                        option.value = bahan;
+                        datalist.appendChild(option);
+                    });
+
+                    // Menambahkan opsi baru ke datalist
+                    allCompositionInputs.forEach(function (input) {
+                        var option = document.createElement("option");
+                        option.value = input.value;
+                        datalist.appendChild(option);
+                    });
+                }
+            };
+
+            xhr.open("GET", "get_bahan_names.php", true);
+            xhr.send();
+        }
 
         var compositionCounter = <?php echo $compositionCounter; ?>;
 
         function addComposition() {
+            
             var compositionInputs = document.getElementById("compositionInputs");
-        
-                if (!document.getElementById("bahanList")) {
+
+            if (!document.getElementById("bahanList")) {
                     var datalist = document.createElement("datalist");
                     datalist.id = "bahanList";
                     compositionInputs.appendChild(datalist);
                 }
-                
-                var spaceInput = compositionInputs.appendChild(document.createElement("br"));
 
                 var inputName = document.createElement("input");
                 inputName.type = "text";
@@ -101,65 +143,49 @@
                 inputAmount.placeholder = "Jumlah";
                 inputAmount.required = true;
                 compositionInputs.appendChild(inputAmount);
+                
 
                 var cancelButtonName = document.createElement("button");
                 cancelButtonName.type = "button";
                 cancelButtonName.innerHTML = "Remove";
                 cancelButtonName.onclick = function () {
-                    compositionInputs.removeChild(spaceInput);
                     compositionInputs.removeChild(inputName);
                     compositionInputs.removeChild(inputAmount);
                     compositionInputs.removeChild(cancelButtonName);
+                    compositionInputs.removeChild(spaceInput);
+                    compositionCounter--;
                 };
-            compositionInputs.appendChild(cancelButtonName);
 
-                // Memperbarui datalist dengan nama bahan yang baru
-                fillBahanList();
-                compositionCounter++;
+                
+
+            compositionInputs.appendChild(cancelButtonName);
+            
+            var spaceInput = compositionInputs.appendChild(document.createElement("br"));
+
+        // Memperbarui datalist dengan nama bahan yang baru
+        compositionCounter++;
+
         }
 
         function removeComposition(button) {
             var compositionInputs = document.getElementById("compositionInputs");
-            compositionInputs.removeChild(button.parentNode);
+            compositionInputs.removeChild(button.previousSibling);
+            compositionInputs.removeChild(button.previousSibling);
+            compositionInputs.removeChild(button.previousSibling);
+            compositionInputs.removeChild(button.previousSibling); // Remove input
+            compositionInputs.removeChild(button.previousSibling); // Remove amount input
+            compositionInputs.removeChild(button.previousSibling); // Remove br element
+            compositionInputs.removeChild(button); // Remove the button itself
+            compositionCounter--;
         }
-
-        function prepareCompositionInputs() {
-            var compositionInputs = document.getElementById("compositionSection");
-            while (compositionInputs.childNodes.length > compositionCounter * 4) {
-                compositionInputs.removeChild(compositionInputs.lastChild);
-                compositionInputs.removeChild(compositionInputs.lastChild);
-                compositionInputs.removeChild(compositionInputs.lastChild);
-                compositionInputs.removeChild(compositionInputs.lastChild);
+        
+        <?php foreach ($compositionData as $key => $value) : ?>
+            <?php 
+            if (strpos($key, 'bahan') !== false) {
+                echo 'fillBahanList();';
             }
-        }
-
-        function fillBahanList() {
-            var allCompositionInputs = document.getElementsByName("selected_composition[]");
-            var datalist = document.getElementById("bahanList");
-
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    var bahanNames = JSON.parse(xhr.responseText);
-                    datalist.innerHTML = "";
-                    var uniqueBahanNames = new Set(bahanNames.map(bahan => bahan.nama_bahan));
-                    uniqueBahanNames.forEach(function (bahan) {
-                        var option = document.createElement("option");
-                        option.value = bahan;
-                        datalist.appendChild(option);
-                    });
-                    allCompositionInputs.forEach(function (input) {
-                        var option = document.createElement("option");
-                        option.value = input.value;
-                        datalist.appendChild(option);
-                    });
-                }
-            };
-            xhr.open("GET", "get_bahan_names.php", true);
-            xhr.send();
-        }
-
-        fillBahanList();
+            ?>
+        <?php endforeach; ?>
     </script>
 </body>
 
