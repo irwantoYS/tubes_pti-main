@@ -12,11 +12,11 @@
         <form action="proses_tambah_property.php" method="post">
             <div class="form-group">
                 <label for="nama_properti">Nama Property:</label>
-                <input type="text" class="form-control" id="nama_properti" name="nama_properti" required>
+                <input type="text" style="width: 40%;" class="form-control" id="nama_properti" name="nama_properti">
             </div>
             <div class="form-group">
                 <label for="jumlah_properti">Jumlah Property:</label>
-                <input type="number" class="form-control" id="jumlah_properti" name="jumlah_properti" required>
+                <input type="number" style="width: 40%;" class="form-control" id="jumlah_properti" name="jumlah_properti">
             </div>
             <button type="submit" class="btn btn-success">Simpan</button>
             <button type="button" class="btn btn-danger" id="cancelButton">Cancel</button>
@@ -26,7 +26,7 @@
     <script>
         // Menambahkan event listener ke tombol "Cancel"
         document.getElementById("cancelButton").addEventListener("click", function () {
-            history.back(); // Menggunakan fungsi history.back() untuk kembali ke halaman sebelumnya
+            window.location.href='kelolaproperty.php'
         });
     </script>
 </body>

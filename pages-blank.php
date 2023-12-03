@@ -149,7 +149,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="adminprofil.php">
+              <a class="dropdown-item d-flex align-items-center" href="cek_data_akun.php">
                 <i class="bi bi-gear"></i>
                 <span>Account Management</span>
               </a>
@@ -159,7 +159,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="index.php">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -217,7 +217,7 @@
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="pages-login.php">
+          <a class="nav-link collapsed" href="index.php">
             <i class="bi bi-box-arrow-in-right"></i>
             <span>Login</span>
           </a>
@@ -383,7 +383,7 @@
               <li class="nav-heading">Pages</li>
 
               <li class="nav-item">
-                <a class="nav-link collapsed" href="adminprofil.php">
+                <a class="nav-link collapsed" href="cek_data_akun.php">
                   <i class="bi bi-person"></i>
                   <span>Profile</span>
                 </a>

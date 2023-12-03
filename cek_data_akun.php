@@ -154,7 +154,7 @@
               <li>
                 <a
                   class="dropdown-item d-flex align-items-center"
-                  href="adminprofil.php"
+                  href="cek_data_akun.php"
                 >
                   <i class="bi bi-gear"></i>
                   <span>Account Management</span>
@@ -165,7 +165,7 @@
               </li>
 
               <li>
-                <a class="dropdown-item d-flex align-items-center" href="#">
+                <a class="dropdown-item d-flex align-items-center" href="index.php">
                   <i class="bi bi-box-arrow-right"></i>
                   <span>Sign Out</span>
                 </a>
@@ -185,21 +185,6 @@
     <aside id="sidebar" class="sidebar" style="background-color: #04c99e">
 
       <ul class="sidebar-nav" id="sidebar-nav">
-
-        <li class="nav-item">
-          <a class="nav-link " href="index.html">
-          <i class="bi bi-house"></i>
-            <span>Home</span>
-          </a>
-        </li><!-- End Dashboard Nav -->
-
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="adminprofil.php">
-          <i class="bi bi-person"></i>
-            <span>Profile</span>
-          </a>
-        </li><!-- End Profile Page Nav -->
-
         <li class="nav-item">
           <a class="nav-link collapsed" href="tambah_akun_user.php">
           <i class="bi bi-person-fill-add"></i>
@@ -215,7 +200,7 @@
         </li><!-- End check Data account Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="pages-login.php">
+          <a class="nav-link collapsed" href="index.php">
             <i class="bi bi-box-arrow-in-right"></i>
             <span>Logout</span>
           </a>
@@ -231,23 +216,13 @@
 <section class="section">
   <br>
   <div class="container rounded py-2 px-3" style="background-color: white">
-    <h4 class="fw-bold mb-0 py-1">Data Akun <a href="tambah_akun_user.php" class="btn btn-success" style="float:right">Tambah Akun</a></h4>
+    <h4 class="fw-bold mb-0 py-1">Data Akun <a href="tambah_akun_user.php" style="float:right"></a></h4>
     <br>
     <div>
     <form class="border-top border-bottom pt-3 pb-3 mb-3" method="GET" action='cek_data_akun.php'>
       <input class="rounded" type="text" name="search" placeholder="Cari username...">
       <button type="submit" class="btn btn-success px-2 py-1">Cari</button>
       <a href="cek_data_akun.php" class="btn btn-danger px-2 py-1">Reset</a>
-      
-        <select class="ms-5 rounded" id='sort-select' name='sort' onchange='this.form.submit()'>
-        <option value='admin' " . ($sort == 'admin' ? 'selected' : '') . ">Admin</option>
-        <option value='user' " . ($sort == 'user' ? 'selected' : '') . ">User</option>
-        </select>
-
-        <select class="ms-3 rounded" id='sort-select' name='sort' onchange='this.form.submit()'>
-        <option value='approved' " . ($sort == 'approved' ? 'selected' : '') . ">Approved</option>
-        <option value='reject' " . ($sort == 'Reject' ? 'selected' : '') . ">Reject</option>
-        </select>
     </form>
     </div>
     <table class="table">
@@ -284,12 +259,12 @@
             echo "<td>" . $row['role'] . "</td>";
             echo "<td>
                     <a href='edit_akun.php?id=" . $row['id'] . "' class='btn btn-success'>Edit</a>
-                    <a href='hapus_akun.php?id=" . $row['id'] . "' class='btn btn-danger'>Hapus</a>
+                    <a href='#' onclick='confirmDelete(" . $row['id'] . ")' class='btn btn-danger'>Hapus</a>
                 </td>";
             echo "</tr>";
           }
         } else {
-          echo "<tr><td colspan='6'>Tidak ada produk.</td></tr>";
+          echo "<tr><td colspan='6'>Tidak ada Akun.</td></tr>";
         }
 
         $conn->close();
@@ -320,5 +295,13 @@
   <script src="assets/js/main.js"></script>
 
 </body>
-
+<script>
+    function confirmDelete(id) {
+        var result = confirm("Apakah Anda yakin ingin menghapus akun ini?");
+        if (result) {
+            // Redirect atau lakukan tindakan penghapusan di sini, misalnya dengan AJAX atau formulir tersembunyi
+            window.location.href = 'hapus_akun.php?id=' + id;
+        }
+    }
+</script>
 </html>

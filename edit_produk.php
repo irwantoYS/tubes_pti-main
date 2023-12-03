@@ -44,14 +44,14 @@
                     <label for="composition">Komposisi:</label>
                     <div id="compositionInputs">
                         <?php
-                        $compositionData = json_decode($row['composition'], true);
+                            $compositionData = json_decode($row['composition'], true);
                         ?>
-                        <?php foreach ($compositionData as $key => $value): ?>
+                        <?php foreach ($compositionData as $key => $value) : ?>
                             <div class="composition-input-container">
                                 <input type="hidden" name="selected_composition_key[]" value="<?php echo $key; ?>">
-
-                                <input type="text" name="selected_composition_value[]" value="<?php echo $value; ?>">
-
+                                
+                                <input type="text" name="selected_composition_value[]" value="<?php echo $value; ?>" >
+                                
                                 <button type="button" onclick="removeComposition(this)">Remove</button>
                             </div>
                         <?php endforeach; ?>
@@ -59,7 +59,6 @@
                     <button type="button" class="btn btn-primary" onclick="addComposition()">Tambah Komposisi</button>
                 </div>
                 <button type="submit" class="btn btn-success">Simpan</button>
-                <button type="button" class="btn btn-danger" id="cancelButton">Cancel</button>
             </form>
             <?php
         } else {
@@ -69,56 +68,54 @@
         $conn->close();
         ?>
     </div>
+
     <script>
         document.getElementById("cancelButton").addEventListener("click", function () {
-            history.back();
+           window.location.href = 'daftarproduk.php';
         });
-    </script>
-    <script>
-
 
         var compositionCounter = <?php echo $compositionCounter; ?>;
 
         function addComposition() {
             var compositionInputs = document.getElementById("compositionInputs");
+        
+                if (!document.getElementById("bahanList")) {
+                    var datalist = document.createElement("datalist");
+                    datalist.id = "bahanList";
+                    compositionInputs.appendChild(datalist);
+                }
+                
+                var spaceInput = compositionInputs.appendChild(document.createElement("br"));
 
-            if (!document.getElementById("bahanList")) {
-                var datalist = document.createElement("datalist");
-                datalist.id = "bahanList";
-                compositionInputs.appendChild(datalist);
-            }
+                var inputName = document.createElement("input");
+                inputName.type = "text";
+                inputName.name = "selected_composition[]";
+                inputName.placeholder = "Nama Bahan";
+                inputName.setAttribute("list", "bahanList"); // Menggunakan setAttribute untuk mengatasi masalah di Firefox
+                inputName.required = true;
+                compositionInputs.appendChild(inputName);
 
-            var spaceInput = compositionInputs.appendChild(document.createElement("br"));
+                var inputAmount = document.createElement("input");
+                inputAmount.type = "number";
+                inputAmount.name = "selected_amount[]";
+                inputAmount.placeholder = "Jumlah";
+                inputAmount.required = true;
+                compositionInputs.appendChild(inputAmount);
 
-            var inputName = document.createElement("input");
-            inputName.type = "text";
-            inputName.name = "selected_composition[]";
-            inputName.placeholder = "Nama Bahan";
-            inputName.setAttribute("list", "bahanList"); // Menggunakan setAttribute untuk mengatasi masalah di Firefox
-            inputName.required = true;
-            compositionInputs.appendChild(inputName);
-
-            var inputAmount = document.createElement("input");
-            inputAmount.type = "number";
-            inputAmount.name = "selected_amount[]";
-            inputAmount.placeholder = "Jumlah";
-            inputAmount.required = true;
-            compositionInputs.appendChild(inputAmount);
-
-            var cancelButtonName = document.createElement("button");
-            cancelButtonName.type = "button";
-            cancelButtonName.innerHTML = "Remove";
-            cancelButtonName.onclick = function () {
-                compositionInputs.removeChild(spaceInput);
-                compositionInputs.removeChild(inputName);
-                compositionInputs.removeChild(inputAmount);
-                compositionInputs.removeChild(cancelButtonName);
-            };
+                var cancelButtonName = document.createElement("button");
+                cancelButtonName.type = "button";
+                cancelButtonName.innerHTML = "Remove";
+                cancelButtonName.onclick = function () {
+                    compositionInputs.removeChild(spaceInput);
+                    compositionInputs.removeChild(inputName);
+                    compositionInputs.removeChild(inputAmount);
+                    compositionInputs.removeChild(cancelButtonName);
+                };
             compositionInputs.appendChild(cancelButtonName);
 
-            // Memperbarui datalist dengan nama bahan yang baru
-            fillBahanList();
-            compositionCounter++;
+                // Memperbarui datalist dengan nama bahan yang baru
+                fillBahanList();
+                compositionCounter++;
         }
 
         function removeComposition(button) {

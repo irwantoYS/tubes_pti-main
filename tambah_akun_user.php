@@ -143,7 +143,7 @@
 
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="cek_data_akun.php">
                 <i class="bi bi-gear"></i>
                 <span>Account Management</span>
               </a>
@@ -153,7 +153,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="index.php">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -173,21 +173,6 @@
     <aside id="sidebar" class="sidebar" style="background-color: #04c99e">
 
       <ul class="sidebar-nav" id="sidebar-nav">
-
-        <li class="nav-item">
-          <a class="nav-link " href="index.html">
-            <i class="bi bi-house"></i>
-            <span>Home</span>
-          </a>
-        </li><!-- End Dashboard Nav -->
-
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="adminprofil.php">
-            <i class="bi bi-person"></i>
-            <span>Profile</span>
-          </a>
-        </li><!-- End Profile Page Nav -->
-
         <li class="nav-item">
           <a class="nav-link collapsed" href="tambah_akun_user.php">
             <i class="bi bi-person-fill-add"></i>
@@ -203,7 +188,7 @@
         </li><!-- End check Data account Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="pages-login.php">
+          <a class="nav-link collapsed" href="index.php">
             <i class="bi bi-box-arrow-in-right"></i>
             <span>Logout</span>
           </a>
@@ -279,7 +264,7 @@
   <script src="assets/js/main.js"></script>
   <script>
     document.getElementById("cancelButton").addEventListener("click", function () {
-            history.back(); // Menggunakan fungsi history.back() untuk kembali ke halaman sebelumnya.
+           window.location.href = 'cek_data_akun.php'; // Menggunakan fungsi history.back() untuk kembali ke halaman sebelumnya.
         });
   </script>
 
