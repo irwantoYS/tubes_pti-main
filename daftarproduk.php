@@ -508,7 +508,7 @@ include 'getHargaModal.php';
                         echo "</td>";
                         echo "<td>
                                 <a href='edit_produk.php?id=" . $row['id'] . "' class='btn btn-primary'>Edit</a>
-                                <a href='hapus.php?id=" . $row['id'] . "' class='btn btn-danger'>Hapus</a>
+                                <a href='#' onclick='confirmDelete(" . $row['id'] . ")' class='btn btn-danger'>Hapus</a>
                             </td>";
                         echo "</tr>";
                     }
@@ -541,6 +541,15 @@ include 'getHargaModal.php';
   
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+    function confirmDelete(id) {
+        var result = confirm("Apakah Anda yakin ingin menghapus akun ini?");
+        if (result) {
+            // Redirect atau lakukan tindakan penghapusan di sini, misalnya dengan AJAX atau formulir tersembunyi
+            window.location.href = 'hapus_akun.php?id=' + id;
+        }
+    }
+</script>
 
 </body>
 

@@ -480,18 +480,7 @@ include 'koneksi.php'
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <!-- skrip untuk menampilkan page pada modal -->
-    <script>
-  $(document).ready(function () {
-    $('#myModal').on('show.bs.modal', function (e) {
-      // Load the external page content into the modal
-      $(this).find('.modal-content').load('tambah_penjualan.php');
-    });
-  });
-</script>
+    
 
         
 
@@ -651,6 +640,18 @@ include 'koneksi.php'
   <script src="assets/js/main.js"></script>
 
 </body>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- skrip untuk menampilkan page pada modal -->
+    <script>
+  $(document).ready(function () {
+    $('#myModal').on('show.bs.modal', function (e) {
+      // Load the external page content into the modal
+      $(this).find('.modal-content').load('tambah_penjualan.php');
+    });
+  });
+</script>
 
 </html>
 <?php }else{
