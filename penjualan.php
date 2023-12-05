@@ -477,10 +477,10 @@ include 'koneksi.php'
             <input type="text" class="form-control" placeholder="Cari Produk..." name="search">
           </div>
           <div class="col-md-3">
-            <input type="date" class="form-control" name="start_date" placeholder="Tanggal Awal">
+            <input type="date" class="form-control" placeholder="Tanggal Awal" name="start_date">
           </div>
           <div class="col-md-3">
-            <input type="date" class="form-control" name="end_date" placeholder="Tanggal Akhir">
+            <input type="date" class="form-control" placeholder="Tanggal Akhir" name="end_date">
           </div>
           <div class="col-md-2">
             <button class="btn btn-primary" type="submit" name="submit">Cari</button>

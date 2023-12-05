@@ -305,11 +305,16 @@
                       $resultTotalKuantitas = $conn->query($queryTotalKuantitas);
 
                       if ($resultTotalKuantitas) {
-                        $rowTotalKuantitas = $resultTotalKuantitas->fetch_assoc();
-                        $totalKuantitas = $rowTotalKuantitas['total_kuantitas'];
-                        echo '<h6>' . $totalKuantitas . '</h6>';
+                        if ($resultTotalKuantitas->num_rows > 0) {
+                          $rowTotalKuantitas = $resultTotalKuantitas->fetch_assoc();
+                          $totalKuantitas = $rowTotalKuantitas['total_kuantitas'];
+                          echo '<h6>' . $totalKuantitas . '</h6>';
+                        } else {
+                          echo '<h6>0</h6>';
+                        }
                       } else {
-                        echo '<h6>0</h6>'; // Default value if no data is found
+                        // Handle the case where the query execution fails
+                        die("Query execution failed: " . $conn->error);
                       }
                       ?>
                     </div>
@@ -536,7 +541,6 @@
                         <th scope="col">Karyawan</th>
                         <th scope="col">Keterangan</th>
                         <th scope="col">Jumlah</th>
-                        <th scope="col">Tempat</th>
                         <th scope="col">Jam</th>
                       </tr>
                     </thead>
@@ -547,7 +551,7 @@
                           <a>Memasukan Beras</a>
                         </td>
                         <td>10 kg</td>
-                        <td>Gudang Bahan</td>
+
                         <td>12:30</td>
                       </tr>
                       <tr>
@@ -556,7 +560,7 @@
                           <a>Mengambil kopi</a>
                         </td>
                         <td>100 gr</td>
-                        <td>Gudang Bahan</td>
+
                         <td>12:15</td>
                       </tr>
                       <tr>
@@ -565,7 +569,7 @@
                           <a>Memasukan Meja Kayu </a>
                         </td>
                         <td>10 pcs</td>
-                        <td>Gudang Inventory</td>
+
                         <td>11:53</td>
                         <td>
                         </td>
@@ -576,7 +580,7 @@
                           <a>Memasukan Kursi Plastik</a>
                         </td>
                         <td>15 pcs</td>
-                        <td>Gudangg Inventory</td>
+
                         <td>11:50</td>
                       </tr>
                       <tr>
@@ -585,7 +589,7 @@
                           <a>Mengambil Ayam</a>
                         </td>
                         <td>500 gr</td>
-                        <td>Gudang Bahan</td>
+
                         <td>11:33</td>
                         <td>
                         </td>
@@ -596,7 +600,7 @@
                           <a>Mengambil Susu</a>
                         </td>
                         <td>2 L</td>
-                        <td>Gudang Bahan</td>
+
                         <td>10:01</td>
                         <td>
                         </td>
