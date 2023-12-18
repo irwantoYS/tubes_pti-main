@@ -25,18 +25,20 @@ include 'koneksi.php';
             $totalBahanTerpakai = $jumlah * $qty;
     
             // Ambil data dari database
-            $query = "SELECT jumlah_bahan FROM bahan WHERE nama_bahan = '$bahan' ORDER BY id ASC LIMIT 1";
+            $query = "SELECT jumlah_bahan FROM bahan WHERE nama_bahan = '$bahan' AND jumlah_bahan >= '$totalBahanTerpakai' ORDER BY id ASC LIMIT 1";
             $result = mysqli_query($conn, $query);
     
             if ($result) {
                 // Ambil hasil query
                 $row = mysqli_fetch_assoc($result);
                 $jumlahDiDatabase = $row['jumlah_bahan'];
+                $id = $row['id'];
+
     
                 if ($totalBahanTerpakai <= $jumlahDiDatabase) {
                     $jumlahDiDatabase -= $totalBahanTerpakai;
                     
-                    $updateQuery = "UPDATE bahan SET jumlah_bahan = '$jumlahDiDatabase' WHERE nama_bahan = '$bahan' ORDER BY id ASC LIMIT 1";
+                    $updateQuery = "UPDATE bahan SET jumlah_bahan = '$jumlahDiDatabase' WHERE nama_bahan = '$bahan' AND jumlah_bahan >= '$totalBahanTerpakai' ORDER BY id ASC LIMIT 1";
                     $updateResult = mysqli_query($conn, $updateQuery);
 
                     if (!$updateResult) {
@@ -44,15 +46,15 @@ include 'koneksi.php';
                         $isValid = false;
                     }
 
-                } else if ($totalBahanTerpakai == $jumlahDiDatabase){
-                    $updateQuery1 = "UPDATE bahan SET jumlah_bahan = '$jumlahDiDatabase' WHERE nama_bahan = '$bahan' ORDER BY id ASC LIMIT 1";
+                } else if ($totalBahanTerpakai > $jumlahDiDatabase){
+                    $updateQuery1 = "UPDATE bahan SET jumlah_bahan = '$jumlahDiDatabase' WHERE nama_bahan = '$bahan' AND jumlah_bahan >= '$totalBahanTerpakai' ORDER BY id ASC LIMIT 1";
                     $updateResult1 = mysqli_query($conn, $updateQuery1);
                     $updateQuery2 = "DELETE FROM bahan WHERE nama_bahan = '$bahan'";
                     $updateResult2 = mysqli_query($conn, $updateQuery2);
 
                 } else {
                     $isValid = false;
-                    echo "<script>alert('Gagal menambahkan data penjualan'); window.location.href = 'penjualan.php';</script>";
+                    echo "<script>alert('Gagal menambahkana data penjualan'); window.location.href = 'penjualan.php';</script>";
                 }
             }
         }
