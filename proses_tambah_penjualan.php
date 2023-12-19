@@ -34,7 +34,7 @@ include 'koneksi.php';
                 $jumlahDiDatabase = $row['jumlah_bahan'];
                 $id = $row['id'];
 
-    
+                //TERCUKUPI
                 if ($totalBahanTerpakai <= $jumlahDiDatabase) {
                     $jumlahDiDatabase -= $totalBahanTerpakai;
                     
@@ -57,56 +57,68 @@ include 'koneksi.php';
                             $isValid = false;
                         }
                     }
-
+                
+                //Tidak Tercukupi
                 } else if ($totalBahanTerpakai > $jumlahDiDatabase){
-                    $deleteQuery = "DELETE FROM bahan WHERE id='$id'";
-                    $deleteResult = mysqli_query($conn, $deleteQuery);
-
-                    if (!$deleteResult) {
-                        echo "<script>alert('Gagal menghapus data bahan'); window.location.href = 'penjualan.php';</script>";
-                        $isValid = false;
+                    $QueryTotal = "SELECT * FROM bahan WHERE nama_bahan = '$bahan' ORDER BY id ASC";
+                    $ResultTotal = mysqli_query($conn, $QueryTotal);
+                    $jumlahTotalBahanDB = 0;
+                    while ($rowTotal = mysqli_fetch_assoc($ResultTotal)) {
+                        $jumlahTotalBahanDB += $rowTotal['jumlah_bahan'];
+                        
                     }
-                    while ($totalBahanTerpakai > $jumlahDiDatabase && $row = mysqli_fetch_assoc($result)) {
-                        // Jumlah bahan di database belum mencukupi, ambil dari id berikutnya
-                        $jumlahDiDatabase += $row['jumlah_bahan'];
-                        $id = $row['id'];
-                        if($totalBahanTerpakai > $jumlahDiDatabase){
-                            
-                        }
-                    }
-                    $updateQuery = "UPDATE bahan SET jumlah_bahan = '$jumlahDiDatabase' WHERE id='$id'";
-                    $updateResult = mysqli_query($conn, $updateQuery);
-
-                    if (!$updateResult) {
-                        echo "<script>alert('Gagal mengupdate stok bahan'); window.location.href = 'penjualan.php';</script>";
-                        $isValid = false;
-                    }
-                    $jumlahDiDatabase -= $totalBahanTerpakai;
-                    
-                    if ($jumlahDiDatabase === 0) {
-                        // Hapus baris jika jumlahDiDatabase menjadi 0
+                    echo "<script>console.log('$jumlahTotalBahanDB');</script>";
+                    if($jumlahTotalBahanDB >= $totalBahanTerpakai){
                         $deleteQuery = "DELETE FROM bahan WHERE id='$id'";
                         $deleteResult = mysqli_query($conn, $deleteQuery);
-
                         if (!$deleteResult) {
                             echo "<script>alert('Gagal menghapus data bahan'); window.location.href = 'penjualan.php';</script>";
                             $isValid = false;
                         }
-                    } else {
-                        // Update jumlah bahan
+                        while ($totalBahanTerpakai > $jumlahDiDatabase && $row = mysqli_fetch_assoc($result)) {
+                            // Jumlah bahan di database belum mencukupi, ambil dari id berikutnya
+                            $jumlahDiDatabase += $row['jumlah_bahan'];
+                            $id = $row['id'];
+                        }
                         $updateQuery = "UPDATE bahan SET jumlah_bahan = '$jumlahDiDatabase' WHERE id='$id'";
                         $updateResult = mysqli_query($conn, $updateQuery);
-
+                        
                         if (!$updateResult) {
                             echo "<script>alert('Gagal mengupdate stok bahan'); window.location.href = 'penjualan.php';</script>";
                             $isValid = false;
                         }
-                    }
+                        if ($totalBahanTerpakai <= $jumlahDiDatabase) {
+                            $jumlahDiDatabase -= $totalBahanTerpakai;
                     
-                } else {
-                    $isValid = false;
-                    echo "<script>alert('Gagal menambahkana data penjualan'); window.location.href = 'penjualan.php';</script>";
-                }
+                            if ($jumlahDiDatabase === 0) {
+                                // Hapus baris jika jumlahDiDatabase menjadi 0
+                                $deleteQuery = "DELETE FROM bahan WHERE id='$id'";
+                                $deleteResult = mysqli_query($conn, $deleteQuery);
+
+                                if (!$deleteResult) {
+                                    echo "<script>alert('Gagal menghapus data bahan'); window.location.href = 'penjualan.php';</script>";
+                                    $isValid = false;
+                                }
+                            } else {
+                                // Update jumlah bahan
+                                $updateQuery = "UPDATE bahan SET jumlah_bahan = '$jumlahDiDatabase' WHERE id='$id'";
+                                $updateResult = mysqli_query($conn, $updateQuery);
+
+                                if (!$updateResult) {
+                                    echo "<script>alert('Gagal mengupdate stok bahan'); window.location.href = 'penjualan.php';</script>";
+                                    $isValid = false;
+                                }
+                            }
+                        } 
+                    } else if ($jumlahTotalBahanDB < $totalBahanTerpakai){
+
+                        $isValid = false;
+                        echo "<script>alert('Gagal menambahkan Data Penjualan Karena Stok Kurang '); window.location.href = 'penjualan.php';</script>";
+                    }
+                }  else {
+                        $isValid = false;
+                        echo "<script>alert('Gagal menambahkan Data Penjualan '); window.location.href = 'penjualan.php';</script>";
+                    }
             }
         }
     }
